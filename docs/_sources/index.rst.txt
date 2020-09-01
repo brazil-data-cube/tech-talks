@@ -23,14 +23,24 @@ This project aims to ...
 
 
 .. toctree::
+    :numbered:
     :maxdepth: 1
-    :caption: Topics:
+    :caption: Apresentações:
 
+    odc
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Informações Gerais:
+
+    sites
+    contato
     license
 
 
-Indices and tables
-==================
+Indíces e tabelas
+=================
 
 * :ref:`genindex`
 * :ref:`modindex`
