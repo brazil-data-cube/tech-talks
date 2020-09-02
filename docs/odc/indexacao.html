@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.4. Adicionando produtos &mdash; Brazil Data Cube</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksodc/indexacao.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="1.7. Ingestão de dados" href="ingestao.html" />
+    <link rel="prev" title="1.1. Instalação" href="instalacao.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> BDC Tech Talks
+          
+
+          
+            
+            <img src="../_static/logo-bdc.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Brazil Data Cube Tech Talks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Apresentações:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../odc.html">1. Open Data Cube</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html">1.1. Instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html#executando-os-servicos-odc">1.2. Executando os serviços ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html#configurando-o-odc-core">1.3. Configurando o ODC-Core</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.4. Adicionando produtos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extraindo-metadados-de-datasets">1.5. Extraíndo metadados de datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adicionando-datasets-ao-banco-de-dados-do-odc">1.6. Adicionando datasets ao banco de dados do ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ingestao.html">1.7. Ingestão de dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consumo.html">1.8. Consumindo os dados</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sites.html">Brazil Data Cube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contato.html">Contato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BDC Tech Talks</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../odc.html"><span class="section-number">1. </span>Open Data Cube</a> &raquo;</li>
+        
+      <li><span class="section-number">1.4. </span>Adicionando produtos</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/odc/indexacao.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="ingestao.html" class="btn btn-neutral float-right" title="1.7. Ingestão de dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="instalacao.html" class="btn btn-neutral float-left" title="1.1. Instalação" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adicionando-produtos">
+<h1><span class="section-number">1.4. </span>Adicionando produtos<a class="headerlink" href="#adicionando-produtos" title="Link permanente para este título">¶</a></h1>
+<p>Com toda a infraestrutura configurada passa a ser possível catalogar os dados dentro do ODC-Core. O primeiro passo para a catalogação é a adição de produtos no ODC-Core. Para isso, é necessário realizar a <a class="reference external" href="https://datacube-core.readthedocs.io/en/latest/ops/product.html">definição do produto</a>. Normalmente, esta etapa seria feita de maneira manual, com o preenchimento de diversos campos em um arquivo YAML, porém, para os produtos de dados do BDC foi criado a ferramenta <cite>stac2odc</cite>, que através de consultas ao <a class="reference external" href="https://github.com/brazil-data-cube/bdc-stac">BDC-STAC</a> cria esses arquivos YAML automaticamente</p>
+<p>Para fazer o uso desta ferramenta, primeiro acesse o <em>container</em> do odc-core.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker <span class="nb">exec</span> -it bdc-odc-core /bin/bash
+</pre></div>
+</div>
+<p>Dentro do <em>container</em>, execute os comandos para baixar o repositório bdc-odc, onde está o stac2odc e faça sua instalação.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/brazil-data-cube/bdc-odc.git
+$ <span class="nb">cd</span> bdc-odc/stac2odc
+$ sudo python3 setup.py install
+</pre></div>
+</div>
+<p>Agora, faça a extração das informações de uma coleção que está disponível no BDC-STAC. Para este exemplo foi selecionado a coleção <cite>CB4_64_16D_STK_v1</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para ficar claro, as nomenclaturas do STAC e do ODC diferem em alguns pontos. O que o STAC chama de <em>collection</em>, o ODC chama de <em>product</em>. Além disso, os <em>items</em> do STAC são <em>datasets</em> no ODC.</p>
+</div>
+<p>Crie um diretório para armazenar o arquivo YAML com as informações extraídas.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/products/CB4_64_16D_STK_v1/datasets
+</pre></div>
+</div>
+<p>Agora, utilizando o stac2odc faça a extração das definições do produto <cite>CB4_64_16D_STK_v1</cite>. Perceba que as opções <cite>units</cite>, <cite>instrument</cite> e <cite>type</cite> precisam ser definidas pelo utilizador da biblioteca, isso acontece já que, no ODC, o usuário é quem define o padrão das nomenclaturas e para manter essa flexibilidade, estas opções foram deixadas em aberto.</p>
+<p>Caso queira, é possível utilizar a opção <cite>–verbose</cite>, assim você consegue acompanhar os passos que estão sendo feitos.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ stac2odc collection2product -c CB4_64_16D_STK_v1 -o ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml --units m -p CBERS4 --instrument AWFI --type eo
+</pre></div>
+</div>
+<p>Após a execução do <em>script</em> você pode visualizar o resultado, acessando diretamente o local indicado na opção <cite>-o</cite> do stac2odc.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ cat ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
+</pre></div>
+</div>
+<p>Com a definição realizada, adicione o produto no catálogo do ODC-Core.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ datacube product add ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
+</pre></div>
+</div>
+<p>Para verificar se esta tudo certo, liste os produtos disponíveis no catálogo do ODC-Core</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ datacube product list
+</pre></div>
+</div>
+</div>
+<div class="section" id="extraindo-metadados-de-datasets">
+<h1><span class="section-number">1.5. </span>Extraíndo metadados de datasets<a class="headerlink" href="#extraindo-metadados-de-datasets" title="Link permanente para este título">¶</a></h1>
+<p>Os registros de <em>datasets</em> no catálogo do ODC-Core são feitos da mesma forma que os produtos, dado uma definição em arquivo YAML é possível fazer a adição. Para este caso, o stac2odc oferece um utilitário para mapear os <em>items</em> do BDC-STAC em <em>datasets</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Antes de realizar a execução do utilitário, é necessário entender que este processo necessita da disponibilidade do repositório de dados do BDC, isso porque durante a descrição dos <em>datasets</em> o caminho para os arquivos de dados são necessários. Pensando nisso, no stac2odc está disponível a opção <cite>–download</cite>, que da a possibilidade de baixar os dados e então fazer sua descrição. Para este tutorial, esta facilidade será utilizada.</p>
+</div>
+<p>Para fazer a extração dos metadados dos <em>datasets</em>, é necessário definir a coleção, a quantidade de dados considerados e também as opções de <cite>units</cite> e <cite>instrument</cite> que foram apresentadas anteriormente.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ stac2odc item2dataset -c CB4_64_16D_STK_v1 -o ~/products/CB4_64_16D_STK_v1/datasets/ --units m -p CBERS4 --instrument AWFI -m <span class="m">3</span> --download --download-out /data
+</pre></div>
+</div>
+<p>O comando abaixo vai baixar 3 arquivos, salvar eles no diretório <cite>/data</cite> e colocar suas descrições no diretório <cite>~/products/CB4_64_16D_STK_v1/datasets/</cite>. A árvore de diretórios criada no <cite>/data</cite> é a mesma utilizada no BDC.</p>
+</div>
+<div class="section" id="adicionando-datasets-ao-banco-de-dados-do-odc">
+<h1><span class="section-number">1.6. </span>Adicionando datasets ao banco de dados do ODC<a class="headerlink" href="#adicionando-datasets-ao-banco-de-dados-do-odc" title="Link permanente para este título">¶</a></h1>
+<p>Após a finalização do processo de <em>download</em> e descrição dos <em>datasets</em>, pode-se faze a inserção desses no banco de metadados do ODC-Core. Para adicionar todos os dados descritos no passo anterior, o comando abaixo pode ser utilizado.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ find ~/products/CB4_64_16D_STK_v1/datasets/*.yaml -exec datacube -vvv dataset add -p CB4_64_16D_STK_v1 <span class="o">{}</span> <span class="se">\;</span>
+</pre></div>
+</div>
+<p>Se necessário, adições individuais podem ser feitas com o uso do comando <cite>datacube dataset add</cite>. Para mais informações consulte a documentação do ODC, disponível neste link: <a class="reference external" href="https://datacube-core.readthedocs.io/en/latest/">https://datacube-core.readthedocs.io/en/latest/</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ingestao.html" class="btn btn-neutral float-right" title="1.7. Ingestão de dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="instalacao.html" class="btn btn-neutral float-left" title="1.1. Instalação" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, INPE.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'XXXXXXXXXX', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

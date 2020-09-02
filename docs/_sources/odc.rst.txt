@@ -9,16 +9,20 @@
 Open Data Cube
 ==============
 
-
 .. image:: ./img/odc/logo-odc.png
     :alt: Open Data Cube
     :width: 125
     :align: right
 
+Conteúdo auxiliar à apresentação do Tech Talk `Introdução e conceitos básicos; integração com os dados do Brazil Data Cube.`.
+
+Descrição: Atualmente o *framework* Open Data Cube e todo seu ecossistema de ferramentas vem sendo testado com os produtos de dados do Brazil Data Cube, o objetivo é possibilitar que em um futuro próximo, essa ferramenta possa ser uma opção de uso dos dados do BDC. Com isso, este *Tech Talk* tem por objetivo fazer uma apresentação dos principais conceitos e a forma de uso básica da ferramenta.
 
 .. toctree::
     :maxdepth: 1
     :titlesonly:
 
-    ./odc/introducao
     ./odc/instalacao
+    ./odc/indexacao
+    ./odc/ingestao
+    ./odc/consumo

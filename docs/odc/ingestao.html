@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.7. Ingestão de dados &mdash; Brazil Data Cube</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksodc/ingestao.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="1.8. Consumindo os dados" href="consumo.html" />
+    <link rel="prev" title="1.4. Adicionando produtos" href="indexacao.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> BDC Tech Talks
+          
+
+          
+            
+            <img src="../_static/logo-bdc.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Brazil Data Cube Tech Talks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Apresentações:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../odc.html">1. Open Data Cube</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html">1.1. Instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html#executando-os-servicos-odc">1.2. Executando os serviços ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html#configurando-o-odc-core">1.3. Configurando o ODC-Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html">1.4. Adicionando produtos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html#extraindo-metadados-de-datasets">1.5. Extraíndo metadados de datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">1.6. Adicionando datasets ao banco de dados do ODC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.7. Ingestão de dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consumo.html">1.8. Consumindo os dados</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sites.html">Brazil Data Cube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contato.html">Contato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BDC Tech Talks</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../odc.html"><span class="section-number">1. </span>Open Data Cube</a> &raquo;</li>
+        
+      <li><span class="section-number">1.7. </span>Ingestão de dados</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/odc/ingestao.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="consumo.html" class="btn btn-neutral float-right" title="1.8. Consumindo os dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="indexacao.html" class="btn btn-neutral float-left" title="1.4. Adicionando produtos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ingestao-de-dados">
+<h1><span class="section-number">1.7. </span>Ingestão de dados<a class="headerlink" href="#ingestao-de-dados" title="Link permanente para este título">¶</a></h1>
+<p>Com os produtos e seus <em>datasets</em> catalogados, é possível realizar um processo de ingestão nos dados. Neste processo, transformações como reprojeção e <em>tiling</em> podem ser aplicados nos dados para que eles sejam mais simples de serem carregados pelo ODC e tornem-se mais usuais para diferentes análises dos usuários.</p>
+<p>A realização do processo de ingestão, assim como em todas as demais etapas apresentadas neste tutorial, exige um arquivo YAML. Para este caso, o stac2odc ainda não tem utilitários disponíveis. Para contornar esta questão e tornar fácil o processo de ingestão, no repositório <a class="reference external" href="https://github.com/brazil-data-cube/bdc-odc/tree/master/examples">brazil-data-cube/bdc-odc</a>, estão disponíveis arquivos YAML com a descrição desta operação. O exemplo feito para este tutorial, consome o arquivo <cite>CB4_64_16D_STK_v1.ingest.yaml</cite> disponível neste repositório.</p>
+<p>O processo de ingestão presente no arquivo <cite>CB4_64_16D_STK_v1.ingest.yaml</cite>, realiza a compressão dos dados e aplica <em>tiling</em>, isso para que a recuperação dos dados seja feita de forma mais rápida. A geração da ingestão é apresentada abaixo.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ datacube -v ingest -c CB4_64_16D_STK_v1.ingest.yaml  --executor multiproc <span class="m">2</span>
+</pre></div>
+</div>
+<p>Além da opção <cite>–executor</cite>, aplicada no comando acima, existem diversas outras que podem ser utilizadas para acelerar o processo de ingestão e também de garantir sua reprodutibilidade. Para mais informações consulte a documentação do ODC sobre ingestão, disponível neste link: <a class="reference external" href="https://datacube-core.readthedocs.io/en/latest/ops/ingest.html">https://datacube-core.readthedocs.io/en/latest/ops/ingest.html</a></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="consumo.html" class="btn btn-neutral float-right" title="1.8. Consumindo os dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="indexacao.html" class="btn btn-neutral float-left" title="1.4. Adicionando produtos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, INPE.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'XXXXXXXXXX', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

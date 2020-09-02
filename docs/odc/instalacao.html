@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.2. Instalação &mdash; Brazil Data Cube</title>
+  <title>1.1. Instalação &mdash; Brazil Data Cube</title>
   
 
   
@@ -44,8 +44,8 @@
     
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="Brazil Data Cube" href="../sites.html" />
-    <link rel="prev" title="1.1. Introdução" href="introducao.html" /> 
+    <link rel="next" title="1.4. Adicionando produtos" href="indexacao.html" />
+    <link rel="prev" title="1. Open Data Cube" href="../odc.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,8 +99,14 @@
 <p class="caption"><span class="caption-text">Apresentações:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../odc.html">1. Open Data Cube</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="introducao.html">1.1. Introdução</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. Instalação</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executando-os-servicos-odc">1.2. Executando os serviços ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configurando-o-odc-core">1.3. Configurando o ODC-Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html">1.4. Adicionando produtos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html#extraindo-metadados-de-datasets">1.5. Extraíndo metadados de datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">1.6. Adicionando datasets ao banco de dados do ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ingestao.html">1.7. Ingestão de dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consumo.html">1.8. Consumindo os dados</a></li>
 </ul>
 </li>
 </ul>
@@ -157,7 +163,7 @@
         
           <li><a href="../odc.html"><span class="section-number">1. </span>Open Data Cube</a> &raquo;</li>
         
-      <li><span class="section-number">1.2. </span>Instalação</li>
+      <li><span class="section-number">1.1. </span>Instalação</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -173,10 +179,10 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="../sites.html" class="btn btn-neutral float-right" title="Brazil Data Cube" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="indexacao.html" class="btn btn-neutral float-right" title="1.4. Adicionando produtos" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introducao.html" class="btn btn-neutral float-left" title="1.1. Introdução" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="../odc.html" class="btn btn-neutral float-left" title="1. Open Data Cube" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
   </div>
   
@@ -186,7 +192,87 @@
            <div itemprop="articleBody">
             
   <div class="section" id="instalacao">
-<h1><span class="section-number">1.2. </span>Instalação<a class="headerlink" href="#instalacao" title="Link permanente para este título">¶</a></h1>
+<h1><span class="section-number">1.1. </span>Instalação<a class="headerlink" href="#instalacao" title="Link permanente para este título">¶</a></h1>
+<p>Esta seção apresenta os passos necessários para a instalação do ambiente básico para a utilização do Open Data Cube. Todo este processo será feito utilizando o Docker, se precisar, consulte a documentação do Docker neste link: <a class="reference external" href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Os comandos abaixo foram feitos no Linux, pode ser que para a utilização no Windows mudanças tenham de ser feitas</p>
+</div>
+<p>Para começar, o primeiro passo a ser realizado é a aquisição dos códigos que serão utilizados. Faça isso utilizando o comando <cite>git clone</cite> no repositório <cite>odc-bdc</cite> do Brazil Data Cube. O comando completo é apresentado abaixo:</p>
+<p>On the command line use the <cite>git clone</cite> command to clone the software repository:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/brazil-data-cube/bdc-odc.git
+</pre></div>
+</div>
+<p>Após o <em>download</em>, acesse o diretório que foi criado</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> bdc-odc
+</pre></div>
+</div>
+<p>Dentro do diretório, faça a execução do <em>script</em> <cite>build-docker.sh</cite>, este vai fazer a geração das imagens do ODC-Core e também do Jupyter-Notebook.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./build-docker.sh
+</pre></div>
+</div>
+<p>Após executar, ambas as imagens citadas anteriormente deverão estar disponíveis no seu ambiente Docker. Para conferir utilize o comando <cite>docker images</cite>, o resultado deve ser algo parecido com o apresentado abaixo.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+local/odc-jupyter   <span class="m">1</span>.7                 684c49022dd4        <span class="m">5</span> days ago          <span class="m">1</span>.9GB
+local/odc           <span class="m">1</span>.7                 72408270a63b        <span class="m">5</span> days ago          <span class="m">1</span>.61GB
+</pre></div>
+</div>
+<p>Se tudo correu bem você vai ver as mesmas imagens que foram apresentadas. Com este passo feito, pode-se iniciar a execução de ambos os serviços.</p>
+</div>
+<div class="section" id="executando-os-servicos-odc">
+<h1><span class="section-number">1.2. </span>Executando os serviços ODC<a class="headerlink" href="#executando-os-servicos-odc" title="Link permanente para este título">¶</a></h1>
+<p>O primeiro passo será a criação de uma rede docker específica para os serviços que vão ser configurados.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker network create bdc-odc-net
+</pre></div>
+</div>
+<p>A configuração do ODC-Core depende de uma instância do PostgreSQL para o armazenamento dos metadados. Para isso, execute o comando docker apresentado abaixo.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>As variáveis de ambiente que estão sendo configuradas no comando, como <cite>POSTGRES_USER</cite>, <cite>POSTGRES_PASSWORD</cite> e <cite>POSTGRES_DB</cite>, podem ser modificadas, caso seja necessário. Recomenda-se a troca da senha do banco.</p>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker run -it -d <span class="se">\</span>
+        --name bdc-odc-pg <span class="se">\</span>
+        --hostname bdc-odc-pg <span class="se">\</span>
+        --network bdc-odc-net <span class="se">\</span>
+        --restart unless-stopped <span class="se">\</span>
+        -v bdc-odc-pgdata_vol:/var/lib/postgresql/data <span class="se">\</span>
+        -e <span class="nv">PGDATA</span><span class="o">=</span>/var/lib/postgresql/data <span class="se">\</span>
+        -e <span class="nv">POSTGRES_DB</span><span class="o">=</span>opendatacube <span class="se">\</span>
+        -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>change-me <span class="se">\</span>
+        -e <span class="nv">POSTGRES_USER</span><span class="o">=</span>opendatacube <span class="se">\</span>
+        kartoza/postgis:11.0-2.5
+</pre></div>
+</div>
+<p>Com o PostgreSQL em execução você pode iniciar a instância do ODC-Core, para isso, utilize o comando abaixo. Caso você tenha alterado as variáveis de ambiente na execução do PostgreSQL, não esqueça de alterar aqui também, com as mesmas informações.</p>
+<p>Considere também configurar o volume que está sendo montado para o armazenamento dos dados, para fazer sua alteração, insira no lugar de <cite>/path/to/data-repository</cite> para o local onde você deseja salvar os dados em sua máquina.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker run -it -d <span class="se">\</span>
+        --name bdc-odc-core <span class="se">\</span>
+        --hostname bdc-odc-core <span class="se">\</span>
+        --network bdc-odc-net <span class="se">\</span>
+        --restart unless-stopped <span class="se">\</span>
+        -v /path/to/data-repository:/data <span class="se">\</span>
+        -e <span class="nv">DB_DATABASE</span><span class="o">=</span>opendatacube <span class="se">\</span>
+        -e <span class="nv">DB_HOSTNAME</span><span class="o">=</span>bdc-odc-pg <span class="se">\</span>
+        -e <span class="nv">DB_USERNAME</span><span class="o">=</span>opendatacube <span class="se">\</span>
+        -e <span class="nv">DB_PASSWORD</span><span class="o">=</span>change-me <span class="se">\</span>
+        -e <span class="nv">DB_PORT</span><span class="o">=</span><span class="m">5432</span> <span class="se">\</span>
+        local/odc:1.7 /bin/bash
+</pre></div>
+</div>
+<p>Para finalizar, algumas configurações no ODC-Core serão feitas.</p>
+</div>
+<div class="section" id="configurando-o-odc-core">
+<h1><span class="section-number">1.3. </span>Configurando o ODC-Core<a class="headerlink" href="#configurando-o-odc-core" title="Link permanente para este título">¶</a></h1>
+<p>O vínculo que foi feito entre os <em>containers</em> do ODC-Core e do PostgreSQL não são o suficiente para o correto funcionamento do ODC-Core, é necessário que os <em>schemas</em> utilizados sejam criados dentro do banco de dados. Para isso, através da datacube-cli que está disponível dentro do <cite>ODC-Core</cite>, crie os <em>schemas</em> no banco de dados.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker <span class="nb">exec</span> -it bdc-odc-core datacube system init
+</pre></div>
+</div>
+<p>Para verificar se tudo está certo, liste os produtos que estão cadastrados no sistema. Como até agora só fizemos essa configuração inicial é esperado que o comando não retorne nenhum valor, mas também não apresente nenhum tipo de erro.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker <span class="nb">exec</span> -it bdc-odc-core datacube product list
+</pre></div>
+</div>
 </div>
 
 
@@ -197,10 +283,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../sites.html" class="btn btn-neutral float-right" title="Brazil Data Cube" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="indexacao.html" class="btn btn-neutral float-right" title="1.4. Adicionando produtos" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introducao.html" class="btn btn-neutral float-left" title="1.1. Introdução" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="../odc.html" class="btn btn-neutral float-left" title="1. Open Data Cube" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
     </div>
   
