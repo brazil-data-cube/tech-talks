@@ -5,87 +5,104 @@
     Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
     under the terms of the MIT License; see LICENSE file for more details.
 
-Adicionando produtos
-====================
 
-Com toda a infraestrutura configurada passa a ser possível catalogar os dados dentro do ODC-Core. O primeiro passo para a catalogação é a adição de produtos no ODC-Core. Para isso, é necessário realizar a `definição do produto <https://datacube-core.readthedocs.io/en/latest/ops/product.html>`_. Normalmente, esta etapa seria feita de maneira manual, com o preenchimento de diversos campos em um arquivo YAML, porém, para os produtos de dados do BDC foi criado a ferramenta `stac2odc`, que através de consultas ao `BDC-STAC <https://github.com/brazil-data-cube/bdc-stac>`_ cria esses arquivos YAML automaticamente
+Adicionando um Produto de Dados
+===============================
 
-Para fazer o uso desta ferramenta, primeiro acesse o *container* do odc-core.
 
-.. code-block:: shell
+Com toda a infraestrutura configurada passa a ser possível catalogar os dados dentro do ``ODC-Core``. O primeiro passo para a catalogação é a adição de produtos no ``ODC-Core``. Para isso, é necessário realizar a `definição do produto <https://datacube-core.readthedocs.io/en/latest/ops/product.html>`_. Normalmente, esta etapa seria feita de maneira manual, com o preenchimento de diversos campos em um arquivo ``YAML``, porém, para os produtos de dados do BDC foi criado a ferramenta ``stac2odc``, que através de consultas ao `BDC-STAC <https://github.com/brazil-data-cube/bdc-stac>`_ cria esses arquivos ``YAML`` automaticamente.
 
-    $ docker exec -it bdc-odc-core /bin/bash
 
-Dentro do *container*, execute os comandos para baixar o repositório bdc-odc, onde está o stac2odc e faça sua instalação.
+Para fazer o uso desta ferramenta, primeiro acesse o *container* do ``odc-core``::
 
-.. code-block:: shell
+    docker exec -it bdc-odc-core /bin/bash
 
-    $ git clone https://github.com/brazil-data-cube/bdc-odc.git
-    $ cd bdc-odc/stac2odc
-    $ sudo pip3 install -e .[all]
 
-Agora, faça a extração das informações de uma coleção que está disponível no BDC-STAC. Para este exemplo foi selecionado a coleção `CB4_64_16D_STK_v1`.
+Dentro do *container*, execute os comandos para baixar o repositório ``bdc-odc``, onde está o ``stac2odc`` e faça sua instalação::
 
-.. NOTE::
+    git clone https://github.com/brazil-data-cube/bdc-odc.git
+
+    cd bdc-odc/stac2odc
+
+    sudo pip3 install -e .[all]
+
+
+Agora, faça a extração das informações de uma coleção que está disponível no BDC-STAC. Para este exemplo foi selecionado a coleção ``CB4_64_16D_STK_v1``.
+
+
+.. note::
 
     Para ficar claro, as nomenclaturas do STAC e do ODC diferem em alguns pontos. O que o STAC chama de *collection*, o ODC chama de *product*. Além disso, os *items* do STAC são *datasets* no ODC.
 
-Crie um diretório para armazenar o arquivo YAML com as informações extraídas.
+
+Crie um diretório para armazenar o arquivo YAML com as informações extraídas::
+
+    mkdir -p ~/products/CB4_64_16D_STK_v1/datasets
+
+
+Agora, utilizando o ``stac2odc`` faça a extração das definições do produto ``CB4_64_16D_STK_v1``. Perceba que as opções ``units``, ``instrument`` e ``type`` precisam ser definidas pelo utilizador da biblioteca, isso acontece já que, no ODC, o usuário é quem define o padrão das nomenclaturas e para manter essa flexibilidade, estas opções foram deixadas em aberto.
+
+
+Caso queira, é possível utilizar a opção ``--verbose``, assim você consegue acompanhar os passos que estão sendo feitos.
+
 
 .. code-block:: shell
 
-    $ mkdir -p ~/products/CB4_64_16D_STK_v1/datasets
+    stac2odc collection2product -c CB4_64_16D_STK_v1 -o ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml --units m -p CBERS4 --instrument AWFI --type eo
 
-Agora, utilizando o stac2odc faça a extração das definições do produto `CB4_64_16D_STK_v1`. Perceba que as opções `units`, `instrument` e `type` precisam ser definidas pelo utilizador da biblioteca, isso acontece já que, no ODC, o usuário é quem define o padrão das nomenclaturas e para manter essa flexibilidade, estas opções foram deixadas em aberto.
 
-Caso queira, é possível utilizar a opção `--verbose`, assim você consegue acompanhar os passos que estão sendo feitos.
+Após a execução do *script* você pode visualizar o resultado, acessando diretamente o local indicado na opção ``-o`` do ``stac2odc``.
 
-.. code-block:: shell
-
-    $ stac2odc collection2product -c CB4_64_16D_STK_v1 -o ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml --units m -p CBERS4 --instrument AWFI --type eo
-
-Após a execução do *script* você pode visualizar o resultado, acessando diretamente o local indicado na opção `-o` do stac2odc.
 
 .. code-block:: shell
 
-    $ cat ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
+    cat ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
 
-Com a definição realizada, adicione o produto no catálogo do ODC-Core.
 
-.. code-block:: shell
+Com a definição realizada, adicione o produto no catálogo do ODC-Core::
 
-    $ datacube product add ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
+    datacube product add ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
 
-Para verificar se esta tudo certo, liste os produtos disponíveis no catálogo do ODC-Core
 
-.. code-block:: shell
+Para verificar se está tudo certo, liste os produtos disponíveis no catálogo do ODC-Core::
 
-    $ datacube product list
+    datacube product list
 
-Extraíndo metadados de datasets
-===============================
 
-Os registros de *datasets* no catálogo do ODC-Core são feitos da mesma forma que os produtos, dado uma definição em arquivo YAML é possível fazer a adição. Para este caso, o stac2odc oferece um utilitário para mapear os *items* do BDC-STAC em *datasets*.
+Extraíndo Metadados dos Datasets
+================================
 
-.. NOTE::
 
-    Antes de realizar a execução do utilitário, é necessário entender que este processo necessita da disponibilidade do repositório de dados do BDC, isso porque durante a descrição dos *datasets* o caminho para os arquivos de dados são necessários. Pensando nisso, no stac2odc está disponível a opção `--download`, que da a possibilidade de baixar os dados e então fazer sua descrição. Para este tutorial, esta facilidade será utilizada.
+Os registros de *datasets* no catálogo do ``ODC-Core`` são feitos da mesma forma que os produtos, dada uma definição em arquivo YAML é possível fazer a adição. Para este caso, o ``stac2odc`` oferece um utilitário para mapear os *items* do BDC-STAC em *datasets*.
 
-Para fazer a extração dos metadados dos *datasets*, é necessário definir a coleção, a quantidade de dados considerados e também as opções de `units` e `instrument` que foram apresentadas anteriormente.
 
-.. code-block:: shell
+.. note::
 
-    $ stac2odc item2dataset -c CB4_64_16D_STK_v1 -o ~/products/CB4_64_16D_STK_v1/datasets/ --units m -p CBERS4 --instrument AWFI -m 3 --download --download-out /data
+    Antes de realizar a execução do utilitário, é necessário entender que este processo necessita da disponibilidade do repositório de dados do BDC, isso porque durante a descrição dos *datasets* o caminho para os arquivos de dados são necessários. Pensando nisso, no stac2odc está disponível a opção ``--download``, que dá a possibilidade de baixar os dados e então fazer sua descrição. Para este tutorial, esta facilidade será utilizada.
 
-O comando abaixo vai baixar 3 arquivos, salvar eles no diretório `/data` e colocar suas descrições no diretório `~/products/CB4_64_16D_STK_v1/datasets/`. A árvore de diretórios criada no `/data` é a mesma utilizada no BDC.
 
-Adicionando datasets ao banco de dados do ODC
+Para fazer a extração dos metadados dos *datasets*, é necessário definir a coleção, a quantidade de dados considerados e também as opções de ``units`` e ``instrument`` que foram apresentadas anteriormente::
+
+    sudo stac2odc item2dataset -c CB4_64_16D_STK_v1 \
+                               -o ~/products/CB4_64_16D_STK_v1/datasets/ \
+                               --units m \
+                               -p CBERS4 \
+                               --instrument AWFI \
+                               -m 3 \
+                               --download \
+                               --download-out /data
+
+
+O comando abaixo vai baixar 03 arquivos, salvar eles no diretório ``/data`` e colocar suas descrições no diretório ``~/products/CB4_64_16D_STK_v1/datasets/``. A árvore de diretórios criada no ``/data`` é a mesma utilizada no BDC.
+
+
+Adicionando Datasets ao Banco de Dados do ODC
 =============================================
 
-Após a finalização do processo de *download* e descrição dos *datasets*, pode-se faze a inserção desses no banco de metadados do ODC-Core. Para adicionar todos os dados descritos no passo anterior, o comando abaixo pode ser utilizado.
 
-.. code-block:: shell
+Após a finalização do processo de *download* e descrição dos *datasets*, pode-se fazer a inserção desses no banco de metadados do ODC-Core. Para adicionar todos os dados descritos no passo anterior, o comando abaixo pode ser utilizado::
 
-    $ find ~/products/CB4_64_16D_STK_v1/datasets/*.yaml -exec datacube -vvv dataset add -p CB4_64_16D_STK_v1 {} \;
+    find ~/products/CB4_64_16D_STK_v1/datasets/*.yaml -exec datacube -vvv dataset add -p CB4_64_16D_STK_v1 {} \;
 
-Se necessário, adições individuais podem ser feitas com o uso do comando `datacube dataset add`. Para mais informações consulte a documentação do ODC, disponível neste link: https://datacube-core.readthedocs.io/en/latest/
+
+Se necessário, adições individuais podem ser feitas com o uso do comando ``datacube dataset add``. Para mais informações consulte a documentação do ODC, disponível neste link: https://datacube-core.readthedocs.io/en/latest/.
