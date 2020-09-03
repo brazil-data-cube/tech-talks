@@ -1,0 +1,40 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright 2020 INPE.
+
+    Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+
+Configurando o ODC-Core
+=======================
+
+
+O vínculo que foi feito entre os *containers* do ``ODC-Core`` e do ``PostgreSQL`` não são o suficiente para o correto funcionamento do ``ODC-Core``. Será necessária a criação do esquema de bancos de dados com o modelo do ODC. Para isso, utilizaremos o programa em linha de comando denominado ``datacube-cli``, disponível no container ``ODC-Core``::
+
+    docker exec -it bdc-odc-core datacube system init
+
+
+Para verificar se o comando acima criou as tabelas do esquema ODC, utilize o seguite comando::
+
+    docker exec -it bdc-odc-pg psql -U opendatacube -d opendatacube -c "\dt agdc.*"
+
+
+As seguintes tabelas deverão ser apresentadas como resultado::
+
+                   List of relations
+     Schema |       Name       | Type  |   Owner
+    --------+------------------+-------+------------
+     agdc   | dataset          | table | agdc_admin
+     agdc   | dataset_location | table | agdc_admin
+     agdc   | dataset_source   | table | agdc_admin
+     agdc   | dataset_type     | table | agdc_admin
+     agdc   | metadata_type    | table | agdc_admin
+    (5 rows)
+
+
+.. note::
+
+    Outra forma de verificar se tudo está certo, é listar os produtos cadastrados no sistema. No entanto, como até o momento não fizemos a carga de nenhum dado, é esperado que o comando não retorne nenhum valor, mas também não apresente nenhum tipo de mensagem de erro::
+
+        docker exec -it bdc-odc-core datacube product list

@@ -7,7 +7,7 @@
 
 
 Ingestão de dados
--------------------
+=================
 
 Com os produtos e seus *datasets* catalogados, é possível realizar um processo de ingestão nos dados. Neste processo, transformações como reprojeção e *tiling* podem ser aplicados nos dados para que eles sejam mais simples de serem carregados pelo ODC e tornem-se mais usuais para diferentes análises dos usuários.
 

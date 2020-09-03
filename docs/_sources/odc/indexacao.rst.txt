@@ -6,7 +6,7 @@
     under the terms of the MIT License; see LICENSE file for more details.
 
 Adicionando produtos
-----------------------
+====================
 
 Com toda a infraestrutura configurada passa a ser possível catalogar os dados dentro do ODC-Core. O primeiro passo para a catalogação é a adição de produtos no ODC-Core. Para isso, é necessário realizar a `definição do produto <https://datacube-core.readthedocs.io/en/latest/ops/product.html>`_. Normalmente, esta etapa seria feita de maneira manual, com o preenchimento de diversos campos em um arquivo YAML, porém, para os produtos de dados do BDC foi criado a ferramenta `stac2odc`, que através de consultas ao `BDC-STAC <https://github.com/brazil-data-cube/bdc-stac>`_ cria esses arquivos YAML automaticamente
 
@@ -63,7 +63,7 @@ Para verificar se esta tudo certo, liste os produtos disponíveis no catálogo d
     $ datacube product list
 
 Extraíndo metadados de datasets
---------------------------------
+===============================
 
 Os registros de *datasets* no catálogo do ODC-Core são feitos da mesma forma que os produtos, dado uma definição em arquivo YAML é possível fazer a adição. Para este caso, o stac2odc oferece um utilitário para mapear os *items* do BDC-STAC em *datasets*.
 
@@ -80,7 +80,7 @@ Para fazer a extração dos metadados dos *datasets*, é necessário definir a c
 O comando abaixo vai baixar 3 arquivos, salvar eles no diretório `/data` e colocar suas descrições no diretório `~/products/CB4_64_16D_STK_v1/datasets/`. A árvore de diretórios criada no `/data` é a mesma utilizada no BDC.
 
 Adicionando datasets ao banco de dados do ODC
------------------------------------------------
+=============================================
 
 Após a finalização do processo de *download* e descrição dos *datasets*, pode-se faze a inserção desses no banco de metadados do ODC-Core. Para adicionar todos os dados descritos no passo anterior, o comando abaixo pode ser utilizado.
 
