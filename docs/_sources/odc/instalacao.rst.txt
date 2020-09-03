@@ -5,34 +5,32 @@
     Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
     under the terms of the MIT License; see LICENSE file for more details.
 
+
 Instalação
 ----------
 
-Esta seção apresenta os passos necessários para a instalação do ambiente básico para a utilização do Open Data Cube. Todo este processo será feito utilizando o Docker, se precisar, consulte a documentação do Docker neste link: https://docs.docker.com/get-docker/
 
-.. NOTE::
+Esta seção apresenta os passos necessários para a instalação do ambiente básico do ODC. Esse processo será realizado com o `Docker <https://docs.docker.com/get-docker/>`_.
 
-    Os comandos abaixo foram feitos no Linux, pode ser que para a utilização no Windows mudanças tenham de ser feitas
 
-Para começar, o primeiro passo a ser realizado é a aquisição dos códigos que serão utilizados. Faça isso utilizando o comando `git clone` no repositório `odc-bdc` do Brazil Data Cube. O comando completo é apresentado abaixo:
+.. note::
 
-On the command line use the `git clone` command to clone the software repository:
+    Os comandos abaixo foram testados no Linux. Se você estiver utilizando o Microsft Windows, fique atento à possíveis alterações na forma do comando.
 
-.. code-block:: shell
 
-        $ git clone https://github.com/brazil-data-cube/bdc-odc.git
+Para começar, o primeiro passo a ser realizado é a aquisição dos códigos que serão utilizados. Faça isso utilizando o comando ``git clone`` no repositório `bdc-odc <https://github.com/brazil-data-cube/bdc-odc>` do Brazil Data Cube. O comando completo é apresentado abaixo::
 
-Após o *download*, acesse o diretório que foi criado
+    git clone https://github.com/brazil-data-cube/bdc-odc.git
 
-.. code-block:: shell
 
-        $ cd bdc-odc
+Após o *download*, acesse o diretório que foi criado::
 
-Dentro do diretório, faça a execução do *script* `build-docker.sh`, este vai fazer a geração das imagens do ODC-Core e também do Jupyter-Notebook.
+    cd bdc-odc
 
-.. code-block:: shell
 
-        $ ./build-docker.sh
+Dentro do diretório, faça a execução do *script* ``build-docker.sh``, que fará a geração das imagens do ``ODC-Core`` e também do ``Jupyter-Notebook``::
+
+    ./build-docker.sh
 
 Após executar, ambas as imagens citadas anteriormente deverão estar disponíveis no seu ambiente Docker. Para conferir utilize o comando `docker images`, o resultado deve ser algo parecido com o apresentado abaixo.
 
