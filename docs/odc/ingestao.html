@@ -44,7 +44,7 @@
     
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="Consumindo os dados" href="consumo.html" />
+    <link rel="next" title="Utilizando Ambiente Jupyter com o ODC" href="consumo.html" />
     <link rel="prev" title="Registrando Datasets no Banco de Dados do ODC" href="register_dataset.html" /> 
 </head>
 
@@ -106,7 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="create_dataset_metadata.html">Criando os Metadados dos Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="register_dataset.html">Registrando Datasets no Banco de Dados do ODC</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Ingestão de dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="consumo.html">Consumindo os dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consumo.html">Utilizando Ambiente Jupyter com o ODC</a></li>
 </ul>
 </li>
 </ul>
@@ -181,7 +181,7 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="consumo.html" class="btn btn-neutral float-right" title="Consumindo os dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="consumo.html" class="btn btn-neutral float-right" title="Utilizando Ambiente Jupyter com o ODC" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="register_dataset.html" class="btn btn-neutral float-left" title="Registrando Datasets no Banco de Dados do ODC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
@@ -198,7 +198,7 @@
 <p>Com os produtos e seus <em>datasets</em> catalogados, é possível realizar um processo de ingestão de dados. Neste processo, transformações como reprojeção e <em>tiling</em> podem ser aplicados nos dados para que eles sejam mais simples de serem carregados pelo ODC e tornem-se mais usuais para diferentes análises dos usuários.</p>
 <p>A realização do processo de ingestão, assim como em todas as demais etapas apresentadas neste tutorial, exige um arquivo <code class="docutils literal notranslate"><span class="pre">YAML</span></code>. Para este caso, o <code class="docutils literal notranslate"><span class="pre">stac2odc</span></code> ainda não tem utilitários disponíveis. Para contornar esta questão e tornar fácil o processo de ingestão, utilize o arquivo <a class="reference external" href="https://raw.githubusercontent.com/brazil-data-cube/bdc-odc/master/config/datacube-core/ingest/CB4_64_16D_STK_v1.ingest.yaml">CB4_64_16D_STK_v1.ingest.yaml</a> mostrado abaixo, que contém a descrição desta operação:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 1 - </span><span class="caption-text">Arquivo com a descrição do processo de ingestão do produto <code class="docutils literal notranslate"><span class="pre">CB4_64_16D_STK_v1</span></code> (<code class="docutils literal notranslate"><span class="pre">CB4_64_16D_STK_v1.ingest.yaml</span></code>).</span><a class="headerlink" href="#id1" title="Link Permanente para esse código">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 1 - </span><span class="caption-text">Arquivo com a descrição do processo de ingestão do produto <code class="docutils literal notranslate"><span class="pre">CB4_64_16D_STK_v1</span></code>.</span><a class="headerlink" href="#id1" title="Link Permanente para esse código">¶</a></div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">source_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CB4_64_16D_STK_v1</span>
 <span class="nt">output_type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">CB4_64_16D_STK_v1_ingested</span>
 
@@ -293,9 +293,9 @@
 </div>
 </div>
 <p>O processo de ingestão presente no arquivo <code class="docutils literal notranslate"><span class="pre">CB4_64_16D_STK_v1.ingest.yaml</span></code>, realiza a compressão dos dados e aplica <em>tiling</em>, isso para que a recuperação dos dados seja feita de forma mais rápida. A geração da ingestão é apresentada abaixo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datacube</span> <span class="o">-</span><span class="n">v</span> <span class="n">ingest</span> \
-         <span class="o">-</span><span class="n">c</span> <span class="n">CB4_64_16D_STK_v1</span><span class="o">.</span><span class="n">ingest</span><span class="o">.</span><span class="n">yaml</span> \
-         <span class="o">--</span><span class="n">executor</span> <span class="n">multiproc</span> <span class="mi">2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">datacube</span> <span class="o">-</span><span class="n">v</span> <span class="n">ingest</span> \
+              <span class="o">-</span><span class="n">c</span> <span class="n">CB4_64_16D_STK_v1</span><span class="o">.</span><span class="n">ingest</span><span class="o">.</span><span class="n">yaml</span> \
+              <span class="o">--</span><span class="n">executor</span> <span class="n">multiproc</span> <span class="mi">2</span>
 </pre></div>
 </div>
 <p>Além da opção <code class="docutils literal notranslate"><span class="pre">--executor</span></code>, aplicada no comando acima, existem diversas outras que podem ser utilizadas para acelerar o processo de ingestão e também de garantir sua reprodutibilidade. Para mais informações consulte a <a class="reference external" href="https://datacube-core.readthedocs.io/en/latest/ops/ingest.html">documentação do ODC sobre ingestão</a>.</p>
@@ -309,7 +309,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="consumo.html" class="btn btn-neutral float-right" title="Consumindo os dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="consumo.html" class="btn btn-neutral float-right" title="Utilizando Ambiente Jupyter com o ODC" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="register_dataset.html" class="btn btn-neutral float-left" title="Registrando Datasets no Banco de Dados do ODC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>

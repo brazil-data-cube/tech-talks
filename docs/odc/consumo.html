@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Consumindo os dados &mdash; Brazil Data Cube</title>
+  <title>Utilizando Ambiente Jupyter com o ODC &mdash; Brazil Data Cube</title>
   
 
   
@@ -106,7 +106,10 @@
 <li class="toctree-l2"><a class="reference internal" href="create_dataset_metadata.html">Criando os Metadados dos Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="register_dataset.html">Registrando Datasets no Banco de Dados do ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ingestao.html">Ingestão de dados</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Consumindo os dados</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Utilizando Ambiente Jupyter com o ODC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exemplos-de-notebooks">Exemplos de Notebooks</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -163,7 +166,7 @@
         
           <li><a href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a> &raquo;</li>
         
-      <li>Consumindo os dados</li>
+      <li>Utilizando Ambiente Jupyter com o ODC</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -193,30 +196,73 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="consumindo-os-dados">
-<h1>Consumindo os dados<a class="headerlink" href="#consumindo-os-dados" title="Link permanente para este título">¶</a></h1>
-<p>Para acessar e manipular os dados cadastrados é possível utilizar a API do ODC em Python. Esta utilização é facilitada com o uso do Jupyter-Notebook. Na etapa de instalação deste tutorial foi feita a criação da imagem <cite>local/odc-jupyter</cite>, essa será utilizada para a realização do acesso aos dados.</p>
-<p>Para isso, utilize o comando abaixo. Lembre-se de trocar as informações onde os dados estão armazenados, que obrigatoriamente precisa ser no mesmo lugar registrado no <em>container</em> do ODC-Core. Caso tenha trocado a senha do banco de dados, será necessário alterar aqui também.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker run -it -d <span class="se">\</span>
-        --name bdc-odc-jupyter <span class="se">\</span>
-        --hostname bdc-odc-jupyter <span class="se">\</span>
-        --network bdc-odc-net <span class="se">\</span>
-        --restart unless-stopped <span class="se">\</span>
-        -p <span class="m">8889</span>:8889 <span class="se">\</span>
-        -v /path/to/data-repository:/data <span class="se">\</span>
-        -e <span class="nv">DB_DATABASE</span><span class="o">=</span>opendatacube <span class="se">\</span>
-        -e <span class="nv">DB_HOSTNAME</span><span class="o">=</span>bdc-odc-pg <span class="se">\</span>
-        -e <span class="nv">DB_USERNAME</span><span class="o">=</span>opendatacube <span class="se">\</span>
-        -e <span class="nv">DB_PASSWORD</span><span class="o">=</span>change-me <span class="se">\</span>
-        -e <span class="nv">DB_PORT</span><span class="o">=</span><span class="m">5432</span> <span class="se">\</span>
-        local/odc-jupyter:1.7 /bin/bash
+  <div class="section" id="utilizando-ambiente-jupyter-com-o-odc">
+<h1>Utilizando Ambiente Jupyter com o ODC<a class="headerlink" href="#utilizando-ambiente-jupyter-com-o-odc" title="Link permanente para este título">¶</a></h1>
+<p>Para acessar e manipular os dados cadastrados é possível utilizar a API do ODC em Python. Esta utilização é facilitada com o uso do Jupyter Notebook. Na etapa de instalação deste tutorial foi feita a criação da imagem <code class="docutils literal notranslate"><span class="pre">local/odc-jupyter</span></code>, que será utilizada no acesso a dados nesta seção.</p>
+<p>Utilize o comando abaixo para criar uma instância do container ODC com suporte ao ambiente Jupyter Notebook:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run --detach \
+           --name bdc-odc-jupyter \
+           --hostname bdc-odc-jupyter \
+           --network bdc-odc-net \
+           --publish 8889:8889 \
+           --volume $(pwd)/odc-data-repository:/data \
+           --env DB_HOSTNAME=bdc-odc-pg \
+           --env DB_DATABASE=opendatacube \
+           --env DB_USERNAME=opendatacube \
+           --env DB_PASSWORD=secreto \
+           --env DB_PORT=5432 \
+           local/odc-jupyter:1.7 jupyter notebook --ip=0.0.0.0 --port=8889 --notebook-dir=/data
 </pre></div>
 </div>
-<p>Com o <em>container</em> em execução, faça a inicialização do Jupyter Notebook com o comando abaixo.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ docker <span class="nb">exec</span> -it bdc-odc-jupyter jupyter notebook --ip<span class="o">=</span><span class="m">0</span>.0.0.0 --port<span class="o">=</span><span class="m">8889</span> --notebook-dir<span class="o">=</span>/data
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Lembre-se de alterar as informações sobre a localização dos dados armazenados. O parâmetro <code class="docutils literal notranslate"><span class="pre">--volume</span></code>, no comando acima, dev apontar para o mesmo local registrado na criação do <em>container</em> <code class="docutils literal notranslate"><span class="pre">bdc-odc-core</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Caso tenha alterado a senha do servidor de bancos de dados, será necessário incluir a mesma senha no parâmetro <code class="docutils literal notranslate"><span class="pre">--env</span> <span class="pre">DB_PASSWORD</span></code>.</p>
+</div>
+<p>Se seu container <code class="docutils literal notranslate"><span class="pre">bdc-odc-jupyter</span></code> estiver em execução, utilize o seguinte comando para recuperar o <em>token</em> de acesso necessário à abertura do ambiente Jupyter Notebook na tela do seu navegador:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">-</span><span class="n">jupyter</span> <span class="n">jupyter</span> <span class="n">notebook</span> <span class="nb">list</span>
 </pre></div>
 </div>
-<p>O comando estando em execução, siga os passos apresentados no terminal, acessando a página do jupyter-notebook com o <em>token</em> informado. Estando neste ambiente, os dados podem ser consumidos facilmente. Para exemplos de uso, consulte o repositório <a class="reference external" href="https://github.com/brazil-data-cube/bdc-odc/tree/master/examples">brazil-data-cube/bdc-odc</a>.</p>
+<p>O servidor Jupyter deverá responder com uma mensagem parecida com:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Currently running servers:
+http://0.0.0.0:8889/?token=d3e5ce2c0ae5e003cc5b606bdacc7e25a34ea23d36081363 :: /data
+</pre></div>
+</div>
+<p>Utilize o <em>token</em> de acesso mostrado na saída do seu servidor para acessar o ambiente Jupyter no seu navegador no endereço local da máquina <em>host</em>. Exemplo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>firefox http://127.0.0.1:8889/?token=d3e5ce2c0ae5e003cc5b606bdacc7e25a34ea23d36081363
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Caso você tenha problemas com o servidor Jupyter, veja a saída do <em>log</em> do seu container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">logs</span> <span class="o">-</span><span class="n">f</span> <span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">-</span><span class="n">jupyter</span>
+</pre></div>
+</div>
+<p>Um container com <em>status</em> funcional apresentará uma saída como mostrada abaixo. Nela será apresentado o <em>token</em> de acesso necessário ao uso do ambiente Jupyter no navegador:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[I 21:46:46.140 NotebookApp] Writing notebook server cookie secret to /home/datacube/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 21:46:47.391 NotebookApp] Serving notebooks from local directory: /data
+[I 21:46:47.391 NotebookApp] Jupyter Notebook 6.1.3 is running at:
+[I 21:46:47.392 NotebookApp] http://bdc-odc-jupyter:8889/?token=d3e5ce2c0ae5e003cc5b606bdacc7e25a34ea23d36081363
+[I 21:46:47.392 NotebookApp]  or http://127.0.0.1:8889/?token=d3e5ce2c0ae5e003cc5b606bdacc7e25a34ea23d36081363
+[I 21:46:47.392 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[W 21:46:47.409 NotebookApp] No web browser found: could not locate runnable browser.
+[C 21:46:47.409 NotebookApp]
+
+    To access the notebook, open this file in a browser:
+        file:///home/datacube/.local/share/jupyter/runtime/nbserver-1-open.html
+    Or copy and paste one of these URLs:
+        http://bdc-odc-jupyter:8889/?token=d3e5ce2c0ae5e003cc5b606bdacc7e25a34ea23d36081363
+     or http://127.0.0.1:8889/?token=d3e5ce2c0ae5e003cc5b606bdacc7e25a34ea23d36081363
+</pre></div>
+</div>
+</div>
+<div class="section" id="exemplos-de-notebooks">
+<h2>Exemplos de Notebooks<a class="headerlink" href="#exemplos-de-notebooks" title="Link permanente para este título">¶</a></h2>
+<p><a class="reference external" href="https://1drv.ms/u/s!AtoTP-MfEUEDhP1AUjUvYPmqji0LGQ?e=tV0B5L">Link para os exemplos</a>.</p>
+</div>
 </div>
 
 

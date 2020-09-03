@@ -17,7 +17,7 @@ A realização do processo de ingestão, assim como em todas as demais etapas ap
 
 
 .. code-block:: yaml
-    :caption: Arquivo com a descrição do processo de ingestão do produto ``CB4_64_16D_STK_v1`` (``CB4_64_16D_STK_v1.ingest.yaml``).
+    :caption: Arquivo com a descrição do processo de ingestão do produto ``CB4_64_16D_STK_v1``.
 
     source_type: CB4_64_16D_STK_v1
     output_type: CB4_64_16D_STK_v1_ingested
@@ -113,9 +113,9 @@ A realização do processo de ingestão, assim como em todas as demais etapas ap
 
 O processo de ingestão presente no arquivo ``CB4_64_16D_STK_v1.ingest.yaml``, realiza a compressão dos dados e aplica *tiling*, isso para que a recuperação dos dados seja feita de forma mais rápida. A geração da ingestão é apresentada abaixo::
 
-    datacube -v ingest \
-             -c CB4_64_16D_STK_v1.ingest.yaml \
-             --executor multiproc 2
+    sudo datacube -v ingest \
+                  -c CB4_64_16D_STK_v1.ingest.yaml \
+                  --executor multiproc 2
 
 
 Além da opção ``--executor``, aplicada no comando acima, existem diversas outras que podem ser utilizadas para acelerar o processo de ingestão e também de garantir sua reprodutibilidade. Para mais informações consulte a `documentação do ODC sobre ingestão <https://datacube-core.readthedocs.io/en/latest/ops/ingest.html>`_.

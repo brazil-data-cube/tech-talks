@@ -60,7 +60,6 @@ Com o PostgreSQL em execução, você pode iniciar a instância do ``ODC-Core``.
                --name bdc-odc-core \
                --hostname bdc-odc-core \
                --network bdc-odc-net \
-               --restart unless-stopped \
                --volume $(pwd)/odc-data-repository:/data \
                --env DB_HOSTNAME=bdc-odc-pg \
                --env DB_DATABASE=opendatacube \
