@@ -1,0 +1,81 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright 2020 INPE.
+
+    Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+
+Adicionando um Produto de Dados
+===============================
+
+
+Com toda a infraestrutura configurada passa a ser possível catalogar os dados dentro do ``ODC-Core``. O primeiro passo para a catalogação é a adição de produtos no ``ODC-Core``. Para isso, é necessário realizar a `definição do produto <https://datacube-core.readthedocs.io/en/latest/ops/product.html>`_. Normalmente, esta etapa seria feita de maneira manual, com o preenchimento de diversos campos em um arquivo ``YAML``, porém, para os produtos de dados do BDC foi criada a ferramenta ``stac2odc``, que através de consultas ao `BDC-STAC <https://github.com/brazil-data-cube/bdc-stac>`_ cria esses arquivos ``YAML`` automaticamente.
+
+
+Para fazer o uso desta ferramenta, primeiro acesse o *container* do ``ODC-Core``::
+
+    docker exec -it bdc-odc-core /bin/bash
+
+
+Dentro do *container*, execute os comandos para baixar o repositório ``bdc-odc``, onde está o ``stac2odc`` e faça sua instalação::
+
+    git clone https://github.com/brazil-data-cube/bdc-odc.git
+
+    cd bdc-odc/stac2odc
+
+    sudo pip3 install -e .[all]
+
+
+Agora, faça a extração das informações de uma coleção que está disponível no BDC-STAC. Para este exemplo foi selecionado a coleção ``CB4_64_16D_STK_v1``.
+
+
+.. note::
+
+    Para ficar claro, as nomenclaturas do STAC e do ODC diferem em alguns pontos. O que o STAC chama de *collection*, o ODC chama de *product*. Além disso, os *items* do STAC são *datasets* no ODC.
+
+
+Crie um diretório para armazenar o arquivo YAML com as informações extraídas::
+
+    mkdir -p ~/products/CB4_64_16D_STK_v1/datasets
+
+
+Agora, utilizando o ``stac2odc`` faça a extração das definições do produto ``CB4_64_16D_STK_v1``. Perceba que as opções ``units``, ``instrument`` e ``type`` precisam ser definidas pelo utilizador da biblioteca, isso acontece já que, no ODC, o usuário é quem define o padrão das nomenclaturas e para manter essa flexibilidade, estas opções foram deixadas em aberto.
+
+
+.. code-block:: shell
+
+    stac2odc collection2product -c CB4_64_16D_STK_v1 \
+                                -o ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml \
+                                --units m \
+                                -p CBERS4 \
+                                --instrument AWFI \
+                                --type eo
+
+
+.. note::
+
+    Caso queira, é possível utilizar a opção ``--verbose``, assim você consegue acompanhar os passos que estão sendo feitos.
+
+
+Após a execução do *script* você pode visualizar o resultado, acessando diretamente o local indicado na opção ``-o`` do ``stac2odc``.
+
+
+.. code-block:: shell
+
+    cat ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
+
+
+Com a definição realizada, adicione o produto no catálogo do ``ODC-Core``::
+
+    datacube product add ~/products/CB4_64_16D_STK_v1/CB4_64_16D_STK_v1.yaml
+
+
+Para verificar se está tudo certo, liste os produtos disponíveis no catálogo do ``ODC-Core``::
+
+    datacube product list
+
+
+A saída do comando acima deverá ser algo como::
+
+    CB4_64_16D_STK_v1  CBERS 4 version 1

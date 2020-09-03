@@ -10,12 +10,12 @@ Executando os Serviços ODC
 ==========================
 
 
-Com as imagens criadas, vamos lançar containers com o ambiente ODC. Mas primeiro, vamos criar uma rede específica para ligar esses os vários serviços::
+Com as imagens criadas, vamos lançar containers com o ambiente ODC. Mas primeiro, vamos criar uma rede específica para ligar os vários serviços::
 
     docker network create bdc-odc-net
 
 
-A configuração do ``ODC-Core`` depende de uma instância do ``PostgreSQL`` para o armazenamento dos metadados. Vamos baixar uma imagem do servidor PostgreSQL com a extensão PostGIS através do comando ``docker-pull``::
+A configuração do ``ODC-Core`` depende de uma instância do ``PostgreSQL`` para o armazenamento dos metadados. Vamos baixar uma imagem do servidor PostgreSQL com a extensão PostGIS através do comando ``docker pull``::
 
     docker pull postgis/postgis:12-3.0
 
@@ -40,7 +40,7 @@ Para criar um container a partir dessa imagem, faça::
     No comando acima, as variáveis de ambiente ``POSTGRES_DB``, ``POSTGRES_USER`` e ``POSTGRES_PASSWORD`` podem ser modificadas, de acordo com sua preferência.
 
 
-Verifique se seu servidor está funcionando, para isso executeo seguinte comando::
+Verifique se seu servidor está funcionando, para isso execute o seguinte comando::
 
     docker exec bdc-odc-pg psql -U opendatacube -c "SELECT version();"
 
@@ -53,7 +53,7 @@ Você deverá ter uma saída parecida com::
     (1 row)
 
 
-Com o PostgreSQL em execução você pode iniciar a instância do ``ODC-Core``, para isso, utilize o comando abaixo::
+Com o PostgreSQL em execução, você pode iniciar a instância do ``ODC-Core``. Para isso, utilize o comando abaixo::
 
     docker run -it \
                --detach \

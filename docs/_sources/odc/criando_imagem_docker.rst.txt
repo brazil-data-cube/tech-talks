@@ -15,10 +15,10 @@ Esta seção apresenta os passos necessários para a preparação do ambiente b�
 
 .. note::
 
-    Os comandos abaixo foram testados no Linux. Se você estiver utilizando o Microsft Windows, fique atento à possíveis alterações na forma do comando.
+    Os comandos abaixo foram testados no Linux. Se você estiver utilizando o Microsoft Windows, fique atento à possíveis alterações na forma do comando.
 
 
-Para começar, o primeiro passo a ser realizado é a aquisição dos códigos que serão utilizados. Faça isso utilizando o comando ``git clone`` no repositório `bdc-odc <https://github.com/brazil-data-cube/bdc-odc>` do Brazil Data Cube. O comando completo é apresentado abaixo::
+Para começar, o primeiro passo a ser realizado é a aquisição dos códigos que serão utilizados. Faça isso utilizando o comando ``git clone`` no repositório `bdc-odc <https://github.com/brazil-data-cube/bdc-odc>`_ do Brazil Data Cube. O comando completo é apresentado abaixo::
 
     git clone https://github.com/brazil-data-cube/bdc-odc.git
 

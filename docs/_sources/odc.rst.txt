@@ -33,7 +33,9 @@ Open Data Cube: Introdução e Integração com o projeto BDC
     ./odc/criando_imagem_docker
     ./odc/criando_containers_docker
     ./odc/config_odc_core
-    ./odc/indexacao
+    ./odc/add_data_product
+    ./odc/create_dataset_metadata
+    ./odc/register_dataset
     ./odc/ingestao
     ./odc/consumo
 

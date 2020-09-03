@@ -102,9 +102,9 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Criando uma Imagem no Docker para o Ambiente ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="criando_containers_docker.html">Executando os Serviços ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config_odc_core.html">Configurando o ODC-Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html">Adicionando um Produto de Dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html#extraindo-metadados-dos-datasets">Extraíndo Metadados dos Datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">Adicionando Datasets ao Banco de Dados do ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_data_product.html">Adicionando um Produto de Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_dataset_metadata.html">Criando os Metadados dos Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register_dataset.html">Registrando Datasets no Banco de Dados do ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ingestao.html">Ingestão de dados</a></li>
 <li class="toctree-l2"><a class="reference internal" href="consumo.html">Consumindo os dados</a></li>
 </ul>
@@ -198,9 +198,9 @@
 <p>Esta seção apresenta os passos necessários para a preparação do ambiente básico do ODC. Esse processo será realizado com o <a class="reference external" href="https://docs.docker.com/get-docker/">Docker</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Os comandos abaixo foram testados no Linux. Se você estiver utilizando o Microsft Windows, fique atento à possíveis alterações na forma do comando.</p>
+<p>Os comandos abaixo foram testados no Linux. Se você estiver utilizando o Microsoft Windows, fique atento à possíveis alterações na forma do comando.</p>
 </div>
-<p>Para começar, o primeiro passo a ser realizado é a aquisição dos códigos que serão utilizados. Faça isso utilizando o comando <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> no repositório <cite>bdc-odc &lt;https://github.com/brazil-data-cube/bdc-odc&gt;</cite> do Brazil Data Cube. O comando completo é apresentado abaixo:</p>
+<p>Para começar, o primeiro passo a ser realizado é a aquisição dos códigos que serão utilizados. Faça isso utilizando o comando <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> no repositório <a class="reference external" href="https://github.com/brazil-data-cube/bdc-odc">bdc-odc</a> do Brazil Data Cube. O comando completo é apresentado abaixo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">brazil</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">cube</span><span class="o">/</span><span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configurando o ODC-Core &mdash; Brazil Data Cube</title>
+  <title>Registrando Datasets no Banco de Dados do ODC &mdash; Brazil Data Cube</title>
   
 
   
@@ -21,7 +21,7 @@
   
   
   
-    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksodc/config_odc_core.html"/>
+    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksodc/register_dataset.html"/>
   
 
   
@@ -44,8 +44,8 @@
     
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="Adicionando um Produto de Dados" href="add_data_product.html" />
-    <link rel="prev" title="Executando os Serviços ODC" href="criando_containers_docker.html" /> 
+    <link rel="next" title="Ingestão de dados" href="ingestao.html" />
+    <link rel="prev" title="Criando os Metadados dos Datasets" href="create_dataset_metadata.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -101,10 +101,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="criando_imagem_docker.html">Criando uma Imagem no Docker para o Ambiente ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="criando_containers_docker.html">Executando os Serviços ODC</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Configurando o ODC-Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_odc_core.html">Configurando o ODC-Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_data_product.html">Adicionando um Produto de Dados</a></li>
 <li class="toctree-l2"><a class="reference internal" href="create_dataset_metadata.html">Criando os Metadados dos Datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="register_dataset.html">Registrando Datasets no Banco de Dados do ODC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Registrando Datasets no Banco de Dados do ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ingestao.html">Ingestão de dados</a></li>
 <li class="toctree-l2"><a class="reference internal" href="consumo.html">Consumindo os dados</a></li>
 </ul>
@@ -163,14 +163,14 @@
         
           <li><a href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a> &raquo;</li>
         
-      <li>Configurando o ODC-Core</li>
+      <li>Registrando Datasets no Banco de Dados do ODC</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/odc/config_odc_core.rst" class="fa fa-github"> Editar no GitHub</a>
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/odc/register_dataset.rst" class="fa fa-github"> Editar no GitHub</a>
             
           
         
@@ -181,10 +181,10 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="add_data_product.html" class="btn btn-neutral float-right" title="Adicionando um Produto de Dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ingestao.html" class="btn btn-neutral float-right" title="Ingestão de dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="criando_containers_docker.html" class="btn btn-neutral float-left" title="Executando os Serviços ODC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="create_dataset_metadata.html" class="btn btn-neutral float-left" title="Criando os Metadados dos Datasets" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
   </div>
   
@@ -193,35 +193,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configurando-o-odc-core">
-<h1>Configurando o ODC-Core<a class="headerlink" href="#configurando-o-odc-core" title="Link permanente para este título">¶</a></h1>
-<p>O vínculo que foi feito entre os <em>containers</em> do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code> e do <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code> não são o suficiente para o correto funcionamento do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code>. Será necessária a criação do esquema de bancos de dados com o modelo do ODC. Para isso, utilizaremos o programa em linha de comando denominado <code class="docutils literal notranslate"><span class="pre">datacube-cli</span></code>, disponível no container <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">-</span><span class="n">core</span> <span class="n">datacube</span> <span class="n">system</span> <span class="n">init</span>
+  <div class="section" id="registrando-datasets-no-banco-de-dados-do-odc">
+<h1>Registrando Datasets no Banco de Dados do ODC<a class="headerlink" href="#registrando-datasets-no-banco-de-dados-do-odc" title="Link permanente para este título">¶</a></h1>
+<p>Após a finalização do processo de <em>download</em> e criação dos arquivos com a descrição dos <em>datasets</em>, pode-se fazer a inserção desses no banco de metadados do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code>. Para adicionar todos os dados descritos no passo anterior, o comando abaixo pode ser utilizado:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="o">~/</span><span class="n">products</span><span class="o">/</span><span class="n">CB4_64_16D_STK_v1</span><span class="o">/</span><span class="n">datasets</span><span class="o">/*.</span><span class="n">yaml</span> \
+     <span class="o">-</span><span class="n">exec</span> <span class="n">datacube</span> <span class="o">-</span><span class="n">vvv</span> <span class="n">dataset</span> <span class="n">add</span> <span class="o">-</span><span class="n">p</span> <span class="n">CB4_64_16D_STK_v1</span> <span class="p">{}</span> \<span class="p">;</span>
 </pre></div>
 </div>
-<p>Para verificar se o comando acima criou as tabelas do esquema ODC, utilize o seguite comando:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">-</span><span class="n">pg</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">opendatacube</span> <span class="o">-</span><span class="n">d</span> <span class="n">opendatacube</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;\dt agdc.*&quot;</span>
-</pre></div>
-</div>
-<p>As seguintes tabelas deverão ser apresentadas como resultado:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>               <span class="n">List</span> <span class="n">of</span> <span class="n">relations</span>
- <span class="n">Schema</span> <span class="o">|</span>       <span class="n">Name</span>       <span class="o">|</span> <span class="n">Type</span>  <span class="o">|</span>   <span class="n">Owner</span>
-<span class="o">--------+------------------+-------+------------</span>
- <span class="n">agdc</span>   <span class="o">|</span> <span class="n">dataset</span>          <span class="o">|</span> <span class="n">table</span> <span class="o">|</span> <span class="n">agdc_admin</span>
- <span class="n">agdc</span>   <span class="o">|</span> <span class="n">dataset_location</span> <span class="o">|</span> <span class="n">table</span> <span class="o">|</span> <span class="n">agdc_admin</span>
- <span class="n">agdc</span>   <span class="o">|</span> <span class="n">dataset_source</span>   <span class="o">|</span> <span class="n">table</span> <span class="o">|</span> <span class="n">agdc_admin</span>
- <span class="n">agdc</span>   <span class="o">|</span> <span class="n">dataset_type</span>     <span class="o">|</span> <span class="n">table</span> <span class="o">|</span> <span class="n">agdc_admin</span>
- <span class="n">agdc</span>   <span class="o">|</span> <span class="n">metadata_type</span>    <span class="o">|</span> <span class="n">table</span> <span class="o">|</span> <span class="n">agdc_admin</span>
-<span class="p">(</span><span class="mi">5</span> <span class="n">rows</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>Outra forma de verificar se tudo está certo, é listar os produtos cadastrados no sistema. No entanto, como até o momento não fizemos a carga de nenhum dado, é esperado que o comando não retorne nenhum valor, mas também não apresente nenhum tipo de mensagem de erro:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">-</span><span class="n">core</span> <span class="n">datacube</span> <span class="n">product</span> <span class="nb">list</span>
-</pre></div>
-</div>
-</div>
+<p>Se necessário, adições individuais podem ser feitas com o uso do comando <code class="docutils literal notranslate"><span class="pre">datacube</span> <span class="pre">dataset</span> <span class="pre">add</span></code>. Para mais informações consulte a <a class="reference external" href="https://datacube-core.readthedocs.io/en/latest/">documentação do ODC</a>.</p>
 </div>
 
 
@@ -232,10 +211,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="add_data_product.html" class="btn btn-neutral float-right" title="Adicionando um Produto de Dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ingestao.html" class="btn btn-neutral float-right" title="Ingestão de dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="criando_containers_docker.html" class="btn btn-neutral float-left" title="Executando os Serviços ODC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="create_dataset_metadata.html" class="btn btn-neutral float-left" title="Criando os Metadados dos Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
     </div>
   

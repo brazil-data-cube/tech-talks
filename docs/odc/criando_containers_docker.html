@@ -102,9 +102,9 @@
 <li class="toctree-l2"><a class="reference internal" href="criando_imagem_docker.html">Criando uma Imagem no Docker para o Ambiente ODC</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Executando os Serviços ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config_odc_core.html">Configurando o ODC-Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html">Adicionando um Produto de Dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html#extraindo-metadados-dos-datasets">Extraíndo Metadados dos Datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">Adicionando Datasets ao Banco de Dados do ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_data_product.html">Adicionando um Produto de Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_dataset_metadata.html">Criando os Metadados dos Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="register_dataset.html">Registrando Datasets no Banco de Dados do ODC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ingestao.html">Ingestão de dados</a></li>
 <li class="toctree-l2"><a class="reference internal" href="consumo.html">Consumindo os dados</a></li>
 </ul>
@@ -195,11 +195,11 @@
             
   <div class="section" id="executando-os-servicos-odc">
 <h1>Executando os Serviços ODC<a class="headerlink" href="#executando-os-servicos-odc" title="Link permanente para este título">¶</a></h1>
-<p>Com as imagens criadas, vamos lançar containers com o ambiente ODC. Mas primeiro, vamos criar uma rede específica para ligar esses os vários serviços:</p>
+<p>Com as imagens criadas, vamos lançar containers com o ambiente ODC. Mas primeiro, vamos criar uma rede específica para ligar os vários serviços:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">network</span> <span class="n">create</span> <span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">-</span><span class="n">net</span>
 </pre></div>
 </div>
-<p>A configuração do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code> depende de uma instância do <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code> para o armazenamento dos metadados. Vamos baixar uma imagem do servidor PostgreSQL com a extensão PostGIS através do comando <code class="docutils literal notranslate"><span class="pre">docker-pull</span></code>:</p>
+<p>A configuração do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code> depende de uma instância do <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code> para o armazenamento dos metadados. Vamos baixar uma imagem do servidor PostgreSQL com a extensão PostGIS através do comando <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">postgis</span><span class="o">/</span><span class="n">postgis</span><span class="p">:</span><span class="mi">12</span><span class="o">-</span><span class="mf">3.0</span>
 </pre></div>
 </div>
@@ -221,7 +221,7 @@
 <p class="admonition-title">Nota</p>
 <p>No comando acima, as variáveis de ambiente <code class="docutils literal notranslate"><span class="pre">POSTGRES_DB</span></code>, <code class="docutils literal notranslate"><span class="pre">POSTGRES_USER</span></code> e <code class="docutils literal notranslate"><span class="pre">POSTGRES_PASSWORD</span></code> podem ser modificadas, de acordo com sua preferência.</p>
 </div>
-<p>Verifique se seu servidor está funcionando, para isso executeo seguinte comando:</p>
+<p>Verifique se seu servidor está funcionando, para isso execute o seguinte comando:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="n">bdc</span><span class="o">-</span><span class="n">odc</span><span class="o">-</span><span class="n">pg</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">opendatacube</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;SELECT version();&quot;</span>
 </pre></div>
 </div>
@@ -232,7 +232,7 @@
 <span class="p">(</span><span class="mi">1</span> <span class="n">row</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Com o PostgreSQL em execução você pode iniciar a instância do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code>, para isso, utilize o comando abaixo:</p>
+<p>Com o PostgreSQL em execução, você pode iniciar a instância do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code>. Para isso, utilize o comando abaixo:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -it \
            --detach \
            --name bdc-odc-core \

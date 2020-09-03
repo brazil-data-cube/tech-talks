@@ -1,0 +1,33 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright 2020 INPE.
+
+    Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+
+Criando os Metadados dos Datasets
+=================================
+
+
+Os registros de *datasets* no catálogo do ``ODC-Core`` são feitos da mesma forma que os produtos: dada uma definição em arquivo ``YAML`` é possível fazer a adição. Para este caso, o ``stac2odc`` oferece um utilitário para mapear os *items* do BDC-STAC em *datasets*.
+
+
+.. note::
+
+    Antes de realizar a execução do utilitário, é necessário entender que este processo necessita da disponibilidade do repositório de dados do BDC, isso porque durante a descrição dos *datasets* o caminho para os arquivos de dados são necessários. Pensando nisso, no ``stac2odc`` está disponível a opção ``--download``, que dá a possibilidade de baixar os dados e então fazer sua descrição. Para este tutorial, esta facilidade será utilizada.
+
+
+Para fazer a extração dos metadados dos *datasets*, é necessário definir a coleção, a quantidade de dados considerados e também as opções de ``units`` e ``instrument`` que foram apresentadas anteriormente::
+
+    sudo stac2odc item2dataset -c CB4_64_16D_STK_v1 \
+                               -o ~/products/CB4_64_16D_STK_v1/datasets/ \
+                               --units m \
+                               -p CBERS4 \
+                               --instrument AWFI \
+                               -m 3 \
+                               --download \
+                               --download-out /data
+
+
+O comando abaixo acima irá baixar 03 items do cubo de dados ``CB4_64_16D_STK_v1``, que serão salvos no diretório ``/data``. As descrições desses itens serão colocadas no diretório ``~/products/CB4_64_16D_STK_v1/datasets/``. A árvore de diretórios criada na pasta ``/data`` segue a mesma organização utilizada no BDC.
