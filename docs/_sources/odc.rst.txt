@@ -6,17 +6,21 @@
     under the terms of the MIT License; see LICENSE file for more details.
 
 
-Open Data Cube
-==============
+Open Data Cube: Introdução e Integração com o projeto BDC
+=========================================================
+
 
 .. image:: ./img/odc/logo-odc.png
     :alt: Open Data Cube
-    :width: 125
+    :height: 96
     :align: right
 
-Conteúdo auxiliar à apresentação do Tech Talk `Introdução e conceitos básicos; integração com os dados do Brazil Data Cube.`.
 
-Descrição: Atualmente o *framework* Open Data Cube e todo seu ecossistema de ferramentas vem sendo testado com os produtos de dados do Brazil Data Cube, o objetivo é possibilitar que em um futuro próximo, essa ferramenta possa ser uma opção de uso dos dados do BDC. Com isso, este *Tech Talk* tem por objetivo fazer uma apresentação dos principais conceitos e a forma de uso básica da ferramenta.
+Esta página contém um conteúdo auxiliar à apresentação do Tech Talk `Open Data Cube: Introdução e Integração com o projeto BDC`.
+
+
+**Descrição:** Atualmente o *framework* **O**\ pen **D**\ ata **C**\ ube (ODC) e todo seu ecossistema de ferramentas vem sendo testado com os produtos de dados do Brazil Data Cube. O objetivo desta integração é aumentar o conjunto de ferramentas de acesso, visualização e análise disponíveis para os usuários dos diversos cubos de dados produzidos pelo projeto. Este *Tech Talk* irá apresentar os principais conceitos relativos ao ODC e o status da integração desta tecnologia no projeto BDC. Os participantes serão convidados a realizar um *hands-on* durante a apresentação.
+
 
 .. toctree::
     :maxdepth: 1

@@ -10,10 +10,7 @@ Brazil Data Cube Tech Talks
 ===========================
 
 
-Welcome to the **Brazil Data Cube** project!
-
-
-This project aims to ...
+The **Brazil Data Cube Tech Talks** (A.K.A. BDC Tech Talks) is an internal talks series hosted by the BDC Development Team.
 
 
 .. toctree::
@@ -23,7 +20,6 @@ This project aims to ...
 
 
 .. toctree::
-    :numbered:
     :maxdepth: 1
     :caption: Apresentações:
 
@@ -37,11 +33,3 @@ This project aims to ...
     sites
     contato
     license
-
-
-Indíces e tabelas
-=================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1. Open Data Cube &mdash; Brazil Data Cube</title>
+  <title>Open Data Cube: Introdução e Integração com o projeto BDC &mdash; Brazil Data Cube</title>
   
 
   
@@ -44,7 +44,7 @@
     
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="1.1. Instalação" href="odc/instalacao.html" />
+    <link rel="next" title="Instalação" href="odc/instalacao.html" />
     <link rel="prev" title="Brazil Data Cube Tech Talks" href="index.html" /> 
 </head>
 
@@ -98,15 +98,15 @@
 </ul>
 <p class="caption"><span class="caption-text">Apresentações:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Open Data Cube</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="odc/instalacao.html">1.1. Instalação</a></li>
-<li class="toctree-l2"><a class="reference internal" href="odc/instalacao.html#executando-os-servicos-odc">1.2. Executando os serviços ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="odc/instalacao.html#configurando-o-odc-core">1.3. Configurando o ODC-Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="odc/indexacao.html">1.4. Adicionando produtos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="odc/indexacao.html#extraindo-metadados-de-datasets">1.5. Extraíndo metadados de datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="odc/indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">1.6. Adicionando datasets ao banco de dados do ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="odc/ingestao.html">1.7. Ingestão de dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="odc/consumo.html">1.8. Consumindo os dados</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Open Data Cube: Introdução e Integração com o projeto BDC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="odc/instalacao.html">Instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odc/instalacao.html#executando-os-servicos-odc">Executando os serviços ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odc/instalacao.html#configurando-o-odc-core">Configurando o ODC-Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odc/indexacao.html">Adicionando produtos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odc/indexacao.html#extraindo-metadados-de-datasets">Extraíndo metadados de datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odc/indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">Adicionando datasets ao banco de dados do ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odc/ingestao.html">Ingestão de dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="odc/consumo.html">Consumindo os dados</a></li>
 </ul>
 </li>
 </ul>
@@ -161,13 +161,15 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li><span class="section-number">1. </span>Open Data Cube</li>
+      <li>Open Data Cube: Introdução e Integração com o projeto BDC</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/odc.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+            
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/odc.rst" class="fa fa-github"> Editar no GitHub</a>
+            
           
         
       </li>
@@ -177,7 +179,7 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="odc/instalacao.html" class="btn btn-neutral float-right" title="1.1. Instalação" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="odc/instalacao.html" class="btn btn-neutral float-right" title="Instalação" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Brazil Data Cube Tech Talks" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
@@ -189,21 +191,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="open-data-cube">
-<h1><span class="section-number">1. </span>Open Data Cube<a class="headerlink" href="#open-data-cube" title="Link permanente para este título">¶</a></h1>
-<a class="reference internal image-reference" href="_images/logo-odc.png"><img alt="Open Data Cube" class="align-right" src="_images/logo-odc.png" style="width: 125px;" /></a>
-<p>Conteúdo auxiliar à apresentação do Tech Talk <cite>Introdução e conceitos básicos; integração com os dados do Brazil Data Cube.</cite>.</p>
-<p>Descrição: Atualmente o <em>framework</em> Open Data Cube e todo seu ecossistema de ferramentas vem sendo testado com os produtos de dados do Brazil Data Cube, o objetivo é possibilitar que em um futuro próximo, essa ferramenta possa ser uma opção de uso dos dados do BDC. Com isso, este <em>Tech Talk</em> tem por objetivo fazer uma apresentação dos principais conceitos e a forma de uso básica da ferramenta.</p>
+  <div class="section" id="open-data-cube-introducao-e-integracao-com-o-projeto-bdc">
+<h1>Open Data Cube: Introdução e Integração com o projeto BDC<a class="headerlink" href="#open-data-cube-introducao-e-integracao-com-o-projeto-bdc" title="Link permanente para este título">¶</a></h1>
+<a class="reference internal image-reference" href="_images/logo-odc.png"><img alt="Open Data Cube" class="align-right" src="_images/logo-odc.png" style="height: 96px;" /></a>
+<p>Esta página contém um conteúdo auxiliar à apresentação do Tech Talk <cite>Open Data Cube: Introdução e Integração com o projeto BDC</cite>.</p>
+<p><strong>Descrição:</strong> Atualmente o <em>framework</em> <strong>O</strong>pen <strong>D</strong>ata <strong>C</strong>ube (ODC) e todo seu ecossistema de ferramentas vem sendo testado com os produtos de dados do Brazil Data Cube. O objetivo desta integração é aumentar o conjunto de ferramentas de acesso, visualização e análise disponíveis para os usuários dos diversos cubos de dados produzidos pelo projeto. Este <em>Tech Talk</em> irá apresentar os principais conceitos relativos ao ODC e o status da integração desta tecnologia no projeto BDC. Os participantes serão convidados a realizar um <em>hands-on</em> durante a apresentação.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="odc/instalacao.html">1.1. Instalação</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odc/instalacao.html#executando-os-servicos-odc">1.2. Executando os serviços ODC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odc/instalacao.html#configurando-o-odc-core">1.3. Configurando o ODC-Core</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odc/indexacao.html">1.4. Adicionando produtos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odc/indexacao.html#extraindo-metadados-de-datasets">1.5. Extraíndo metadados de datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odc/indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">1.6. Adicionando datasets ao banco de dados do ODC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odc/ingestao.html">1.7. Ingestão de dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="odc/consumo.html">1.8. Consumindo os dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/instalacao.html">Instalação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/instalacao.html#executando-os-servicos-odc">Executando os serviços ODC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/instalacao.html#configurando-o-odc-core">Configurando o ODC-Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/indexacao.html">Adicionando produtos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/indexacao.html#extraindo-metadados-de-datasets">Extraíndo metadados de datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">Adicionando datasets ao banco de dados do ODC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/ingestao.html">Ingestão de dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odc/consumo.html">Consumindo os dados</a></li>
 </ul>
 </div>
 </div>
@@ -216,7 +218,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="odc/instalacao.html" class="btn btn-neutral float-right" title="1.1. Instalação" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="odc/instalacao.html" class="btn btn-neutral float-right" title="Instalação" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Brazil Data Cube Tech Talks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>

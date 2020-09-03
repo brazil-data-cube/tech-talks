@@ -22,7 +22,7 @@ Dentro do *container*, execute os comandos para baixar o repositório bdc-odc, o
 
     $ git clone https://github.com/brazil-data-cube/bdc-odc.git
     $ cd bdc-odc/stac2odc
-    $ sudo python3 setup.py install
+    $ sudo pip3 install -e .[all]
 
 Agora, faça a extração das informações de uma coleção que está disponível no BDC-STAC. Para este exemplo foi selecionado a coleção `CB4_64_16D_STK_v1`.
 

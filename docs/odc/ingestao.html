@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.7. Ingestão de dados &mdash; Brazil Data Cube</title>
+  <title>Ingestão de dados &mdash; Brazil Data Cube</title>
   
 
   
@@ -44,8 +44,8 @@
     
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="1.8. Consumindo os dados" href="consumo.html" />
-    <link rel="prev" title="1.4. Adicionando produtos" href="indexacao.html" /> 
+    <link rel="next" title="Consumindo os dados" href="consumo.html" />
+    <link rel="prev" title="Adicionando produtos" href="indexacao.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,15 +98,15 @@
 </ul>
 <p class="caption"><span class="caption-text">Apresentações:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../odc.html">1. Open Data Cube</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="instalacao.html">1.1. Instalação</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instalacao.html#executando-os-servicos-odc">1.2. Executando os serviços ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="instalacao.html#configurando-o-odc-core">1.3. Configurando o ODC-Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html">1.4. Adicionando produtos</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html#extraindo-metadados-de-datasets">1.5. Extraíndo metadados de datasets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">1.6. Adicionando datasets ao banco de dados do ODC</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.7. Ingestão de dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="consumo.html">1.8. Consumindo os dados</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html">Instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html#executando-os-servicos-odc">Executando os serviços ODC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html#configurando-o-odc-core">Configurando o ODC-Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html">Adicionando produtos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html#extraindo-metadados-de-datasets">Extraíndo metadados de datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indexacao.html#adicionando-datasets-ao-banco-de-dados-do-odc">Adicionando datasets ao banco de dados do ODC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ingestão de dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consumo.html">Consumindo os dados</a></li>
 </ul>
 </li>
 </ul>
@@ -161,15 +161,17 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../odc.html"><span class="section-number">1. </span>Open Data Cube</a> &raquo;</li>
+          <li><a href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a> &raquo;</li>
         
-      <li><span class="section-number">1.7. </span>Ingestão de dados</li>
+      <li>Ingestão de dados</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/odc/ingestao.rst.txt" rel="nofollow"> Ver código-fonte da página</a>
+            
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/odc/ingestao.rst" class="fa fa-github"> Editar no GitHub</a>
+            
           
         
       </li>
@@ -179,10 +181,10 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="consumo.html" class="btn btn-neutral float-right" title="1.8. Consumindo os dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="consumo.html" class="btn btn-neutral float-right" title="Consumindo os dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="indexacao.html" class="btn btn-neutral float-left" title="1.4. Adicionando produtos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="indexacao.html" class="btn btn-neutral float-left" title="Adicionando produtos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
   </div>
   
@@ -192,7 +194,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="ingestao-de-dados">
-<h1><span class="section-number">1.7. </span>Ingestão de dados<a class="headerlink" href="#ingestao-de-dados" title="Link permanente para este título">¶</a></h1>
+<h1>Ingestão de dados<a class="headerlink" href="#ingestao-de-dados" title="Link permanente para este título">¶</a></h1>
 <p>Com os produtos e seus <em>datasets</em> catalogados, é possível realizar um processo de ingestão nos dados. Neste processo, transformações como reprojeção e <em>tiling</em> podem ser aplicados nos dados para que eles sejam mais simples de serem carregados pelo ODC e tornem-se mais usuais para diferentes análises dos usuários.</p>
 <p>A realização do processo de ingestão, assim como em todas as demais etapas apresentadas neste tutorial, exige um arquivo YAML. Para este caso, o stac2odc ainda não tem utilitários disponíveis. Para contornar esta questão e tornar fácil o processo de ingestão, no repositório <a class="reference external" href="https://github.com/brazil-data-cube/bdc-odc/tree/master/examples">brazil-data-cube/bdc-odc</a>, estão disponíveis arquivos YAML com a descrição desta operação. O exemplo feito para este tutorial, consome o arquivo <cite>CB4_64_16D_STK_v1.ingest.yaml</cite> disponível neste repositório.</p>
 <p>O processo de ingestão presente no arquivo <cite>CB4_64_16D_STK_v1.ingest.yaml</cite>, realiza a compressão dos dados e aplica <em>tiling</em>, isso para que a recuperação dos dados seja feita de forma mais rápida. A geração da ingestão é apresentada abaixo.</p>
@@ -210,10 +212,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="consumo.html" class="btn btn-neutral float-right" title="1.8. Consumindo os dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="consumo.html" class="btn btn-neutral float-right" title="Consumindo os dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="indexacao.html" class="btn btn-neutral float-left" title="1.4. Adicionando produtos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="indexacao.html" class="btn btn-neutral float-left" title="Adicionando produtos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
     </div>
   
