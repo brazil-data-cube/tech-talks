@@ -84,4 +84,9 @@ Exemplos de Notebooks
 ---------------------
 
 
-`Link para os exemplos <https://1drv.ms/u/s!AtoTP-MfEUEDhP1AUjUvYPmqji0LGQ?e=tV0B5L>`_.
+Para exemplificar o consumo dos dados inseridos dentro do ODC, foi gerado um documento Jupyter. Neste documento são apresentados as formas de busca e visualização dos dados. O documento criado está disponível no  `OneDrive  <https://1drv.ms/u/s!AtoTP-MfEUEDhP1AUjUvYPmqji0LGQ?e=tV0B5L>`_.
+
+
+.. note::
+
+    Após realizar o *download* dos dados, faça a extração do arquivo ``zip`` dentro do diretório que você selecionou para armazenar as imagens do ``ODC-Core``. Após extrair, acesse os documentos através da página do Jupyter Notebook.
