@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SpatioTemporal Asset Catalog - STAC &mdash; Brazil Data Cube</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksstac.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Buscar" href="search.html" />
+    <link rel="next" title="Brazil Data Cube" href="sites.html" />
+    <link rel="prev" title="Utilizando Ambiente Jupyter com o ODC" href="odc/consumo.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/logo-bdc-techtalks.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Brazil Data Cube Tech Talks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Apresentações:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SpatioTemporal Asset Catalog - STAC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#topicos-da-oficina">Tópicos da Oficina</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introducao-ao-stac">1. Introdução ao STAC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2. stac.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">3. rstac</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sites.html">Brazil Data Cube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contato.html">Contato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BDC Tech Talks</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>SpatioTemporal Asset Catalog - STAC</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/stac.rst" class="fa fa-github"> Editar no GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="sites.html" class="btn btn-neutral float-right" title="Brazil Data Cube" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="odc/consumo.html" class="btn btn-neutral float-left" title="Utilizando Ambiente Jupyter com o ODC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spatiotemporal-asset-catalog-stac">
+<h1>SpatioTemporal Asset Catalog - STAC<a class="headerlink" href="#spatiotemporal-asset-catalog-stac" title="Link permanente para este título">¶</a></h1>
+<a class="reference internal image-reference" href="_images/logo-stac.png"><img alt="SpatioTemporal Asset Catalog" class="align-right" src="_images/logo-stac.png" style="height: 128px;" /></a>
+<p><strong>Descrição:</strong> As coleções de imagens e cubos de dados produzidas no projeto Brazil Data Cube podem ser descobertas e acessadas através de uma API padronizada denominada <strong>S</strong>patio<strong>T</strong>emporal <strong>A</strong>sset <strong>C</strong>atalog ou, abreviadamente, <code class="docutils literal notranslate"><span class="pre">STAC</span></code>. O time do projeto vem desenvolvendo diversas tecnologias apoiadas nesta especificação. O catálogo principal do projeto é disponibilizado através do <a class="reference external" href="https://github.com/brazil-data-cube/bdc-stac">bdc-stac</a>, um serviço em Python que implementa a API STAC. Os pacotes <a class="reference external" href="https://github.com/brazil-data-cube/stac.py">stac.py</a> e <a class="reference external" href="https://github.com/brazil-data-cube/rstac">rstac</a> permitem a utilização desse serviço por aplicações clientes nos ambientes Python e R, respectivamente. As aplicações <a class="reference external" href="https://github.com/brazil-data-cube/bdc-collection-builder">BDC Collection Builder</a>, <a class="reference external" href="https://github.com/brazil-data-cube/cube-builder">Data Cube Builder</a> e <a class="reference external" href="https://github.com/brazil-data-cube/wtss">WTSS</a> utilizam o <code class="docutils literal notranslate"><span class="pre">stac.py</span></code> para acessar os dados do projeto. O pacote SITS em R está sendo modificado para utilizar esta especificação através da biblioteca <code class="docutils literal notranslate"><span class="pre">rstac</span></code>. O <a class="reference external" href="http://brazildatacube.dpi.inpe.br/portal/">Portal BDC</a> é um exemplo de aplicação construída para o navegador que utiliza a API STAC diretamente em JavaScript. Este <em>Tech Talk</em> irá apresentar os principais conceitos relativos à especificação <code class="docutils literal notranslate"><span class="pre">STAC</span></code>, o estado atual das tecnologias em desenvolvimento e os planos futuros. Também será apresentado como alguns usuários têm utilizado os pacotes Python e R em ambientes de computação interativa para acesso e visualização dos dados.</p>
+<p><strong>Apresentadores:</strong> Matheus Zaglia, Felipe Souza e Gilberto Queiroz</p>
+<p><strong>Data:</strong> 18 de Setembro de 2020</p>
+<div class="section" id="topicos-da-oficina">
+<h2>Tópicos da Oficina<a class="headerlink" href="#topicos-da-oficina" title="Link permanente para este título">¶</a></h2>
+<div class="section" id="introducao-ao-stac">
+<h3>1. Introdução ao STAC<a class="headerlink" href="#introducao-ao-stac" title="Link permanente para este título">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://brazil-data-cube.github.io/applications/stac.html">Documentação do STAC no BDC</a></p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>2. <a class="reference external" href="https://github.com/brazil-data-cube/stac.py">stac.py</a><a class="headerlink" href="#id2" title="Link permanente para este título">¶</a></h3>
+<a class="reference internal image-reference" href="_images/logo-stac-py.png"><img alt="SpatioTemporal Asset Catalog" class="align-right" src="_images/logo-stac-py.png" style="height: 128px;" /></a>
+<ul class="simple" id="stac-py-repo">
+<li><p>Um tour pelo repositório do pacote <code class="docutils literal notranslate"><span class="pre">stac.py</span></code></p></li>
+</ul>
+<ul class="simple" id="stac-py-handson">
+<li><p>Hands-on: Jupyter Notebook no Google Collab</p></li>
+</ul>
+<ul class="simple" id="stac-py-roadmap">
+<li><p>Roadmap</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>3. <a class="reference external" href="https://github.com/brazil-data-cube/rstac">rstac</a><a class="headerlink" href="#id4" title="Link permanente para este título">¶</a></h3>
+<a class="reference internal image-reference" href="_images/logo-rstac.png"><img alt="SpatioTemporal Asset Catalog" class="align-right" src="_images/logo-rstac.png" style="height: 128px;" /></a>
+<ul class="simple" id="rstac-repo">
+<li><p>Repositório</p></li>
+</ul>
+<ul class="simple" id="rstac-handson">
+<li><p>Hands-on: Jupyter Notebook no Kaggle</p></li>
+</ul>
+<ul class="simple" id="rstac-roadmap">
+<li><p>Roadmap</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sites.html" class="btn btn-neutral float-right" title="Brazil Data Cube" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="odc/consumo.html" class="btn btn-neutral float-left" title="Utilizando Ambiente Jupyter com o ODC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, INPE.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'XXXXXXXXXX', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

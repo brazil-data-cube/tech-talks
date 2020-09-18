@@ -24,6 +24,7 @@ The **Brazil Data Cube Tech Talks** (A.K.A. BDC Tech Talks) is an internal talks
     :caption: Apresentações:
 
     odc
+    stac
 
 
 .. toctree::
