@@ -32,6 +32,7 @@ Tópicos da Oficina
 1. Introdução ao STAC
 +++++++++++++++++++++
 
+
 - `Documentação do STAC no BDC <https://brazil-data-cube.github.io/applications/stac.html>`_
 
 
@@ -53,7 +54,7 @@ Tópicos da Oficina
 
 .. _stac_py_handson:
 
-- Hands-on: Jupyter Notebook no Google Collab
+- Hands-on: `Jupyter Notebook no Google Collab <https://colab.research.google.com/drive/1GEHsT4Y2GIXvVtDrfy0h2STJWQZ6w3x3?usp=sharing>`_.
 
 
 .. _stac_py_roadmap:
@@ -78,9 +79,14 @@ Tópicos da Oficina
 
 .. _rstac_handson:
 
-- Hands-on: Jupyter Notebook no Kaggle
+- Hands-on: Jupyter Notebook no `Kaggle <https://www.kaggle.com/oldlipe/tech-talks-exemplo-rstac>`_
 
 
 .. _rstac_roadmap:
 
 - Roadmap
+
+
+.. note::
+
+    É necessário criar uma conta na `plataforma Kaggle <https://www.kaggle.com>`_. Além disso, é necessário ativar a Internet no notebook editado. Por favor, veja: `Como configurar o kaggle <https://brazil-data-cube.github.io/worcap-2020/getting-started/kaggle.html>`_
