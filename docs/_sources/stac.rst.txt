@@ -49,7 +49,7 @@ Tópicos da Oficina
 
 .. _stac_py_repo:
 
-- Um tour pelo repositório do pacote ``stac.py``
+- Um tour pelo repositório do pacote ``stac.py``.
 
 
 .. _stac_py_handson:
@@ -79,7 +79,11 @@ Tópicos da Oficina
 
 .. _rstac_handson:
 
-- Hands-on: Jupyter Notebook no `Kaggle <https://www.kaggle.com/oldlipe/tech-talks-exemplo-rstac>`_
+- Hands-on:
+
+  - `Jupyter Notebook in Kaggle (English version) <https://www.kaggle.com/oldlipe/tech-talks-example-rstac>`_.
+
+  - `Jupyter Notebook no Kaggle (Portuguese version) <https://www.kaggle.com/oldlipe/tech-talks-exemplo-rstac>`_.
 
 
 .. _rstac_roadmap:
