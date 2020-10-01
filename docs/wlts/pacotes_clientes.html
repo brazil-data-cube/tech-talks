@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Registrando Datasets no Banco de Dados do ODC &mdash; Brazil Data Cube</title>
+  <title>Pacotes Clientes &mdash; Brazil Data Cube</title>
   
 
   
@@ -21,7 +21,7 @@
   
   
   
-    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksodc/register_dataset.html"/>
+    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talkswlts/pacotes_clientes.html"/>
   
 
   
@@ -44,8 +44,8 @@
     
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="Ingestão de dados" href="ingestao.html" />
-    <link rel="prev" title="Criando os Metadados dos Datasets" href="create_dataset_metadata.html" /> 
+    <link rel="next" title="Hands-on" href="handson.html" />
+    <link rel="prev" title="Serviços e Bibliotecas relacionadas ao WLTS" href="relacionados.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,19 +98,19 @@
 </ul>
 <p class="caption"><span class="caption-text">Apresentações:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="criando_imagem_docker.html">Criando uma Imagem no Docker para o Ambiente ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="criando_containers_docker.html">Executando os Serviços ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_odc_core.html">Configurando o ODC-Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_data_product.html">Adicionando um Produto de Dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create_dataset_metadata.html">Criando os Metadados dos Datasets</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Registrando Datasets no Banco de Dados do ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ingestao.html">Ingestão de dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="consumo.html">Utilizando Ambiente Jupyter com o ODC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../wlts.html">Web Land Trajectory Service - WLTS</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../wlts.html#topicos-da-oficina">Tópicos da Oficina</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="visao_geral.html">Visão Geral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelo_dados.html">Modelo de Integração de Dados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="relacionados.html">Serviços e Bibliotecas relacionadas ao WLTS</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Pacotes Clientes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="handson.html">Hands-on</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wlts.html">Web Land Trajectory Service - WLTS</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Informações Gerais:</span></p>
 <ul>
@@ -163,16 +163,16 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a> &raquo;</li>
+          <li><a href="../wlts.html">Web Land Trajectory Service - WLTS</a> &raquo;</li>
         
-      <li>Registrando Datasets no Banco de Dados do ODC</li>
+      <li>Pacotes Clientes</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/odc/register_dataset.rst" class="fa fa-github"> Editar no GitHub</a>
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/wlts/pacotes_clientes.rst" class="fa fa-github"> Editar no GitHub</a>
             
           
         
@@ -183,10 +183,10 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="ingestao.html" class="btn btn-neutral float-right" title="Ingestão de dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="handson.html" class="btn btn-neutral float-right" title="Hands-on" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="create_dataset_metadata.html" class="btn btn-neutral float-left" title="Criando os Metadados dos Datasets" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="relacionados.html" class="btn btn-neutral float-left" title="Serviços e Bibliotecas relacionadas ao WLTS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
   </div>
   
@@ -195,14 +195,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="registrando-datasets-no-banco-de-dados-do-odc">
-<h1>Registrando Datasets no Banco de Dados do ODC<a class="headerlink" href="#registrando-datasets-no-banco-de-dados-do-odc" title="Link permanente para este título">¶</a></h1>
-<p>Após a finalização do processo de <em>download</em> e criação dos arquivos com a descrição dos <em>datasets</em>, pode-se fazer a inserção desses no banco de metadados do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code>. Para adicionar todos os dados descritos no passo anterior, o comando abaixo pode ser utilizado:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="o">~/</span><span class="n">products</span><span class="o">/</span><span class="n">CB4_64_16D_STK_v1</span><span class="o">/</span><span class="n">datasets</span><span class="o">/*.</span><span class="n">yaml</span> \
-     <span class="o">-</span><span class="n">exec</span> <span class="n">datacube</span> <span class="o">-</span><span class="n">vvv</span> <span class="n">dataset</span> <span class="n">add</span> <span class="o">-</span><span class="n">p</span> <span class="n">CB4_64_16D_STK_v1</span> <span class="p">{}</span> \<span class="p">;</span>
-</pre></div>
-</div>
-<p>Se necessário, adições individuais podem ser feitas com o uso do comando <code class="docutils literal notranslate"><span class="pre">datacube</span> <span class="pre">dataset</span> <span class="pre">add</span></code>. Para mais informações consulte a <a class="reference external" href="https://datacube-core.readthedocs.io/en/latest/">documentação do ODC</a>.</p>
+  <div class="section" id="pacotes-clientes">
+<h1>Pacotes Clientes<a class="headerlink" href="#pacotes-clientes" title="Link permanente para este título">¶</a></h1>
+<ul class="simple" id="lccs-py-repo">
+<li><p>Um tour pelo pacote <a class="reference external" href="https://github.com/brazil-data-cube/lccs.py">lccs.py</a>.</p></li>
+</ul>
+<ul class="simple" id="wlts-py-repo">
+<li><p>Um tour pelo pacote <a class="reference external" href="https://github.com/brazil-data-cube/wlts.py">wlts.py</a>.</p></li>
+</ul>
+<ul class="simple" id="sample-py-repo">
+<li><p>Um tour pelo pacote <a class="reference external" href="https://github.com/brazil-data-cube/sample.py">sample.py</a>.</p></li>
+</ul>
 </div>
 
 
@@ -213,10 +216,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ingestao.html" class="btn btn-neutral float-right" title="Ingestão de dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="handson.html" class="btn btn-neutral float-right" title="Hands-on" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="create_dataset_metadata.html" class="btn btn-neutral float-left" title="Criando os Metadados dos Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="relacionados.html" class="btn btn-neutral float-left" title="Serviços e Bibliotecas relacionadas ao WLTS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
     </div>
   

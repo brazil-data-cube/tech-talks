@@ -1,0 +1,34 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright 2020 INPE.
+
+    Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+
+Web Land Trajectory Service - WLTS
+==================================
+
+
+**Descrição:** Atualmente existem diversos conjuntos de dados em escalas regionais, nacionais e globais com informação sobre uso e cobertura da terra que visam atender a um grande número de aplicações, entre elas a gestão de recursos naturais, mudanças do clima e seus impactos e conservação da biodiversidade. Esses produtos de dados são gerados utilizando diferentes abordagens e metodologias, que apresentam informações sobre diferentes classes da superfície da terra, como florestas, plantações agrícolas, entre outras. As iniciativas que geram mapas de uso e cobertura da terra, normalmente desenvolvem seu próprio sistema de classificação, com diferentes nomenclaturas e significados das classes utilizadas. Além disso, disponibilizam essas informações nos mais diversos formatos e representações (vetorial e matricial). Esta apresentação aborda as tecnologias que vem sendo desenvolvidas no escopo do projeto BDC para facilitar o acesso a essas várias coleções através de APIs específicas. Como será mostrado, o resultado são ferramentas que permitem aos pesquisadores e especialistas aproveitarem melhor seu tempo para as questões analíticas, uma vez que essas novas ferramentas fornecem uma maior integração desses dados e introduz o conceito de *Land Use and Cover Trajectories* como uma abstração de alto nível.
+
+
+**Apresentadora:** Fabiana Zioti
+
+
+**Data:** 02 de Outubro de 2020
+
+
+Tópicos da Oficina
+------------------
+
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    ./wlts/visao_geral
+    ./wlts/modelo_dados
+    ./wlts/relacionados
+    ./wlts/pacotes_clientes
+    ./wlts/handson

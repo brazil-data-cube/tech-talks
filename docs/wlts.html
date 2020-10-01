@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Brazil Data Cube Tech Talks &mdash; Brazil Data Cube</title>
+  <title>Web Land Trajectory Service - WLTS &mdash; Brazil Data Cube</title>
   
 
   
@@ -21,7 +21,7 @@
   
   
   
-    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksindex.html"/>
+    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talkswlts.html"/>
   
 
   
@@ -44,7 +44,8 @@
     
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Buscar" href="search.html" />
-    <link rel="next" title="Open Data Cube: Introdução e Integração com o projeto BDC" href="odc.html" /> 
+    <link rel="next" title="Visão Geral" href="wlts/visao_geral.html" />
+    <link rel="prev" title="SpatioTemporal Asset Catalog - STAC" href="stac.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -58,7 +59,7 @@
           
 
           
-            <a href="#">
+            <a href="index.html">
           
 
           
@@ -92,14 +93,24 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Brazil Data Cube Tech Talks</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Brazil Data Cube Tech Talks</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Apresentações:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wlts.html">Web Land Trajectory Service - WLTS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Web Land Trajectory Service - WLTS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#topicos-da-oficina">Tópicos da Oficina</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="wlts/visao_geral.html">Visão Geral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wlts/modelo_dados.html">Modelo de Integração de Dados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wlts/relacionados.html">Serviços e Bibliotecas relacionadas ao WLTS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wlts/pacotes_clientes.html">Pacotes Clientes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wlts/handson.html">Hands-on</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Informações Gerais:</span></p>
 <ul>
@@ -121,7 +132,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">BDC Tech Talks</a>
+          <a href="index.html">BDC Tech Talks</a>
         
       </nav>
 
@@ -150,16 +161,16 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Brazil Data Cube Tech Talks</li>
+      <li>Web Land Trajectory Service - WLTS</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/index.rst" class="fa fa-github"> Editar no GitHub</a>
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/wlts.rst" class="fa fa-github"> Editar no GitHub</a>
             
           
         
@@ -170,8 +181,10 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="odc.html" class="btn btn-neutral float-right" title="Open Data Cube: Introdução e Integração com o projeto BDC" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="wlts/visao_geral.html" class="btn btn-neutral float-right" title="Visão Geral" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="stac.html" class="btn btn-neutral float-left" title="SpatioTemporal Asset Catalog - STAC" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
   </div>
   
@@ -180,26 +193,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="brazil-data-cube-tech-talks">
-<h1>Brazil Data Cube Tech Talks<a class="headerlink" href="#brazil-data-cube-tech-talks" title="Link permanente para este título">¶</a></h1>
-<p>The <strong>Brazil Data Cube Tech Talks</strong> (A.K.A. BDC Tech Talks) is an internal talks series hosted by the BDC Development Team.</p>
+  <div class="section" id="web-land-trajectory-service-wlts">
+<h1>Web Land Trajectory Service - WLTS<a class="headerlink" href="#web-land-trajectory-service-wlts" title="Link permanente para este título">¶</a></h1>
+<p><strong>Descrição:</strong> Atualmente existem diversos conjuntos de dados em escalas regionais, nacionais e globais com informação sobre uso e cobertura da terra que visam atender a um grande número de aplicações, entre elas a gestão de recursos naturais, mudanças do clima e seus impactos e conservação da biodiversidade. Esses produtos de dados são gerados utilizando diferentes abordagens e metodologias, que apresentam informações sobre diferentes classes da superfície da terra, como florestas, plantações agrícolas, entre outras. As iniciativas que geram mapas de uso e cobertura da terra, normalmente desenvolvem seu próprio sistema de classificação, com diferentes nomenclaturas e significados das classes utilizadas. Além disso, disponibilizam essas informações nos mais diversos formatos e representações (vetorial e matricial). Esta apresentação aborda as tecnologias que vem sendo desenvolvidas no escopo do projeto BDC para facilitar o acesso a essas várias coleções através de APIs específicas. Como será mostrado, o resultado são ferramentas que permitem aos pesquisadores e especialistas aproveitarem melhor seu tempo para as questões analíticas, uma vez que essas novas ferramentas fornecem uma maior integração desses dados e introduz o conceito de <em>Land Use and Cover Trajectories</em> como uma abstração de alto nível.</p>
+<p><strong>Apresentadora:</strong> Fabiana Zioti</p>
+<p><strong>Data:</strong> 02 de Outubro de 2020</p>
+<div class="section" id="topicos-da-oficina">
+<h2>Tópicos da Oficina<a class="headerlink" href="#topicos-da-oficina" title="Link permanente para este título">¶</a></h2>
 <div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Apresentações:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="wlts.html">Web Land Trajectory Service - WLTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlts/visao_geral.html">Visão Geral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlts/modelo_dados.html">Modelo de Integração de Dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlts/relacionados.html">Serviços e Bibliotecas relacionadas ao WLTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlts/pacotes_clientes.html">Pacotes Clientes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wlts/handson.html">Hands-on</a></li>
 </ul>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Informações Gerais:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sites.html">Brazil Data Cube</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contato.html">Contato</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-</ul>
 </div>
 </div>
 
@@ -211,8 +220,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="odc.html" class="btn btn-neutral float-right" title="Open Data Cube: Introdução e Integração com o projeto BDC" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="wlts/visao_geral.html" class="btn btn-neutral float-right" title="Visão Geral" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="stac.html" class="btn btn-neutral float-left" title="SpatioTemporal Asset Catalog - STAC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
     </div>
   

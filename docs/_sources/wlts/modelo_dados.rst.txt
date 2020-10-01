@@ -1,0 +1,23 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright 2020 INPE.
+
+    Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+
+Modelo de Integração de Dados
+=============================
+
+
+Para acessar trajetórias de UCT de dados espaço-temporais provenientes de diferentes fontes, propomos como abordagem  utilizar um modelo de dados capaz de descrever diferentes fontes de dados que disponibilizam informações de UCT.
+
+
+A premissa é que ao utilizar informações que descrevem como os datasets são armazenados e fornecidos é possível realizar a integração dos dados, possibilitando resolver as questões de diferenças de estruturas de armazenamento, espaciais e temporais. Propomos expressar essas informações do DMI utilizando o formato `JSON <https://www.json.org/>`_ .
+
+
+.. image:: ../img/wlts/modelo_integracao.png
+    :alt: Modelo de Dados
+    :height: 550
+    :width: 700
+    :align: center

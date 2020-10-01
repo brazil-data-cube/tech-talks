@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Registrando Datasets no Banco de Dados do ODC &mdash; Brazil Data Cube</title>
+  <title>Visão Geral &mdash; Brazil Data Cube</title>
   
 
   
@@ -21,7 +21,7 @@
   
   
   
-    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talksodc/register_dataset.html"/>
+    <link rel="canonical" href="https://brazil-data-cube.github.io/tech-talkswlts/visao_geral.html"/>
   
 
   
@@ -44,8 +44,8 @@
     
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="Ingestão de dados" href="ingestao.html" />
-    <link rel="prev" title="Criando os Metadados dos Datasets" href="create_dataset_metadata.html" /> 
+    <link rel="next" title="Modelo de Integração de Dados" href="modelo_dados.html" />
+    <link rel="prev" title="Web Land Trajectory Service - WLTS" href="../wlts.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,19 +98,19 @@
 </ul>
 <p class="caption"><span class="caption-text">Apresentações:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="criando_imagem_docker.html">Criando uma Imagem no Docker para o Ambiente ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="criando_containers_docker.html">Executando os Serviços ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_odc_core.html">Configurando o ODC-Core</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_data_product.html">Adicionando um Produto de Dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="create_dataset_metadata.html">Criando os Metadados dos Datasets</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Registrando Datasets no Banco de Dados do ODC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ingestao.html">Ingestão de dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="consumo.html">Utilizando Ambiente Jupyter com o ODC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../wlts.html">Web Land Trajectory Service - WLTS</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../wlts.html#topicos-da-oficina">Tópicos da Oficina</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Visão Geral</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelo_dados.html">Modelo de Integração de Dados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="relacionados.html">Serviços e Bibliotecas relacionadas ao WLTS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pacotes_clientes.html">Pacotes Clientes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="handson.html">Hands-on</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../wlts.html">Web Land Trajectory Service - WLTS</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Informações Gerais:</span></p>
 <ul>
@@ -163,16 +163,16 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a> &raquo;</li>
+          <li><a href="../wlts.html">Web Land Trajectory Service - WLTS</a> &raquo;</li>
         
-      <li>Registrando Datasets no Banco de Dados do ODC</li>
+      <li>Visão Geral</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/odc/register_dataset.rst" class="fa fa-github"> Editar no GitHub</a>
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/wlts/visao_geral.rst" class="fa fa-github"> Editar no GitHub</a>
             
           
         
@@ -183,10 +183,10 @@
   
   <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
       
-        <a href="ingestao.html" class="btn btn-neutral float-right" title="Ingestão de dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="modelo_dados.html" class="btn btn-neutral float-right" title="Modelo de Integração de Dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="create_dataset_metadata.html" class="btn btn-neutral float-left" title="Criando os Metadados dos Datasets" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="../wlts.html" class="btn btn-neutral float-left" title="Web Land Trajectory Service - WLTS" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
   </div>
   
@@ -195,14 +195,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="registrando-datasets-no-banco-de-dados-do-odc">
-<h1>Registrando Datasets no Banco de Dados do ODC<a class="headerlink" href="#registrando-datasets-no-banco-de-dados-do-odc" title="Link permanente para este título">¶</a></h1>
-<p>Após a finalização do processo de <em>download</em> e criação dos arquivos com a descrição dos <em>datasets</em>, pode-se fazer a inserção desses no banco de metadados do <code class="docutils literal notranslate"><span class="pre">ODC-Core</span></code>. Para adicionar todos os dados descritos no passo anterior, o comando abaixo pode ser utilizado:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">find</span> <span class="o">~/</span><span class="n">products</span><span class="o">/</span><span class="n">CB4_64_16D_STK_v1</span><span class="o">/</span><span class="n">datasets</span><span class="o">/*.</span><span class="n">yaml</span> \
-     <span class="o">-</span><span class="n">exec</span> <span class="n">datacube</span> <span class="o">-</span><span class="n">vvv</span> <span class="n">dataset</span> <span class="n">add</span> <span class="o">-</span><span class="n">p</span> <span class="n">CB4_64_16D_STK_v1</span> <span class="p">{}</span> \<span class="p">;</span>
-</pre></div>
+  <div class="section" id="visao-geral">
+<h1>Visão Geral<a class="headerlink" href="#visao-geral" title="Link permanente para este título">¶</a></h1>
+<div class="section" id="contextualizacao">
+<h2>Contextualização<a class="headerlink" href="#contextualizacao" title="Link permanente para este título">¶</a></h2>
+<p>Atualmente existem diversos conjuntos de dados em escalas regionais, nacionais e globais com informação sobre uso e cobertura da terra.</p>
+<p>Embora esses projetos disponibilizem de maneira aberta uma rica coleção de dados, o uso integrado dessas coleções requer um grande esforço para coleta e integração por parte de cientistas, estudantes e gestores públicos.</p>
+<a class="reference internal image-reference" href="../_images/diferencas.png"><img alt="Diversidade Dados" class="align-center" src="../_images/diferencas.png" style="width: 700px; height: 350px;" /></a>
 </div>
-<p>Se necessário, adições individuais podem ser feitas com o uso do comando <code class="docutils literal notranslate"><span class="pre">datacube</span> <span class="pre">dataset</span> <span class="pre">add</span></code>. Para mais informações consulte a <a class="reference external" href="https://datacube-core.readthedocs.io/en/latest/">documentação do ODC</a>.</p>
+<div class="section" id="aplicacoes">
+<h2>Aplicações<a class="headerlink" href="#aplicacoes" title="Link permanente para este título">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/aplicacoes.png"><img alt="Aplicações" class="align-center" src="../_images/aplicacoes.png" style="width: 700px; height: 400px;" /></a>
+<p>Como acessar trajetória do uso da terra ao longo do tempo de maneira integrada dos dados espaço-temporais provenientes de diversas fontes?</p>
+</div>
 </div>
 
 
@@ -213,10 +218,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="ingestao.html" class="btn btn-neutral float-right" title="Ingestão de dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="modelo_dados.html" class="btn btn-neutral float-right" title="Modelo de Integração de Dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="create_dataset_metadata.html" class="btn btn-neutral float-left" title="Criando os Metadados dos Datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
+        <a href="../wlts.html" class="btn btn-neutral float-left" title="Web Land Trajectory Service - WLTS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Anterior</a>
       
     </div>
   

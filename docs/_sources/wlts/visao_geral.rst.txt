@@ -1,0 +1,39 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright 2020 INPE.
+
+    Brazil Data Cube Tech Talks is free software; you can redistribute it and/or modify it
+    under the terms of the MIT License; see LICENSE file for more details.
+
+
+Visão Geral
+-----------
+
+
+Contextualização
+++++++++++++++++
+
+
+Atualmente existem diversos conjuntos de dados em escalas regionais, nacionais e globais com informação sobre uso e cobertura da terra.
+
+
+Embora esses projetos disponibilizem de maneira aberta uma rica coleção de dados, o uso integrado dessas coleções requer um grande esforço para coleta e integração por parte de cientistas, estudantes e gestores públicos.
+
+
+.. image:: ../img/wlts/diferencas.png
+    :alt: Diversidade Dados
+    :height: 350
+    :width: 700
+    :align: center
+
+
+Aplicações
+++++++++++
+
+.. image:: ../img/wlts/aplicacoes.png
+    :alt: Aplicações
+    :height: 400
+    :width: 700
+    :align: center
+
+Como acessar trajetória do uso da terra ao longo do tempo de maneira integrada dos dados espaço-temporais provenientes de diversas fontes?
