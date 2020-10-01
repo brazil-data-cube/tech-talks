@@ -49,7 +49,7 @@ Tópicos da Oficina
 
 .. _stac_py_repo:
 
-- Um tour pelo repositório do pacote ``stac.py``.
+- Um tour pelo repositório do pacote `stac.py <https://github.com/brazil-data-cube/stac.py>`_.
 
 
 .. _stac_py_handson:
@@ -74,7 +74,7 @@ Tópicos da Oficina
 
 .. _rstac_repo:
 
-- Repositório
+- Um tour pelo repositório do pacote `rstac <https://github.com/brazil-data-cube/rstac>`_.
 
 
 .. _rstac_handson:
