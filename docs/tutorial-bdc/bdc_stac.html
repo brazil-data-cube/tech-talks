@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpatioTemporal Asset Catalog - BDC-STAC &mdash; Brazil Data Cube</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Data Cube Builder" href="data_cube_builder.html" />
+    <link rel="prev" title="Brazil Data Cube Catalog - BDC-Catalog" href="bdc_catalog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+            <a href="../index.html">
+            <img src="../_static/logo-bdc-techtalks.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Brazil Data Cube Tech Talks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apresentações:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlts.html">Web Land Trajectory Service - WLTS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial-bdc.html">Tutorial das ferramentas BDC para desenvolvedores</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../tutorial-bdc.html#topicos-da-oficina">Tópicos da Oficina</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ambiente_computacional.html">Ambiente Computacional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ambiente_computacional.html#compatibilidade">Compatibilidade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bdc_catalog.html">Brazil Data Cube Catalog - BDC-Catalog</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SpatioTemporal Asset Catalog - BDC-STAC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_cube_builder.html">Data Cube Builder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sites.html">Brazil Data Cube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contato.html">Contato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BDC Tech Talks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../tutorial-bdc.html">Tutorial das ferramentas BDC para desenvolvedores</a> &raquo;</li>
+      <li>SpatioTemporal Asset Catalog - BDC-STAC</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/tutorial-bdc/bdc_stac.rst" class="fa fa-github"> Editar no GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="bdc_catalog.html" class="btn btn-neutral float-left" title="Brazil Data Cube Catalog - BDC-Catalog" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="data_cube_builder.html" class="btn btn-neutral float-right" title="Data Cube Builder" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="spatiotemporal-asset-catalog-bdc-stac">
+<span id="modelo-bdc-stac"></span><h1>SpatioTemporal Asset Catalog - BDC-STAC<a class="headerlink" href="#spatiotemporal-asset-catalog-bdc-stac" title="Link permanente para este título"></a></h1>
+<p>Os cubos de dados e coleções de imagens produzidas pelo projeto Brazil Data Cube são acessíveis pelo serviço de catalogo através da especificação <a class="reference external" href="https://stacspec.org/en">SpatioTemporal Asset Catalog (STAC)</a>. O <cite>STAC</cite> é um padrão de espacificação aberta que vem sendo adotada fortemente pela comunidade espacial para aumentar a interoperabilidade da busca e consumo dos dados de observação da terra através de documentos JSON e <a class="reference external" href="https://geojson.org/">GeoJSON</a> para as features.
+A especificação oferece como base os seguintes conceitos apresentados na imagem abaixo:</p>
+<a class="reference external image-reference" href="https://github.com/brazil-data-cube/bdc-stac"><img alt="SpatioTemporal Asset Catalog" src="https://brazil-data-cube.github.io/_images/stac-model.png" style="width: 90%;" /></a>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Asset</span></code>: Um ativo (ou muitas vezes representado como qualquer arquivo) contendo informações capturadas e representadas no espaço e tempo. Pode ser representado como <code class="docutils literal notranslate"><span class="pre">thumbnail</span></code>, <code class="docutils literal notranslate"><span class="pre">tif</span> <span class="pre">(qualquer</span> <span class="pre">imagem)</span></code>, arquivo metadados <code class="docutils literal notranslate"><span class="pre">.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">.json</span></code>, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Item</span></code>: Uma unidade de metadados espaçotemporais representadas como <code class="docutils literal notranslate"><span class="pre">GeoJSON</span> <span class="pre">Feature</span></code> contendo informações relacionadas com a cena ou passagem, ou seja informação referente a uma localização no espaço e em um tempo definido. Essencialmente, um item contem um ou mais <code class="docutils literal notranslate"><span class="pre">Asset</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Collection</span></code>: Define um conjunto de características comuns a um grupo de items. Por exemplo, a definição das bandas espectrais presentes em um produto, independente de localização espacial ou tempo. Sua extensão espacial é definida como a união das áreas dos Items pertencentes a essa coleção, assim como sua abrangência temporal varia de acordo com a extensão temporal de seus items.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Catalog</span></code>: Lista todas as coleções e outros catalogos disponíveis em um serviço STAC.</p></li>
+</ul>
+<p>Conforme mencionado na seção <code class="docutils literal notranslate"><span class="pre">BDC-Catalog</span></code>, o banco de dados de metadados foi adaptado e preparado para funcionar com o <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code>: <code class="docutils literal notranslate"><span class="pre">coleções</span></code> e <code class="docutils literal notranslate"><span class="pre">items</span></code>. Deste modo, é um requisito básico ter o modelo de banco de dados compativel com a versão do BDC-STAC, conforme a tabela <a class="reference internal" href="ambiente_computacional.html#compatibilidade"><span class="std std-ref">Compatibilidade</span></a>.</p>
+<p>Também suportamos as <cite>STAC Extensions &lt;https://stac-extensions.github.io/&gt;</cite> que agregam funcionalidades ao nosso catalogo STAC. Atualmente as seguintes extensões são suportadas:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/stac-extensions/eo">Electro-Optical</a> suporte de bandas eletro oticas dos sensores. Representada pela tabela <code class="docutils literal notranslate"><span class="pre">bdc.bands</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/stac-extensions/sar">Sar</a> suporte de bandas Synthetic-Aperture Radar. Representada pela tabela <code class="docutils literal notranslate"><span class="pre">bdc.bands</span></code> e também informações gerais em <code class="docutils literal notranslate"><span class="pre">bdc.collections</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/stac-extensions/datacube">Datacube</a> suporte de cubos de dados. Representada na tabela <code class="docutils literal notranslate"><span class="pre">bdc.collections</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/stac-extensions/processing">Processing</a> suporte de bandas eletro oticas dos sensores. Representada pela tabela <code class="docutils literal notranslate"><span class="pre">bdc.bands</span></code>.</p></li>
+</ul>
+<p>Outras extensões também podem ser suportadas pelos campos <code class="docutils literal notranslate"><span class="pre">JSONB</span></code> criados no modelo de dados: <code class="docutils literal notranslate"><span class="pre">bdc.collections.properties</span></code> e <code class="docutils literal notranslate"><span class="pre">bdc.items.metadata</span></code>.</p>
+<p>Esse pacote dispobiliza a API utilizada para geração dos cubos de dados do pacote <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code>.
+Preparamos como base um mini <a class="reference external" href="https://github.com/brazil-data-cube/code-gallery/blob/master/jupyter/Python/stac/stac-introduction.ipynb">tutorial python</a> de como utilizar o serviço e a API do Brazil Data Cube utilizando <a class="reference external" href="https://pystac-client.readthedocs.io/en/stable/">PySTAC Client</a> ou uma variação do <a class="reference external" href="https://github.com/brazil-data-cube/code-gallery/blob/master/jupyter/R/stac/stac-introduction.ipynb">tutorial em r</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Também temos um <a class="reference external" href="https://github.com/brazil-data-cube/code-gallery/blob/master/jupyter/Python/stac/stac-aws-introduction.ipynb">tutorial stac estático aws</a> que disponibiliza o catalogo AWS OpenData do BDC.</p>
+</div>
+<div class="section" id="instalacao-em-modo-desenvolvimento">
+<h2>Instalação em modo desenvolvimento<a class="headerlink" href="#instalacao-em-modo-desenvolvimento" title="Link permanente para este título"></a></h2>
+<p>Faça o clone do repositorio <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code> com o comando a seguir:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/brazil-data-cube/bdc-stac.git
+</pre></div>
+</div>
+<p>Em seguida, acesse o codigo fonte:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> bdc-stac
+</pre></div>
+</div>
+<p>Iremos selecionar a versão <cite>v1.0.0</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">v1</span><span class="mf">.0.0</span>
+</pre></div>
+</div>
+<p>Crie um <a class="reference internal" href="ambiente_computacional.html#ambiente-virtual"><span class="std std-ref">Ambiente Virtual para Desenvolvimento</span></a> e instale o pacote:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span><span class="p">[</span><span class="nb">all</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="execucao-em-modo-desenvolvimento">
+<h2>Execução em modo desenvolvimento<a class="headerlink" href="#execucao-em-modo-desenvolvimento" title="Link permanente para este título"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para iniciar o serviço do STAC, assumimos que o banco de dados <a class="reference internal" href="ambiente_computacional.html#postgres"><span class="std std-ref">PostgreSQL/PostGIS</span></a>, juntamente com modulo <a class="reference internal" href="bdc_catalog.html#modelo-bdc-catalog"><span class="std std-ref">Brazil Data Cube Catalog - BDC-Catalog</span></a> esteja rodando.
+Usaremos como base a variavel de banco de dados definida em <a class="reference internal" href="bdc_catalog.html#preparacao-do-banco"><span class="std std-ref">Preparação do banco de dados</span></a>.</p>
+</div>
+<p>O <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code> utiliza o <a class="reference external" href="https://flask.palletsprojects.com">Flask</a> como biblioteca de servidor HTTP.
+Para levantar uma instância mínima do serviço é necessário rodar o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FLASK_APP</span><span class="o">=</span><span class="s2">&quot;bdc_stac&quot;</span> \
+<span class="n">SQLALCHEMY_DATABASE_URI</span><span class="o">=</span><span class="s2">&quot;postgresql://postgres:postgres@localhost:5432/bdc&quot;</span> \
+<span class="n">BDC_STAC_BASE_URL</span><span class="o">=</span><span class="s2">&quot;http://localhost:5000&quot;</span> \
+<span class="n">BDC_STAC_FILE_ROOT</span><span class="o">=</span><span class="s2">&quot;http://localhost:5001&quot;</span> \
+<span class="n">flask</span> <span class="n">run</span>
+</pre></div>
+</div>
+<p>A saida da execução do comando apresentará que o serviço está rodando na porta <cite>5000</cite> por padrão e pode ser acessado <a class="reference external" href="http://localhost:5000">http://localhost:5000</a>, conforme a seguir:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Serving</span> <span class="n">Flask</span> <span class="n">app</span> <span class="s1">&#39;bdc_stac&#39;</span>
+<span class="o">*</span> <span class="n">Debug</span> <span class="n">mode</span><span class="p">:</span> <span class="n">off</span>
+<span class="o">*</span> <span class="n">Running</span> <span class="n">on</span> <span class="nb">all</span> <span class="n">addresses</span> <span class="p">(</span><span class="mf">0.0.0.0</span><span class="p">)</span>
+<span class="o">*</span> <span class="n">Running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">5000</span>
+<span class="n">Press</span> <span class="n">CTRL</span><span class="o">+</span><span class="n">C</span> <span class="n">to</span> <span class="n">quit</span>
+</pre></div>
+</div>
+<div class="admonition note" id="variaveis-stac">
+<p class="admonition-title">Nota</p>
+<p>O serviço <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code> oferece diversas variaveis que podem ser customizadas para o funcionamento, são elas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SQLALCHEMY_DATABASE_URI=&quot;postgresql://postgres:postgres&#64;localhost:5432/bdc&quot;</span></code>: URL de conexão com o banco de dados <code class="docutils literal notranslate"><span class="pre">BDC-Catalog</span></code>, utilizamos <a class="reference internal" href="bdc_catalog.html#preparacao-do-banco"><span class="std std-ref">Preparação do banco de dados</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_STAC_BASE_URL=&quot;http://localhost:5000&quot;</span></code>: URL base do serviço que será utilizada para montagem internas dos links do catalog STAC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_STAC_FILE_ROOT=&quot;http://localhost:5001&quot;</span></code>: URL base padrão para concatenar nos <code class="docutils literal notranslate"><span class="pre">Assets</span></code> dos Items do catalogo. Atualmente, essa variavel é descartada se na requisição do usuário for informado o cabeçalho <code class="docutils literal notranslate"><span class="pre">X-Script-Name</span></code>. Por exemplo, <code class="docutils literal notranslate"><span class="pre">X-Script-Name:</span> <span class="pre">https://meu-dominio-http.com.br</span></code>, o valor <code class="docutils literal notranslate"><span class="pre">https://meu-dominio-http.com.br</span></code> será utilizado na concanetação dos Assets.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_STAC_MAX_LIMIT</span></code>: Numero máximo de items recuperados por requisição. Por padrão, valor <code class="docutils literal notranslate"><span class="pre">1000</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_STAC_TITLE</span></code>: Título apresentavel a nivel do catalogo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_STAC_ID</span></code>: Identificador para o catalogo. Por padrão, valor <code class="docutils literal notranslate"><span class="pre">bdc</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_STAC_USE_FOOTPRINT</span></code>: Flag booleana para definir se as interseções espaciais nos <code class="docutils literal notranslate"><span class="pre">Items</span></code> deve considerar <code class="docutils literal notranslate"><span class="pre">footprint</span></code>. Por padrão, o valor é <code class="docutils literal notranslate"><span class="pre">0</span></code> (ou desabilitado). Isso significa que será considerado o <code class="docutils literal notranslate"><span class="pre">bbox</span></code> do Item.</p></li>
+</ul>
+<p>Se você desejar integrar o <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code> com o serviço de autenticação e autorização do Brazil Data Cube OAuth 2.0, você deve informar as variaveis a seguir:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_AUTH_CLIENT_ID</span></code>: Identificador do client OAuth 2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_AUTH_CLIENT_SECRET</span></code>: Chave-segredo do cliente OAuth 2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC_AUTH_ACCESS_TOKEN_URL</span></code>: URL do serviço de autenticação e autorização BDC-OAuth 2.0.</p></li>
+</ul>
+</div>
+<p>Ao acessar <a class="reference external" href="http://localhost:5000">http://localhost:5000</a> você terá o resultado abaixo:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Catalog&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Brazil Data Cube Catalog&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bdc&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;stac_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0-rc.1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Link to this document&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/docs&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;service-doc&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;text/html&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;API documentation in HTML&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/conformance&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;conformance&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OGC API conformance classes implemented by the server&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/collections&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Information about image collections&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/search&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;search&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/geo+json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;STAC-Search endpoint&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/collections/S2_L1C-1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;child&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sentinel-2 - MSI - Level-1C&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;conformsTo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;https://api.stacspec.org/v1.0.0-beta.1/core&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;https://api.stacspec.org/v1.0.0-beta.1/item-search&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="s2">&quot;http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Acessar metadados da coleção:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">collections</span><span class="o">/</span><span class="n">S2_L1C</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>A saida será um documento <code class="docutils literal notranslate"><span class="pre">JSON</span></code> como a seguir:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;S2_L1C-1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;stac_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0-rc.1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;stac_extensions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;bdc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;version&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;processing&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;item-assets&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;eo&quot;</span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sentinel-2 - MSI - Level-1C&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;deprecated&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Level-1C product provides orthorectified Top-Of-Atmosphere (TOA) reflectance.&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;keywords&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;providers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;summaries&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;item_assets&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;bdc:type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;collection&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;extent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;spatial&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;bbox&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="p">[</span><span class="mf">-45.924977</span><span class="p">,</span><span class="w"> </span><span class="mf">-13.656868</span><span class="p">,</span><span class="w"> </span><span class="mf">-44.909754</span><span class="p">,</span><span class="w"> </span><span class="mf">-12.662413</span><span class="p">]</span><span class="w"></span>
+<span class="w">            </span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;temporal&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">&quot;2015-11-22T13:21:22Z&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2015-11-22T13:21:22Z&quot;</span><span class="p">]]</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;links&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/collections/S2_L1C-1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;self&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Link to this document&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/collections/S2_L1C-1/items&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;items&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Items of the collection S2_L1C-1&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/collections&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;parent&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Link to catalog collections&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;href&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;rel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;root&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;API landing page (root catalog)&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configurar-vscode-para-debug">
+<span id="debug-bdc-stac"></span><h2>Configurar VSCode para debug<a class="headerlink" href="#configurar-vscode-para-debug" title="Link permanente para este título"></a></h2>
+<p>Para configurar o <code class="docutils literal notranslate"><span class="pre">VSCode</span></code> em modo debug, você deve seguir os passos em <a class="reference internal" href="ambiente_computacional.html#configurar-vscode"><span class="std std-ref">Configurar Interpretador Python no VSCode</span></a> para selecionar o interpretador e ambiente python.</p>
+<p>Em seguida, você deve ir em <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> (também pode ser aberto pelo atalho <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">D</span></code>) e criar um novo documento <code class="docutils literal notranslate"><span class="pre">launch.json</span></code>, selecionar <code class="docutils literal notranslate"><span class="pre">Python</span></code>, executar como <code class="docutils literal notranslate"><span class="pre">modulo</span></code> e informar <code class="docutils literal notranslate"><span class="pre">flask</span></code>, conforme a imagem a seguir:</p>
+<a class="reference internal image-reference" href="../_images/vscode-debug.png"><img alt="Visual Studio Code - Create Launch Debug" src="../_images/vscode-debug.png" style="width: 100%;" /></a>
+<p>Será criado o documento <code class="docutils literal notranslate"><span class="pre">.vscode/launch.json</span></code> com as entradas minimas para debug. Você deve altera-lo para o seguinte conteudo</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api server&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;flask&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;justMyCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;console&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;internalConsole&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;FLASK_APP&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bdc_stac&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;SQLALCHEMY_DATABASE_URI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;postgresql://postgres:postgres@localhost:5432/bdc&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;BDC_STAC_BASE_URL&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5000&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;BDC_STAC_FILE_ROOT&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://localhost:5001&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;run&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Execute o serviço em modo debug clicando em <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">and</span> <span class="pre">Debug</span></code> (ou pelo atalho <code class="docutils literal notranslate"><span class="pre">F5</span></code>).</p>
+<p>Agora você pode colocar um <cite>breakpoint</cite> no codigo e começar a depuração do <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code>. Na imagem a seguir, foi adicionado um breakpoint no arquivo <code class="docutils literal notranslate"><span class="pre">bdc_stac/views.py</span></code> na seção de <code class="docutils literal notranslate"><span class="pre">index</span></code>.</p>
+<a class="reference internal image-reference" href="../_images/vscode-debug-stac.png"><img alt="Visual Studio Code - Create Launch Debug" src="../_images/vscode-debug-stac.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="instalacao-e-deploy-modo-producao">
+<h2>Instalação e deploy modo produção<a class="headerlink" href="#instalacao-e-deploy-modo-producao" title="Link permanente para este título"></a></h2>
+<p>A instalação em modo produção do <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code> consiste na execução do ambiente via containers Dockers. Para isso, tenha o <code class="docutils literal notranslate"><span class="pre">Docker</span></code> instalado na sua maquina.</p>
+<p>Iremos construir a imagem docker chamada <code class="docutils literal notranslate"><span class="pre">bdc-stac:1.0.0</span></code> com o comando abaixo na raiz do repositorio</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">build</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span> <span class="o">-</span><span class="n">t</span> <span class="n">bdc</span><span class="o">-</span><span class="n">stac</span><span class="p">:</span><span class="mf">1.0.0</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Esta etapa pode demorar alguns instantes para concluir. No final da execução, o comando acima criará a imagem <code class="docutils literal notranslate"><span class="pre">bdc-stac</span></code> com a tag <code class="docutils literal notranslate"><span class="pre">1.0.0</span></code> e você pode confirmar isso com o comando de listagem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">images</span>
+
+<span class="n">REPOSITORY</span>                                          <span class="n">TAG</span>                 <span class="n">IMAGE</span> <span class="n">ID</span>            <span class="n">CREATED</span>             <span class="n">SIZE</span>
+<span class="n">bdc</span><span class="o">-</span><span class="n">stac</span>                                            <span class="mf">1.0.0</span>             <span class="mi">44651</span><span class="n">ac917e4</span>        <span class="mi">16</span> <span class="n">hours</span> <span class="n">ago</span>        <span class="mi">333</span><span class="n">MB</span>
+</pre></div>
+</div>
+<p>Em seguida é necessário ter o banco de dados configurado. Se você ainda não criou uma instância do PostgreSQL com PostGIS inicializada com os modelos de dados <code class="docutils literal notranslate"><span class="pre">BDC-Catalog</span></code>, por favor, prepare o banco em <a class="reference internal" href="ambiente_computacional.html#postgres"><span class="std std-ref">PostgreSQL/PostGIS</span></a> e em seguida configure o modelo de dados na seção <a class="reference internal" href="bdc_catalog.html#modelo-bdc-catalog"><span class="std std-ref">Brazil Data Cube Catalog - BDC-Catalog</span></a>.</p>
+<p>Se você seguiu o tutorial em <a class="reference internal" href="ambiente_computacional.html#postgres"><span class="std std-ref">PostgreSQL/PostGIS</span></a> para usar o PostreSQL via Docker, nós criamos uma network chamada <code class="docutils literal notranslate"><span class="pre">bdc_net</span></code> e essa entrada será utilizada para a comunicação dos containers <code class="docutils literal notranslate"><span class="pre">bdc-stac</span></code> e <code class="docutils literal notranslate"><span class="pre">postgis</span></code>.</p>
+<p>A seguir, temos o comando minimo do docker para levantar a instância do <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code> usando Docker containers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">detach</span> \
+           <span class="o">--</span><span class="n">name</span> <span class="n">bdc</span><span class="o">-</span><span class="n">stac</span> \
+           <span class="o">--</span><span class="n">publish</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span><span class="p">:</span><span class="mi">5000</span> \
+           <span class="o">--</span><span class="n">network</span><span class="o">=</span><span class="n">bdc_net</span> \
+           <span class="o">--</span><span class="n">env</span> <span class="n">SQLALCHEMY_DATABASE_URI</span><span class="o">=</span><span class="s2">&quot;postgresql://postgres:postgres@postgis/bdc&quot;</span> \
+           <span class="o">--</span><span class="n">env</span> <span class="n">BDC_STAC_BASE_URL</span><span class="o">=</span><span class="s2">&quot;http://localhost:8080&quot;</span> \
+           <span class="o">--</span><span class="n">env</span> <span class="n">BDC_STAC_FILE_ROOT</span><span class="o">=</span><span class="s2">&quot;http://localhost:8081&quot;</span> \
+           <span class="n">bdc</span><span class="o">-</span><span class="n">stac</span><span class="p">:</span><span class="mf">1.0.0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Opcionalmente você pode customizar as <a class="reference internal" href="#variaveis-stac">Variaveis STAC</a> do BDC-STAC.</p>
+</div>
+<p>O comando docker acima contem os seguintes parâmetros:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--detach</span></code>: Informa que o serviço executará em background como Daemon.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">bdc-stac</span></code>: nome identificador do container. Também pode ser utilizado internamente como nome de dominio.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--publish</span> <span class="pre">127.0.0.1:8080:5000</span></code>: aloca por padrão a porta <code class="docutils literal notranslate"><span class="pre">host</span></code> <code class="docutils literal notranslate"><span class="pre">8080</span></code> e vincula com a porta padrão do serviço STAC no container <code class="docutils literal notranslate"><span class="pre">5000</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--network=bdc_net</span></code>: coloca o container <code class="docutils literal notranslate"><span class="pre">bdc-stac</span></code> a ser criado na mesma rede <code class="docutils literal notranslate"><span class="pre">bdc_net</span></code> (onde esta presente o banco de dados dos metadados). Permite acessar os serviços dessa rede pelo nome do container. O banco de dados chama-se <code class="docutils literal notranslate"><span class="pre">postgis</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--env</span> <span class="pre">SQLALCHEMY_DATABASE_URI=&quot;postgresql://postgres:postgres&#64;postgis/bdc&quot;</span></code>: URL de acesso ao banco de dados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--env</span> <span class="pre">BDC_STAC_BASE_URL=&quot;http://localhost:8080&quot;</span></code>: URL base do catalog de serviço.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--env</span> <span class="pre">BDC_STAC_FILE_ROOT=&quot;http://localhost:8081&quot;</span></code>: URL base default dos assets.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bdc-stac:1.0.0</span></code>: nome da imagem docker criada na seção de build.</p></li>
+</ul>
+<p>Você pode testar o acesso ao catalogo via linha do comando curl:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="bdc_catalog.html" class="btn btn-neutral float-left" title="Brazil Data Cube Catalog - BDC-Catalog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="data_cube_builder.html" class="btn btn-neutral float-right" title="Data Cube Builder" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, INPE..</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

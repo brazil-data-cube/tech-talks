@@ -1,0 +1,368 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright (C) 2022 INPE.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+
+.. _Modelo BDC-STAC:
+
+SpatioTemporal Asset Catalog - BDC-STAC
+---------------------------------------
+
+Os cubos de dados e coleções de imagens produzidas pelo projeto Brazil Data Cube são acessíveis pelo serviço de catalogo através da especificação `SpatioTemporal Asset Catalog (STAC) <https://stacspec.org/en>`_. O `STAC` é um padrão de espacificação aberta que vem sendo adotada fortemente pela comunidade espacial para aumentar a interoperabilidade da busca e consumo dos dados de observação da terra através de documentos JSON e `GeoJSON <https://geojson.org/>`_ para as features.
+A especificação oferece como base os seguintes conceitos apresentados na imagem abaixo:
+
+
+.. image:: https://brazil-data-cube.github.io/_images/stac-model.png
+        :target: https://github.com/brazil-data-cube/bdc-stac
+        :width: 90%
+        :alt: SpatioTemporal Asset Catalog
+
+- ``Asset``: Um ativo (ou muitas vezes representado como qualquer arquivo) contendo informações capturadas e representadas no espaço e tempo. Pode ser representado como ``thumbnail``, ``tif (qualquer imagem)``, arquivo metadados ``.txt``, ``.json``, etc.
+- ``Item``: Uma unidade de metadados espaçotemporais representadas como ``GeoJSON Feature`` contendo informações relacionadas com a cena ou passagem, ou seja informação referente a uma localização no espaço e em um tempo definido. Essencialmente, um item contem um ou mais ``Asset``.
+- ``Collection``: Define um conjunto de características comuns a um grupo de items. Por exemplo, a definição das bandas espectrais presentes em um produto, independente de localização espacial ou tempo. Sua extensão espacial é definida como a união das áreas dos Items pertencentes a essa coleção, assim como sua abrangência temporal varia de acordo com a extensão temporal de seus items.
+- ``Catalog``: Lista todas as coleções e outros catalogos disponíveis em um serviço STAC.
+
+
+Conforme mencionado na seção ``BDC-Catalog``, o banco de dados de metadados foi adaptado e preparado para funcionar com o ``BDC-STAC``: ``coleções`` e ``items``. Deste modo, é um requisito básico ter o modelo de banco de dados compativel com a versão do BDC-STAC, conforme a tabela :ref:`compatibilidade`.
+
+Também suportamos as `STAC Extensions <https://stac-extensions.github.io/>` que agregam funcionalidades ao nosso catalogo STAC. Atualmente as seguintes extensões são suportadas:
+
+- `Electro-Optical <https://github.com/stac-extensions/eo>`_ suporte de bandas eletro oticas dos sensores. Representada pela tabela ``bdc.bands``.
+- `Sar <https://github.com/stac-extensions/sar>`_ suporte de bandas Synthetic-Aperture Radar. Representada pela tabela ``bdc.bands`` e também informações gerais em ``bdc.collections``.
+- `Datacube <https://github.com/stac-extensions/datacube>`_ suporte de cubos de dados. Representada na tabela ``bdc.collections``.
+- `Processing <https://github.com/stac-extensions/processing>`_ suporte de bandas eletro oticas dos sensores. Representada pela tabela ``bdc.bands``.
+
+Outras extensões também podem ser suportadas pelos campos ``JSONB`` criados no modelo de dados: ``bdc.collections.properties`` e ``bdc.items.metadata``.
+
+Esse pacote dispobiliza a API utilizada para geração dos cubos de dados do pacote ``Cube-Builder``.
+Preparamos como base um mini `tutorial python <https://github.com/brazil-data-cube/code-gallery/blob/master/jupyter/Python/stac/stac-introduction.ipynb>`_ de como utilizar o serviço e a API do Brazil Data Cube utilizando `PySTAC Client <https://pystac-client.readthedocs.io/en/stable/>`_ ou uma variação do `tutorial em r <https://github.com/brazil-data-cube/code-gallery/blob/master/jupyter/R/stac/stac-introduction.ipynb>`_.
+
+.. note::
+
+    Também temos um `tutorial stac estático aws <https://github.com/brazil-data-cube/code-gallery/blob/master/jupyter/Python/stac/stac-aws-introduction.ipynb>`_ que disponibiliza o catalogo AWS OpenData do BDC.
+
+
+Instalação em modo desenvolvimento
+++++++++++++++++++++++++++++++++++
+
+
+Faça o clone do repositorio ``BDC-STAC`` com o comando a seguir:
+
+.. code:: shell
+
+    git clone https://github.com/brazil-data-cube/bdc-stac.git
+
+
+Em seguida, acesse o codigo fonte:
+
+.. code:: shell
+
+    cd bdc-stac
+
+
+Iremos selecionar a versão `v1.0.0`::
+
+    git checkout v1.0.0
+
+
+Crie um :ref:`ambiente virtual` e instale o pacote::
+
+    pip3 install -e .[all]
+
+
+Execução em modo desenvolvimento
+++++++++++++++++++++++++++++++++
+
+.. note::
+
+    Para iniciar o serviço do STAC, assumimos que o banco de dados :ref:`postgres`, juntamente com modulo :ref:`Modelo BDC-Catalog` esteja rodando.
+    Usaremos como base a variavel de banco de dados definida em :ref:`Preparação do banco`.
+
+
+O ``BDC-STAC`` utiliza o `Flask <https://flask.palletsprojects.com>`_ como biblioteca de servidor HTTP.
+Para levantar uma instância mínima do serviço é necessário rodar o comando abaixo::
+
+    FLASK_APP="bdc_stac" \
+    SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@localhost:5432/bdc" \
+    BDC_STAC_BASE_URL="http://localhost:5000" \
+    BDC_STAC_FILE_ROOT="http://localhost:5001" \
+    flask run
+
+
+A saida da execução do comando apresentará que o serviço está rodando na porta `5000` por padrão e pode ser acessado `<http://localhost:5000>`_, conforme a seguir::
+
+
+    * Serving Flask app 'bdc_stac'
+    * Debug mode: off
+    * Running on all addresses (0.0.0.0)
+    * Running on http://127.0.0.1:5000
+    Press CTRL+C to quit
+
+
+.. _Variaveis STAC:
+
+.. note::
+
+    O serviço ``BDC-STAC`` oferece diversas variaveis que podem ser customizadas para o funcionamento, são elas:
+
+    - ``SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@localhost:5432/bdc"``: URL de conexão com o banco de dados ``BDC-Catalog``, utilizamos :ref:`Preparação do banco`.
+    - ``BDC_STAC_BASE_URL="http://localhost:5000"``: URL base do serviço que será utilizada para montagem internas dos links do catalog STAC.
+    - ``BDC_STAC_FILE_ROOT="http://localhost:5001"``: URL base padrão para concatenar nos ``Assets`` dos Items do catalogo. Atualmente, essa variavel é descartada se na requisição do usuário for informado o cabeçalho ``X-Script-Name``. Por exemplo, ``X-Script-Name: https://meu-dominio-http.com.br``, o valor ``https://meu-dominio-http.com.br`` será utilizado na concanetação dos Assets.
+    - ``BDC_STAC_MAX_LIMIT``: Numero máximo de items recuperados por requisição. Por padrão, valor ``1000``.
+    - ``BDC_STAC_TITLE``: Título apresentavel a nivel do catalogo.
+    - ``BDC_STAC_ID``: Identificador para o catalogo. Por padrão, valor ``bdc``.
+    - ``BDC_STAC_USE_FOOTPRINT``: Flag booleana para definir se as interseções espaciais nos ``Items`` deve considerar ``footprint``. Por padrão, o valor é ``0`` (ou desabilitado). Isso significa que será considerado o ``bbox`` do Item.
+
+
+    Se você desejar integrar o ``BDC-STAC`` com o serviço de autenticação e autorização do Brazil Data Cube OAuth 2.0, você deve informar as variaveis a seguir:
+
+    - ``BDC_AUTH_CLIENT_ID``: Identificador do client OAuth 2.0
+    - ``BDC_AUTH_CLIENT_SECRET``: Chave-segredo do cliente OAuth 2.0
+    - ``BDC_AUTH_ACCESS_TOKEN_URL``: URL do serviço de autenticação e autorização BDC-OAuth 2.0.
+
+
+Ao acessar `<http://localhost:5000>`_ você terá o resultado abaixo:
+
+.. code:: json
+
+    {
+        "type": "Catalog",
+        "description": "Brazil Data Cube Catalog",
+        "id": "bdc",
+        "stac_version": "1.0.0-rc.1",
+        "links": [
+            {
+                "href": "http://localhost:5000/",
+                "rel": "self",
+                "type": "application/json",
+                "title": "Link to this document"
+            },
+            {
+                "href": "http://localhost:5000/docs",
+                "rel": "service-doc",
+                "type": "text/html",
+                "title": "API documentation in HTML"
+            },
+            {
+                "href": "http://localhost:5000/conformance",
+                "rel": "conformance",
+                "type": "application/json",
+                "title": "OGC API conformance classes implemented by the server"
+            },
+            {
+                "href": "http://localhost:5000/collections",
+                "rel": "data",
+                "type": "application/json",
+                "title": "Information about image collections"
+            },
+            {
+                "href": "http://localhost:5000/search",
+                "rel": "search",
+                "type": "application/geo+json",
+                "title": "STAC-Search endpoint"
+            },
+            {
+                "href": "http://localhost:5000/collections/S2_L1C-1",
+                "rel": "child",
+                "type": "application/json",
+                "title": "Sentinel-2 - MSI - Level-1C"
+            }
+        ],
+        "conformsTo": [
+            "https://api.stacspec.org/v1.0.0-beta.1/core",
+            "https://api.stacspec.org/v1.0.0-beta.1/item-search",
+            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/core",
+            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/oas30",
+            "http://www.opengis.net/spec/ogcapi-features-1/1.0/conf/geojson"
+        ]
+    }
+
+
+Acessar metadados da coleção::
+
+    curl http://localhost:5000/collections/S2_L1C-1
+
+
+A saida será um documento ``JSON`` como a seguir:
+
+.. code:: json
+
+    {
+        "id": "S2_L1C-1",
+        "stac_version": "1.0.0-rc.1",
+        "stac_extensions": ["bdc", "version", "processing", "item-assets", "eo"],
+        "title": "Sentinel-2 - MSI - Level-1C",
+        "version": "1",
+        "deprecated": false,
+        "description": "Level-1C product provides orthorectified Top-Of-Atmosphere (TOA) reflectance.",
+        "keywords": null,
+        "providers": [],
+        "summaries": null,
+        "item_assets": null,
+        "bdc:type": "collection",
+        "license": "",
+        "extent": {
+            "spatial": {
+                "bbox": [
+                    [-45.924977, -13.656868, -44.909754, -12.662413]
+                ]
+            },
+            "temporal": {
+                "interval": [["2015-11-22T13:21:22Z", "2015-11-22T13:21:22Z"]]
+            }
+        },
+        "links": [
+            {
+                "href": "http://localhost:5000/collections/S2_L1C-1",
+                "rel": "self",
+                "type": "application/json",
+                "title": "Link to this document"
+            },
+            {
+                "href": "http://localhost:5000/collections/S2_L1C-1/items",
+                "rel": "items",
+                "type": "application/json",
+                "title": "Items of the collection S2_L1C-1"
+            },
+            {
+                "href": "http://localhost:5000/collections",
+                "rel": "parent",
+                "type": "application/json",
+                "title": "Link to catalog collections"
+            },
+            {
+                "href": "http://localhost:5000/",
+                "rel": "root",
+                "type": "application/json",
+                "title": "API landing page (root catalog)"
+            }
+        ]
+    }
+
+
+.. _debug bdc-stac:
+
+Configurar VSCode para debug
+++++++++++++++++++++++++++++
+
+Para configurar o ``VSCode`` em modo debug, você deve seguir os passos em :ref:`configurar vscode` para selecionar o interpretador e ambiente python.
+
+Em seguida, você deve ir em ``Run and Debug`` (também pode ser aberto pelo atalho ``Ctrl + Shift + D``) e criar um novo documento ``launch.json``, selecionar ``Python``, executar como ``modulo`` e informar ``flask``, conforme a imagem a seguir:
+
+
+.. image:: ../img/tutorial-bdc/vscode-debug.png
+        :width: 100%
+        :alt: Visual Studio Code - Create Launch Debug
+
+Será criado o documento ``.vscode/launch.json`` com as entradas minimas para debug. Você deve altera-lo para o seguinte conteudo
+
+.. code-block:: json
+
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "api server",
+                "type": "python",
+                "request": "launch",
+                "module": "flask",
+                "justMyCode": false,
+                "console": "internalConsole",
+                "env": {
+                    "FLASK_APP": "bdc_stac",
+                    "SQLALCHEMY_DATABASE_URI": "postgresql://postgres:postgres@localhost:5432/bdc",
+                    "BDC_STAC_BASE_URL": "http://localhost:5000",
+                    "BDC_STAC_FILE_ROOT": "http://localhost:5001"
+                },
+                "args": [
+                    "run"
+                ]
+            }
+        ]
+    }
+
+Execute o serviço em modo debug clicando em ``Run and Debug`` (ou pelo atalho ``F5``).
+
+Agora você pode colocar um `breakpoint` no codigo e começar a depuração do ``BDC-STAC``. Na imagem a seguir, foi adicionado um breakpoint no arquivo ``bdc_stac/views.py`` na seção de ``index``.
+
+
+.. image:: ../img/tutorial-bdc/vscode-debug-stac.png
+        :width: 100%
+        :alt: Visual Studio Code - Create Launch Debug
+
+
+Instalação e deploy modo produção
++++++++++++++++++++++++++++++++++
+
+A instalação em modo produção do ``BDC-STAC`` consiste na execução do ambiente via containers Dockers. Para isso, tenha o ``Docker`` instalado na sua maquina.
+
+Iremos construir a imagem docker chamada ``bdc-stac:1.0.0`` com o comando abaixo na raiz do repositorio ::
+
+    docker build --no-cache -t bdc-stac:1.0.0 .
+
+
+Esta etapa pode demorar alguns instantes para concluir. No final da execução, o comando acima criará a imagem ``bdc-stac`` com a tag ``1.0.0`` e você pode confirmar isso com o comando de listagem::
+
+    docker images
+
+    REPOSITORY                                          TAG                 IMAGE ID            CREATED             SIZE
+    bdc-stac                                            1.0.0             44651ac917e4        16 hours ago        333MB
+
+
+Em seguida é necessário ter o banco de dados configurado. Se você ainda não criou uma instância do PostgreSQL com PostGIS inicializada com os modelos de dados ``BDC-Catalog``, por favor, prepare o banco em :ref:`postgres` e em seguida configure o modelo de dados na seção :ref:`Modelo BDC-Catalog`.
+
+Se você seguiu o tutorial em :ref:`postgres` para usar o PostreSQL via Docker, nós criamos uma network chamada ``bdc_net`` e essa entrada será utilizada para a comunicação dos containers ``bdc-stac`` e ``postgis``.
+
+A seguir, temos o comando minimo do docker para levantar a instância do ``BDC-STAC`` usando Docker containers::
+
+    docker run --detach \
+               --name bdc-stac \
+               --publish 127.0.0.1:8080:5000 \
+               --network=bdc_net \
+               --env SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@postgis/bdc" \
+               --env BDC_STAC_BASE_URL="http://localhost:8080" \
+               --env BDC_STAC_FILE_ROOT="http://localhost:8081" \
+               bdc-stac:1.0.0
+
+
+.. note::
+
+    Opcionalmente você pode customizar as `Variaveis STAC`_ do BDC-STAC.
+
+
+O comando docker acima contem os seguintes parâmetros:
+
+- ``--detach``: Informa que o serviço executará em background como Daemon.
+
+- ``--name bdc-stac``: nome identificador do container. Também pode ser utilizado internamente como nome de dominio.
+
+- ``--publish 127.0.0.1:8080:5000``: aloca por padrão a porta ``host`` ``8080`` e vincula com a porta padrão do serviço STAC no container ``5000``.
+
+- ``--network=bdc_net``: coloca o container ``bdc-stac`` a ser criado na mesma rede ``bdc_net`` (onde esta presente o banco de dados dos metadados). Permite acessar os serviços dessa rede pelo nome do container. O banco de dados chama-se ``postgis``.
+
+- ``--env SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@postgis/bdc"``: URL de acesso ao banco de dados.
+
+- ``--env BDC_STAC_BASE_URL="http://localhost:8080"``: URL base do catalog de serviço.
+
+- ``--env BDC_STAC_FILE_ROOT="http://localhost:8081"``: URL base default dos assets.
+
+- ``bdc-stac:1.0.0``: nome da imagem docker criada na seção de build.
+
+
+Você pode testar o acesso ao catalogo via linha do comando curl::
+
+    curl localhost:8080
+

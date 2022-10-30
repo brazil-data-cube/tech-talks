@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Cube Builder &mdash; Brazil Data Cube</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Brazil Data Cube" href="../sites.html" />
+    <link rel="prev" title="SpatioTemporal Asset Catalog - BDC-STAC" href="bdc_stac.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+            <a href="../index.html">
+            <img src="../_static/logo-bdc-techtalks.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Brazil Data Cube Tech Talks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apresentações:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlts.html">Web Land Trajectory Service - WLTS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial-bdc.html">Tutorial das ferramentas BDC para desenvolvedores</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../tutorial-bdc.html#topicos-da-oficina">Tópicos da Oficina</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ambiente_computacional.html">Ambiente Computacional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ambiente_computacional.html#compatibilidade">Compatibilidade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bdc_catalog.html">Brazil Data Cube Catalog - BDC-Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bdc_stac.html">SpatioTemporal Asset Catalog - BDC-STAC</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Data Cube Builder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sites.html">Brazil Data Cube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contato.html">Contato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BDC Tech Talks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../tutorial-bdc.html">Tutorial das ferramentas BDC para desenvolvedores</a> &raquo;</li>
+      <li>Data Cube Builder</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/tutorial-bdc/data_cube_builder.rst" class="fa fa-github"> Editar no GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="bdc_stac.html" class="btn btn-neutral float-left" title="SpatioTemporal Asset Catalog - BDC-STAC" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../sites.html" class="btn btn-neutral float-right" title="Brazil Data Cube" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="data-cube-builder">
+<h1>Data Cube Builder<a class="headerlink" href="#data-cube-builder" title="Link permanente para este título"></a></h1>
+<p>O <a class="reference external" href="https://github.com/brazil-data-cube/cube-builder">Data Cube Builder</a> é um serviço web para geração de cubos de dados de observação da terra escrito Python. Temos uma variação deste modulo chamado <a class="reference external" href="https://github.com/brazil-data-cube/cube-builder-aws">Data Cube Builder on AWS</a> para criação dos cubos de dados usando a infraestrutura em nuvem da Amazon Web Services.
+Dentro do <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code>, temos dois tipos definições de cubos de dados: <code class="docutils literal notranslate"><span class="pre">identidade</span></code> e <code class="docutils literal notranslate"><span class="pre">composto</span></code>.
+Os cubos <code class="docutils literal notranslate"><span class="pre">identidade</span></code>, conhecidos como <cite>irregulares no tempo</cite>, são as imagens dos sensores originais reprojetadas e recortadas dentro de uma região de interesse (tile).
+Já os cubos <code class="docutils literal notranslate"><span class="pre">compostos</span></code>, também conhecidos como <cite>regulares no espaço e no tempo</cite>, são cubos de dados que são agrupados por um periodo
+pre-estabelecido (16 dias, por exemplo) e em seguida aplicado uma função de composição temporal, como <cite>Least Cloud Cover First (LCF)</cite> que ordena os produtos <code class="docutils literal notranslate"><span class="pre">identidade</span></code> pela mascara de nuvem e escolhe os melhores pixels livres de <cite>nuvem</cite>,
+<cite>sombra de nuvem</cite> e <cite>neve</cite>. O produto resultante consiste numa imagem com os melhores pixels no tempo. Também pode ser aplicado outras funções de composição temporal, como por exemplo, <cite>Median (MED)</cite>, que aplica uma median sobre os pixels.
+Opcionalmente, é gerado os indices de vegetação, como por exemplo, <code class="docutils literal notranslate"><span class="pre">NDVI</span></code> e <code class="docutils literal notranslate"><span class="pre">EVI</span></code> sobre os cubos de dados gerados.
+Por fim, esses cubos são catalogados no <cite>Modelo BDC-Catalog</cite> e podem ser disponibilizados via catalogo <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code>.</p>
+<p>A figura apresenta uma visão geral da arquitetura do cube builder e o fluxo de funcionamento. A segunda figura corresponde no funcionamento da composição temporal:</p>
+<a class="reference external image-reference" href="https://github.com/brazil-data-cube/cube-builder" id="data-cube-builder-architecture"><img alt="Data Cube Builder Architecture" src="../_images/cube-builder-arch.png" style="width: 100%;" /></a>
+<a class="reference external image-reference" href="https://brazil-data-cube.github.io/products/specifications/processing-flow.html#temporal-compositing"><img alt="BDC Funções de Composição Temporal" src="https://brazil-data-cube.github.io/_images/compositing-function.png" style="width: 100%;" /></a>
+<p>Dentro do <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code> temos o conceito da <cite>API</cite> para consumo e disparo remotos de cubos de dados e <cite>Worker</cite> que são os ambientes responsaveis para geração dos cubos de dados. Em ambientes de produção, normalmente os <code class="docutils literal notranslate"><span class="pre">workers</span></code> são nós individuais responsaveis por cada etapa de geração dos dados para melhor aproveitamento dos recursos computacionais.</p>
+<div class="section" id="instalacao-em-modo-desenvolvimento">
+<h2>Instalação em modo desenvolvimento<a class="headerlink" href="#instalacao-em-modo-desenvolvimento" title="Link permanente para este título"></a></h2>
+<p>Faça o clone do repositorio <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code> com o comando a seguir:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/brazil-data-cube/cube-builder.git
+</pre></div>
+</div>
+<p>Em seguida, acesse o codigo fonte:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cube-builder
+</pre></div>
+</div>
+<p>Iremos selecionar a versão <code class="docutils literal notranslate"><span class="pre">v1.0.0a1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">v1</span><span class="mf">.0.0</span><span class="n">a1</span>
+</pre></div>
+</div>
+<p>Crie um <a class="reference internal" href="ambiente_computacional.html#ambiente-virtual"><span class="std std-ref">Ambiente Virtual para Desenvolvimento</span></a> e instale o pacote:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span><span class="p">[</span><span class="nb">all</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Durante a instalação do <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code>, o procedimento pode apresentar problemas relacionados com a biblioteca <code class="docutils literal notranslate"><span class="pre">librabbitmq</span></code>. Se você tiver passando por dificuldades na instalação tendo o seguinte output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="n">Running</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="k">for</span> <span class="n">SQLAlchemy</span><span class="o">-</span><span class="n">Utils</span> <span class="o">...</span> <span class="n">done</span>
+<span class="n">Running</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="k">for</span> <span class="n">bdc</span><span class="o">-</span><span class="n">db</span> <span class="o">...</span> <span class="n">done</span>
+<span class="n">Running</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="k">for</span> <span class="n">librabbitmq</span> <span class="o">...</span> <span class="n">error</span>
+<span class="n">ERROR</span><span class="p">:</span> <span class="n">Command</span> <span class="n">errored</span> <span class="n">out</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">status</span> <span class="mi">1</span><span class="p">:</span>
+<span class="n">command</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">gribeiro</span><span class="o">/</span><span class="n">Devel</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">brazil</span><span class="o">-</span><span class="n">data</span><span class="o">-</span><span class="n">cube</span><span class="o">/</span><span class="n">bdc</span><span class="o">-</span><span class="n">collection</span><span class="o">-</span><span class="n">builder</span><span class="o">/</span><span class="n">venv</span><span class="o">/..</span>
+    <span class="n">cwd</span><span class="p">:</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="mi">1</span><span class="n">i7mp5js</span><span class="o">/</span><span class="n">librabbitmq</span><span class="o">/</span>
+<span class="n">Complete</span> <span class="n">output</span> <span class="p">(</span><span class="mi">107</span> <span class="n">lines</span><span class="p">):</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pip</span><span class="o">-</span><span class="n">install</span><span class="o">-</span><span class="mi">1</span><span class="n">i7mp5js</span><span class="o">/</span><span class="n">librabbitmq</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">167</span><span class="p">:</span>
+<span class="ne">DeprecationWarning</span><span class="p">:</span> <span class="s1">&#39;U&#39;</span> <span class="n">mode</span> <span class="ow">is</span> <span class="n">deprecated</span>
+<span class="n">long_description</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_PATH</span><span class="p">,</span> <span class="s1">&#39;README.rst&#39;</span><span class="p">),</span> <span class="s1">&#39;U&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">running</span> <span class="n">build</span>
+<span class="o">-</span> <span class="n">pull</span> <span class="n">submodule</span> <span class="n">rabbitmq</span><span class="o">-</span><span class="n">c</span><span class="o">...</span>
+<span class="n">Cloning</span> <span class="n">into</span> <span class="s1">&#39;rabbitmq-c&#39;</span><span class="o">...</span>
+<span class="n">Note</span><span class="p">:</span> <span class="n">checking</span> <span class="n">out</span> <span class="s1">&#39;caad0ef1533783729c7644a226c989c79b4c497b&#39;</span><span class="o">.</span>
+
+<span class="n">You</span> <span class="n">are</span> <span class="ow">in</span> <span class="s1">&#39;detached HEAD&#39;</span> <span class="n">state</span><span class="o">.</span> <span class="n">You</span> <span class="n">can</span> <span class="n">look</span> <span class="n">around</span><span class="p">,</span> <span class="n">make</span> <span class="n">experimental</span>
+<span class="n">changes</span> <span class="ow">and</span> <span class="n">commit</span> <span class="n">them</span><span class="p">,</span> <span class="ow">and</span> <span class="n">you</span> <span class="n">can</span> <span class="n">discard</span> <span class="nb">any</span> <span class="n">commits</span> <span class="n">you</span> <span class="n">make</span> <span class="ow">in</span> <span class="n">this</span>
+<span class="n">state</span> <span class="n">without</span> <span class="n">impacting</span> <span class="nb">any</span> <span class="n">branches</span> <span class="n">by</span> <span class="n">performing</span> <span class="n">another</span> <span class="n">checkout</span><span class="o">.</span>
+
+<span class="n">If</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">branch</span> <span class="n">to</span> <span class="n">retain</span> <span class="n">commits</span> <span class="n">you</span> <span class="n">create</span><span class="p">,</span> <span class="n">you</span> <span class="n">may</span>
+<span class="n">do</span> <span class="n">so</span> <span class="p">(</span><span class="n">now</span> <span class="ow">or</span> <span class="n">later</span><span class="p">)</span> <span class="n">by</span> <span class="n">using</span> <span class="o">-</span><span class="n">b</span> <span class="k">with</span> <span class="n">the</span> <span class="n">checkout</span> <span class="n">command</span> <span class="n">again</span><span class="o">.</span> <span class="n">Example</span><span class="p">:</span>
+
+<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="o">&lt;</span><span class="n">new</span><span class="o">-</span><span class="n">branch</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+
+<span class="o">-</span> <span class="n">autoreconf</span>
+<span class="n">sh</span><span class="p">:</span> <span class="mi">1</span><span class="p">:</span> <span class="n">autoreconf</span><span class="p">:</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="o">-</span> <span class="n">configure</span> <span class="n">rabbitmq</span><span class="o">-</span><span class="n">c</span><span class="o">...</span>
+<span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sh</span><span class="p">:</span> <span class="mi">0</span><span class="p">:</span> <span class="n">Can</span><span class="s1">&#39;t open configure</span>
+</pre></div>
+</div>
+<p>Você deve instalar a biblioteca <code class="docutils literal notranslate"><span class="pre">autoconf</span></code> com o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">autoconf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="execucao-em-modo-desenvolvimento">
+<h2>Execução em modo desenvolvimento<a class="headerlink" href="#execucao-em-modo-desenvolvimento" title="Link permanente para este título"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code> requer a instância do banco de dados <a class="reference internal" href="ambiente_computacional.html#postgres"><span class="std std-ref">PostgreSQL/PostGIS</span></a>, juntamente com modulo <a class="reference internal" href="bdc_catalog.html#modelo-bdc-catalog"><span class="std std-ref">Brazil Data Cube Catalog - BDC-Catalog</span></a>.
+Usaremos como base a variavel de banco de dados definida em <a class="reference internal" href="bdc_catalog.html#preparacao-do-banco"><span class="std std-ref">Preparação do banco de dados</span></a>.</p>
+</div>
+<p>O processo de geração dos cubos de dados é feito através de mensagens e filas de processamento em cada etapa da geração. É necessário uma instância <a class="reference external" href="https://www.rabbitmq.com/">RabbitMQ</a> para atuar como Broker e gerenciar todas as filas de processamento.</p>
+<p>Para levantar a instância do <code class="docutils literal notranslate"><span class="pre">RabbitMQ</span></code>, utilize o <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> que pre-configuramos no repositorio:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">mq</span>
+</pre></div>
+</div>
+<p>Você pode checar o status do container do RabbitMQ com o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">container</span> <span class="n">ls</span>
+
+<span class="n">CONTAINER</span> <span class="n">ID</span>   <span class="n">IMAGE</span>                  <span class="n">COMMAND</span>                  <span class="n">CREATED</span>         <span class="n">STATUS</span>         <span class="n">PORTS</span>                    <span class="n">NAMES</span>
+<span class="n">a3bb86d2df56</span>   <span class="n">rabbitmq</span><span class="p">:</span><span class="mi">3</span><span class="o">-</span><span class="n">management</span>  <span class="s2">&quot;docker-entrypoint.s…&quot;</span>   <span class="mi">3</span> <span class="n">minutes</span> <span class="n">ago</span>   <span class="n">Up</span> <span class="mi">3</span> <span class="n">minutes</span>   <span class="mi">4369</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mi">5671</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">5672</span><span class="o">-&gt;</span><span class="mi">5672</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mi">15671</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mi">25672</span><span class="o">/</span><span class="n">tcp</span><span class="p">,</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">15672</span><span class="o">-&gt;</span><span class="mi">15672</span><span class="o">/</span><span class="n">tcp</span>   <span class="n">cube</span><span class="o">-</span><span class="n">builder</span><span class="o">-</span><span class="n">rabbitmq</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Por padrão, o serviço de <code class="docutils literal notranslate"><span class="pre">RabbitMQ</span></code> roda na porta <code class="docutils literal notranslate"><span class="pre">5672</span></code> e <code class="docutils literal notranslate"><span class="pre">15672</span></code> para a interface gráfica. Você pode acessar <a class="reference external" href="http://127.0.0.1:15672">http://127.0.0.1:15672</a>. As credenciais padrões são <code class="docutils literal notranslate"><span class="pre">guest</span></code> e <code class="docutils literal notranslate"><span class="pre">guest</span></code>.</p>
+</div>
+<div class="section" id="api">
+<h3>API<a class="headerlink" href="#api" title="Link permanente para este título"></a></h3>
+<p>O modulo do cube builder oferece uma API de serviço para consumo dos metadados e disparo da geração dos cubos de dados remotamente. Essa etapa é muito importante, principalmente para integração posteriormente com a interface gráfica <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Cube</span> <span class="pre">Manager</span></code>.
+O processo de iniciar o serviço WEB do <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code> é simples, basta executar os comandos abaixo:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">FLASK_ENV</span><span class="o">=</span><span class="s2">&quot;development&quot;</span> <span class="se">\</span>
+<span class="nv">WORK_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/cube-builder/workdir&quot;</span> <span class="se">\</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/cube-builder/data&quot;</span> <span class="se">\</span>
+<span class="nv">SQLALCHEMY_DATABASE_URI</span><span class="o">=</span><span class="s2">&quot;postgresql://postgres:postgres@localhost/bdc&quot;</span> <span class="se">\</span>
+cube-builder run
+</pre></div>
+</div>
+<p>A saida da execução do comando apresentará que o serviço está rodando na porta <cite>5000</cite> por padrão e pode ser acessado <a class="reference external" href="http://localhost:5000">http://localhost:5000</a>, conforme a seguir:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* Environment: development
+* Debug mode: on
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+* Restarting with stat
+* Debugger is active!
+* Debugger PIN: 289-045-960
+</pre></div>
+</div>
+<div class="admonition note" id="variaveis-do-cube-builder">
+<p class="admonition-title">Nota</p>
+<p>O serviço <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code> oferece diversas variaveis que podem ser customizadas para o funcionamento, são elas:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">WORK_DIR</span></code>: Diretório temporário para geração dos dados</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATA_DIR</span></code>: Diretório final para publicação dos cubos de dados</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SQLALCHEMY_DATABASE_URI</span></code>: URI de conexão com o banco de dados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ITEM_PREFIX</span></code>: Prefixo adicionado no <cite>path</cite> de cada item gerado. Por padrão, valor é <code class="docutils literal notranslate"><span class="pre">/cubes</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QUEUE_BLEND_CUBE</span></code>: Nome da fila de processamento da etapa de composição temporal. Por padrão, valor é <code class="docutils literal notranslate"><span class="pre">blend-cube</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QUEUE_IDENTITY_CUBE</span></code>: Nome da fila de processamento da etapa de geração cubo identidade. Por padrão, valor é <code class="docutils literal notranslate"><span class="pre">merge-cube</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QUEUE_PREPARE_CUBE</span></code>: Nome da fila de processamento da junção dos identidade e disparo da composição temporal. Por padrão, valor é <code class="docutils literal notranslate"><span class="pre">prepare-cube</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">QUEUE_PUBLISH_CUBE</span></code>: Nome da fila de processamento da etapa de publicação final dos dados. Por padrão, valor é <code class="docutils literal notranslate"><span class="pre">publish-cube</span></code>.</p></li>
+</ul>
+<p>No momento, ainda não é possivel customizar as filas de processamento em <code class="docutils literal notranslate"><span class="pre">runtime</span></code>.</p>
+</div>
+</div>
+<div class="section" id="worker">
+<h3>Worker<a class="headerlink" href="#worker" title="Link permanente para este título"></a></h3>
+<p>Os <code class="docutils literal notranslate"><span class="pre">workers</span></code> são instâncias do cube builder responsavel pelo processamento e geração dos cubos de dados.</p>
+<p>Através de variaveis de ambiente, você pode delimitar quais filas de processamento o worker ficará responsavel para executar. (Ideal para deploy em produção).</p>
+<p>Para levantar um worker, é necessário utilizar o utilitário de linha de comando chamado <code class="docutils literal notranslate"><span class="pre">cube-builder</span> <span class="pre">worker</span></code> como abaixo:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">WORK_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/cube-builder/workdir&quot;</span> <span class="se">\</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/cube-builder/data&quot;</span> <span class="se">\</span>
+<span class="nv">SQLALCHEMY_DATABASE_URI</span><span class="o">=</span><span class="s2">&quot;postgresql://postgres:postgres@localhost/bdc&quot;</span> <span class="se">\</span>
+cube-builder worker -l INFO --concurrency <span class="m">2</span> -Q default,merge-cube,prepare-cube,blend-cube,publish-cube --max-tasks-per-child<span class="o">=</span><span class="m">2</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Os parametros do comando <code class="docutils literal notranslate"><span class="pre">worker</span></code> são:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span> <span class="pre">INFO</span></code>: Nivel das mensagem de log a serem dispobilizadas</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--concurrency</span> <span class="pre">2</span></code>: Numero de processamentos que será executado em paralelo. Veja a seção <a class="reference internal" href="#aviso-de-execucao">Aviso de execução</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-Q</span> <span class="pre">default,merge-cube,prepare-cube,blend-cube,publish-cube</span></code>: Filas de processamento que o worker ficará responsavel. Veja a seção <a class="reference internal" href="#variaveis-do-cube-builder">variaveis do cube builder</a> para mais detalhes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--max-tasks-per-child=2</span></code>: Delimita <cite>pool de recycle</cite> por execução. Este parametro é muito util para liberar memoria alocada entre os processos de modo a evitar <code class="docutils literal notranslate"><span class="pre">MemoryOverflow</span></code>.</p></li>
+</ul>
+<p>Além disso, o comando <code class="docutils literal notranslate"><span class="pre">cube-builder</span> <span class="pre">worker</span></code> suporta todos os parametros da biblioteca de processamento distrubido <a class="reference external" href="https://docs.celeryq.dev/en/stable/getting-started/introduction.html">Celery</a>. Veja os demais parametros na seção <a class="reference external" href="https://docs.celeryq.dev/en/stable/userguide/workers.html">Celery Workers Guide</a>.</p>
+</div>
+<div class="admonition warning" id="aviso-de-execucao">
+<p class="admonition-title">Aviso</p>
+<p>O numero de processos em paralelo deve ser setado com cautela. Dependendo do produto de dados, pode acarretar em muita memoria computacional alocada nos processos.
+Para uma execução simples, uma maquina com as seguintes especificações é recomendavel valor máximo de <code class="docutils literal notranslate"><span class="pre">--concurrency</span> <span class="pre">2</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span> <span class="pre">vCPU</span> <span class="pre">or</span> <span class="pre">more</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">8</span> <span class="pre">GB</span> <span class="pre">RAM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">40</span> <span class="pre">GB</span> <span class="pre">free</span> <span class="pre">space</span></code></p></li>
+</ul>
+</div>
+<p>Para uso geral do <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code>, criamos um mini-tutorial na documentação oficial do modulo em <a class="reference external" href="https://cube-builder.readthedocs.io/en/latest/usage.html">Cube Builder - Usage</a>.</p>
+</div>
+</div>
+<div class="section" id="configurar-vscode-para-debug">
+<h2>Configurar VSCode para debug<a class="headerlink" href="#configurar-vscode-para-debug" title="Link permanente para este título"></a></h2>
+<p>Para configurar o <code class="docutils literal notranslate"><span class="pre">VSCode</span></code> em modo debug, você deve seguir os passos em <a class="reference internal" href="ambiente_computacional.html#configurar-vscode"><span class="std std-ref">Configurar Interpretador Python no VSCode</span></a> para selecionar o interpretador e ambiente python.</p>
+<p>Além disso, para o serviço API, você inclusive seguir os moldes descrito em <a class="reference internal" href="bdc_stac.html#debug-bdc-stac"><span class="std std-ref">Configurar VSCode para debug</span></a>.</p>
+<p>Iremos configurar o <code class="docutils literal notranslate"><span class="pre">Worker</span></code> em modo debug. Edite o arquivo <code class="docutils literal notranslate"><span class="pre">.vscode/launch.json</span></code> e cole o conteudo abaixo. Será criado duas entradas: <code class="docutils literal notranslate"><span class="pre">api</span></code> e <code class="docutils literal notranslate"><span class="pre">worker</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.2.0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;configurations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cube_builder&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;justMyCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;console&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;internalConsole&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;SQLALCHEMY_DATABASE_URI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;postgresql://postgres:postgres@localhost:5432/bdc&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;WORK_DIR&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/raphael/cube-builder/workdir&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;DATA_DIR&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/raphael/cube-builder/data&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;run&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;worker&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;launch&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cube_builder&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;justMyCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;console&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;internalConsole&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;SQLALCHEMY_DATABASE_URI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;postgresql://postgres:postgres@localhost:5432/bdc&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;WORK_DIR&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/raphael/cube-builder/workdir&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nt">&quot;DATA_DIR&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/raphael/cube-builder/data&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">},</span><span class="w"></span>
+<span class="w">            </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;worker&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;-l&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;--concurrency&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;-Q&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;default,merge-cube,prepare-cube,blend-cube,publish-cube&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;--max-tasks-per-child=2&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;-P&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="s2">&quot;solo&quot;</span><span class="w"></span>
+<span class="w">            </span><span class="p">]</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Repare que os parametros são similares ao executados manualmente na seção anterior. Um atenção especial é para o parâmetro <code class="docutils literal notranslate"><span class="pre">-P</span> <span class="pre">solo</span></code>. Esse parâmetro obriga que a pilha de processamento do Celery trabalhe <cite>Inline Single Thread</cite>. Isso facilita no debug de aplicações que fazem uso do paralelismo já que os objetos estão compartilhados na memoria. Se você não informar esse parâmetro, o celery fará uso do <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> e o VSCode não conseguirá depurar os breakpoints.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Evite usar <code class="docutils literal notranslate"><span class="pre">--concurrency</span></code> maior que <code class="docutils literal notranslate"><span class="pre">1</span></code> para não bagunçar os ponteiros de debug devido o processamento paralelo.</p>
+</div>
+<a class="reference internal image-reference" href="../_images/vscode-debug-builder.png"><img alt="Visual Studio Code - Debug Cube Builder" src="../_images/vscode-debug-builder.png" style="width: 100%;" /></a>
+</div>
+<div class="section" id="instalacao-e-deploy-modo-producao">
+<h2>Instalação e deploy modo produção<a class="headerlink" href="#instalacao-e-deploy-modo-producao" title="Link permanente para este título"></a></h2>
+<p>A instalação em modo produção do <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code> consiste na execução do ambiente via containers Dockers. Para isso, tenha o <code class="docutils literal notranslate"><span class="pre">Docker</span></code> instalado na sua maquina. Além disso, <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> também é essencial para facilitar o deploy e a relação entre os containers.</p>
+<p>Iremos construir a imagem docker chamada <code class="docutils literal notranslate"><span class="pre">registry.dpi.inpe.br/brazil-data-cube/cube-builder:latest</span></code> com o <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>. O processo de construção da imagem docker é bem simples, basta rodar o comando:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">build</span>
+</pre></div>
+</div>
+<p>O <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> contém todas as definições e variaveis usadas para configuração do cube builder. Por favor, examine o arquivo <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> e altere (se desejar), os caminhos para geração dos dados.
+Por padrão, os dados <code class="docutils literal notranslate"><span class="pre">DATA_DIR=/data</span></code> (<cite>./volumes/data</cite> no host) e <code class="docutils literal notranslate"><span class="pre">WORK_DIR=/workdir</span></code> (<cite>./volumes/workdir</cite> no host).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se você ja possui o banco de dados <a class="reference internal" href="ambiente_computacional.html#postgres"><span class="std std-ref">PostgreSQL/PostGIS</span></a> inicializado com o <a class="reference internal" href="bdc_catalog.html#modelo-bdc-catalog"><span class="std std-ref">Brazil Data Cube Catalog - BDC-Catalog</span></a>, desconsidere essa etapa do banco de dados.</p>
+</div>
+<p>Para configurar uma instância do PostgreSQL com o <code class="docutils literal notranslate"><span class="pre">BDC-Catalog</span></code>, você pode utilizar o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">prepare</span><span class="o">-</span><span class="n">db</span> <span class="o">--</span><span class="n">rm</span> <span class="n">cube</span><span class="o">-</span><span class="n">builder</span> <span class="o">./</span><span class="n">deploy</span><span class="o">/</span><span class="n">configure</span><span class="o">-</span><span class="n">db</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>A saida do comando acima:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Starting cube-builder-rabbitmq ... done
+Creating cube-builder_cube-builder_run ... done
+Creating database postgresql://postgres:postgres@cube-builder-pg:5432/bdc...
+Database created!
+Creating namespace lccs...
+Creating namespace bdc...
+Creating namespace cube_builder...
+Namespaces created!
+Creating extension postgis...
+Extension created!
+Creating database schema...
+  [####################################]  100%
+Database schema created!
+Registering triggers from &quot;bdc_catalog.triggers&quot;
+        -&gt; /usr/local/lib/python3.8/site-packages/bdc_catalog/triggers/timeline.sql
+        -&gt; /usr/local/lib/python3.8/site-packages/bdc_catalog/triggers/band_metadata_expression.sql
+        -&gt; /usr/local/lib/python3.8/site-packages/bdc_catalog/triggers/collection_statistics.sql
+Triggers from &quot;bdc_catalog.triggers&quot; registered
+</pre></div>
+</div>
+<p>Em seguida, utilize o comando abaixo para levantar todos os serviços essenciais do serviço:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+<p>Você pode testar a API acessando <a class="reference external" href="http://localhost:5000">http://localhost:5000</a>.</p>
+</div>
+<div class="section" id="data-cube-manager">
+<h2>Data Cube Manager<a class="headerlink" href="#data-cube-manager" title="Link permanente para este título"></a></h2>
+<p>O <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Cube</span> <span class="pre">Manager</span></code> é o modulo de interface gráfica para manipulação do <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code>.</p>
+</div>
+<div class="section" id="id3">
+<h2>Instalação em modo desenvolvimento<a class="headerlink" href="#id3" title="Link permanente para este título"></a></h2>
+<p>A instalação do pacote requer as seguintes dependencias:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://nodejs.org/en/">NodeJS &gt;= 8.x</a></p></li>
+<li><p><a class="reference external" href="https://angular.io/">Angular &gt;= 7</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Nós recomendamos que você faça a instalação do <code class="docutils literal notranslate"><span class="pre">NodeJS</span></code> através do pacote <a class="reference external" href="https://github.com/nvm-sh/nvm">nvm</a>. Isso permite que você possa instalar varias versões do node de maneira dinamica.
+Você pode instala-lo com o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">nvm</span><span class="o">-</span><span class="n">sh</span><span class="o">/</span><span class="n">nvm</span><span class="o">/</span><span class="n">v0</span><span class="mf">.39.2</span><span class="o">/</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>Em seguida, altera o perfil padrão do linux (<code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> ou <code class="docutils literal notranslate"><span class="pre">~/.profile</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export NVM_DIR=&quot;$([ -z &quot;${XDG_CONFIG_HOME-}&quot; ] &amp;&amp; printf %s &quot;${HOME}/.nvm&quot; || printf %s &quot;${XDG_CONFIG_HOME}/nvm&quot;)&quot; [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot; # This loads nvm
+</pre></div>
+</div>
+<p>Instale a versão node 12 e marque como padrão:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvm</span> <span class="n">install</span> <span class="mi">12</span>
+<span class="n">nvm</span> <span class="n">use</span> <span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<p>Faça o clone do repositorio <code class="docutils literal notranslate"><span class="pre">DC-Manager</span></code> com o comando a seguir:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/brazil-data-cube/dc-manager.git
+</pre></div>
+</div>
+<p>Em seguida, acesse o codigo fonte:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> dc-manager/data-cube-manager
+</pre></div>
+</div>
+<p>Iremos selecionar a versão <code class="docutils literal notranslate"><span class="pre">v1.0.0a1</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">v1</span><span class="mf">.0.0</span><span class="n">a1</span>
+</pre></div>
+</div>
+<p>Instale as dependencias da interface grafica:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Rode o servidor local:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npm</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>O comando acima executará a interface gráfica do <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Cube</span> <span class="pre">Manager</span></code> no seguinte endereço: <a class="reference external" href="http://localhost:4200">http://localhost:4200</a>.</p>
+</div>
+<div class="section" id="uso-do-data-cube-manager">
+<h2>Uso do Data Cube Manager<a class="headerlink" href="#uso-do-data-cube-manager" title="Link permanente para este título"></a></h2>
+<p>Ao acessar o endereço <a class="reference external" href="http://localhost:4200">http://localhost:4200</a> (para ambientes em desenvolvimento), você notará uma página como a seguir:</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-config.png"><img alt="Data Cube Manager Config Page" src="../_images/dc-manager-config.png" style="width: 100%;" /></a>
+<p>Você deve informar nesta página os seguintes campos para funcionamento:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">URL</span> <span class="pre">Cube</span> <span class="pre">Builder</span></code>: Endereço do serviço do cube builder. Neste exemplo utilizaremos o valor <code class="docutils literal notranslate"><span class="pre">http://localhost:5000</span></code>, conforme a seção <a class="reference internal" href="#api">API</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Token</span></code>: Campo token opcional. Se você restringiu o acesso a <a class="reference internal" href="#api">API</a> com a variavel de ambiente <code class="docutils literal notranslate"><span class="pre">FLASK_ACCESS_TOKEN</span></code>, você deve informar o valor para funcionamento. Do contrário, mantenha-o vazio.</p></li>
+</ul>
+<p>Uma vez acesso, esses valores são salvos na sessão do navegador, não sendo necessário informa-los novamente (somente será necessário informar novamente se clicar em deslogar).</p>
+<p>A pagina mostrada disponibiliza todos os cubos de dados criados.
+Neste exemplo, iremos criar um cubo de dados Sentinel-2 (<code class="docutils literal notranslate"><span class="pre">S2-16D-2</span></code>).
+Para isso, prosseguiremos para <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Cube</span></code>.</p>
+<p>Ao acessar a página de criação de cubos, imagem a seguir, é necessário criarmos uma grade que utilizaremos para criação dos cubos de dados. Você pode ver detalhes em <a class="reference external" href="https://brazil-data-cube.github.io/products/specifications/bdc-grid.html#bdc-grid-system-v2">BDC Grid System</a>.</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-create-grid.png"><img alt="Create Grid Draw BBOX Mato Grosso" src="../_images/dc-manager-create-grid.png" style="width: 100%;" /></a>
+<p>Iremos fazer a criação de uma grade chamada <code class="docutils literal notranslate"><span class="pre">MT_Small</span></code> que representa o estado de Mato Grosso. Clique em <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">NEW</span> <span class="pre">GRID</span></code> e preencha os campos a seguir:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Name</span></code>: Nome unico para criação da grade. <code class="docutils literal notranslate"><span class="pre">MT_Small</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Description</span></code>: Descrição detalhada da grade. <code class="docutils literal notranslate"><span class="pre">Grade</span> <span class="pre">para</span> <span class="pre">o</span> <span class="pre">estado</span> <span class="pre">de</span> <span class="pre">Mato</span> <span class="pre">Grosso</span> <span class="pre">10m</span> <span class="pre">x</span> <span class="pre">10m</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Meridian</span></code>: Meridiano de referência para geração dos granulos (tiles) da grade. Em outras palavras, usar um valor pivô para centralização dos tiles. <code class="docutils literal notranslate"><span class="pre">-54</span></code> (Você pode movimentar o cursor do mouse sobre o mapa para identificar o valor)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">SRID</span></code>: Identificador unico para criação de um sistema de referencia espacial customizado. <code class="docutils literal notranslate"><span class="pre">100010</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cell</span> <span class="pre">Shape</span></code>: Tamanho, em Y e X, dos granulos a serem gerados. Esse <cite>shape</cite> será usado de referência para geração das imagens dos cubos de dados. Utilizaremos <code class="docutils literal notranslate"><span class="pre">10560,10560</span></code> que define as imagens do cubo de dados com 10560 pixels por 10560 pixels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tile</span> <span class="pre">Resolution</span></code>: Escala de resolução em metros da grade, delimitado por <code class="docutils literal notranslate"><span class="pre">,</span></code>. Utilizaremos <code class="docutils literal notranslate"><span class="pre">10,10</span></code> que define resolução de <code class="docutils literal notranslate"><span class="pre">10</span></code> metros.</p></li>
+</ul>
+<p>Além disso, você deve selecionar no mapa a opção <code class="docutils literal notranslate"><span class="pre">Draw</span> <span class="pre">Rectangle</span></code> (Icone de desenho no mapa) e desenhar a area de referencia para relação dos granulos. Desenhe um retangulo envolvente simples sobre <code class="docutils literal notranslate"><span class="pre">Mato</span> <span class="pre">Grosso</span></code> como a seguir:</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-create-grid-fill.png"><img alt="Create Grid Draw BBOX Mato Grosso" src="../_images/dc-manager-create-grid-fill.png" style="width: 100%;" /></a>
+<p>Ao final da criação da grade, você pode então, selecioná-la como a seguir e usa-la como referência:</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-create-select-grid.png"><img alt="Select Grid MT_Small" src="../_images/dc-manager-create-select-grid.png" style="width: 100%;" /></a>
+<p>Clique em <code class="docutils literal notranslate"><span class="pre">Next</span></code> e prossiga para a proxima etapa.
+Com a grade selecionada, precisamos escolher a fonte dos dados para geração. Neste exemplo, utilizaremos o <code class="docutils literal notranslate"><span class="pre">STAC</span></code> do Brazil Data Cube.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Para utilização do <a class="reference external" href="https://brazildatacube.dpi.inpe.br/stac/">STAC Brazil Data Cube</a>, você deve possuir uma conta no Brazil Data Cube e utilizar o <code class="docutils literal notranslate"><span class="pre">Personal</span> <span class="pre">Token</span></code>. Você pode cria-la em <a class="reference external" href="https://brazildatacube.dpi.inpe.br/auth-app/auth/login">Brazil Data Cube Auth</a>.
+Também disponibilizamos um material de apoio para geraração e copia do Token em <a class="reference external" href="https://brazil-data-cube.github.io/applications/dc_explorer/token-module.html">Create Token</a></p>
+</div>
+<p>Iremos gerar o cubo de dados usando para a cidade de <code class="docutils literal notranslate"><span class="pre">Cuiabá</span></code> no mes de <code class="docutils literal notranslate"><span class="pre">Agosto</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">URL</span> <span class="pre">STAC</span></code>: Endereço do catalogo STAC. <code class="docutils literal notranslate"><span class="pre">https://brazildatacube.dpi.inpe.br/stac/</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Related</span> <span class="pre">Collection</span></code>: Selecione a coleção de dados que servirá como fonte para geração dos cubos. <code class="docutils literal notranslate"><span class="pre">S2_L2A-1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Authentication</span></code>: Marque a autenticação e aparecerá o campo <code class="docutils literal notranslate"><span class="pre">Access</span> <span class="pre">Token</span></code>. Coloque o <cite>User Personal Token</cite> do BDC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Satellite</span></code>: Selecione <code class="docutils literal notranslate"><span class="pre">SENTINEL-2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Date</span></code>: Data de inicio da fonte. Selecione <code class="docutils literal notranslate"><span class="pre">2020-08-01</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">End</span> <span class="pre">Date</span></code>: Data de fim da fonte. Selecione <code class="docutils literal notranslate"><span class="pre">2020-08-31</span></code></p></li>
+</ul>
+<p>Devemos também selecionar no mapa os tiles para geração. Utilize a ferramenta <code class="docutils literal notranslate"><span class="pre">Draw</span> <span class="pre">rectangle</span></code> e selecione o tile que cobre <code class="docutils literal notranslate"><span class="pre">Cuiabá</span></code> como a seguir:</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-create-select-region.png"><img alt="Select Region" src="../_images/dc-manager-create-select-region.png" style="width: 100%;" /></a>
+<p>Por fim, clique em <code class="docutils literal notranslate"><span class="pre">Search</span></code> para visualizarmos quantas imagens será utilizado para aquele periodo e espaço.</p>
+<p>Vamos prosseguir para a etapa de definição dos cubos, clique em <code class="docutils literal notranslate"><span class="pre">Next</span></code>. Nesta etapa, vocẽ deve preencher a definição do cubo de dados <code class="docutils literal notranslate"><span class="pre">S2-16D-1</span></code>, bem como as bandas a serem utilizadas, indices de vegetação e composição temporal:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Cube</span> <span class="pre">Name</span></code>: <code class="docutils literal notranslate"><span class="pre">S2-16D</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Version</span></code>: <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Resolution</span></code>: <code class="docutils literal notranslate"><span class="pre">10</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Identity</span> <span class="pre">Cube</span> <span class="pre">Name</span></code>: <code class="docutils literal notranslate"><span class="pre">S2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Temporal</span> <span class="pre">Composition</span></code>: Aparecerá um modal informando o periodo que o cubo deve ser composto no tempo. Utilizaremos um ciclo (<code class="docutils literal notranslate"><span class="pre">cycle</span></code>) de reset ano de <code class="docutils literal notranslate"><span class="pre">16</span> <span class="pre">days</span></code> de composição:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Schema</span></code>: <code class="docutils literal notranslate"><span class="pre">Cyclic</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Step</span></code>: <code class="docutils literal notranslate"><span class="pre">16</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Unit</span></code>: <code class="docutils literal notranslate"><span class="pre">day</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cyclic</span> <span class="pre">Step</span></code>: <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cyclic</span> <span class="pre">Unit</span></code>: <code class="docutils literal notranslate"><span class="pre">year</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Composite</span> <span class="pre">Function</span></code>: <code class="docutils literal notranslate"><span class="pre">Least</span> <span class="pre">Cloud</span> <span class="pre">Cover</span> <span class="pre">First</span> <span class="pre">(Best</span> <span class="pre">Pixel)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bands</span></code>: Marque as bandas <code class="docutils literal notranslate"><span class="pre">B02</span></code> (blue), <code class="docutils literal notranslate"><span class="pre">B03</span></code> (green), <code class="docutils literal notranslate"><span class="pre">B04</span></code> (red), <code class="docutils literal notranslate"><span class="pre">B8A</span></code> (nir08) e <code class="docutils literal notranslate"><span class="pre">SCL</span></code> (cloud).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Nodata</span></code>: <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Bands</span> <span class="pre">Quicklook</span></code>: Geração das imagens thumbnail. A ordem corresponde ao canal <code class="docutils literal notranslate"><span class="pre">RGB</span></code>: <code class="docutils literal notranslate"><span class="pre">B04</span></code>, <code class="docutils literal notranslate"><span class="pre">B03</span></code> e <code class="docutils literal notranslate"><span class="pre">B02</span></code>  (true color)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Indexes</span></code>: <code class="docutils literal notranslate"><span class="pre">NDVI</span></code>. (Você pode customizar e gerar outros indices de vegetação, basta informar a expressão e as bandas)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Quality</span> <span class="pre">Band</span></code>: Mascara de nuvem do dado de origem (Sentinel-2 - S2_L2A-1) <code class="docutils literal notranslate"><span class="pre">SCL</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Quality</span> <span class="pre">Nodata</span></code>: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+</ul>
+<p>Ao final do preenchimento desses campos, conforme a imagem a seguir, clique no botão <code class="docutils literal notranslate"><span class="pre">SAVE</span></code> e  prossiga para adicionar parametros e metadados finais no cubo de dados.</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-create-definition.png"><img alt="Data Cube Manager - definition step" src="../_images/dc-manager-create-definition.png" style="width: 100%;" /></a>
+<p>A etapa de metados definimos os valores de apresentação do cubo de dados, como <code class="docutils literal notranslate"><span class="pre">titulo</span></code>, <code class="docutils literal notranslate"><span class="pre">licença</span></code>, <code class="docutils literal notranslate"><span class="pre">descrição</span></code> e <code class="docutils literal notranslate"><span class="pre">sensor</span></code>.</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-create-metadata.png"><img alt="Data Cube Manager - Metadata step" src="../_images/dc-manager-create-metadata.png" style="width: 100%;" /></a>
+<p>Além disso, também informamos os parâmetros (<code class="docutils literal notranslate"><span class="pre">parameters</span></code>) utilizados na geração do cubo de dados e definimos os parametros utilizados pelo algoritmo <cite>Least Cloud Cover First (LCF)</cite>. Os valores deste campo corresponde na seguinte assinatura:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clear_data</span></code>: lista de valores <code class="docutils literal notranslate"><span class="pre">limpos</span></code> a serem utilizados com prioridade na escolha dos pixels. Os valores costumam ser agua, land, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">not_clear_data</span></code>: lista de valores <code class="docutils literal notranslate"><span class="pre">sujos</span></code> a serem ignorados pelo <code class="docutils literal notranslate"><span class="pre">cube-builder</span></code>. Os valores costumam ser valor de nuvem, sombra de nuvem, neve, probabilidade de nuvem, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">saturated_data</span></code>: lista de valores <code class="docutils literal notranslate"><span class="pre">saturados</span></code> dos sensores de origem. Esses valores são utilizados na etapa de <cite>pos-processamento</cite> para descarte dos pixels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodata</span></code>: valor <code class="docutils literal notranslate"><span class="pre">nodata</span></code> da mascara de nuvem</p></li>
+</ul>
+<p>Outros valores também são suportados e só devem ser usados se você sabe o que esta fazendo.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">no_post_process</span></code>: descarta o <cite>pós-processamento</cite> (<code class="docutils literal notranslate"><span class="pre">post_processing</span></code>) feito antes da composição temporal a fim de corrigir problemas de  <code class="docutils literal notranslate"><span class="pre">swath</span></code> de imagem e saturação de pixels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">histogram_matching</span></code>: aplica uma equalização de histogramas nas imagens do período.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reference_day</span></code>: usa um dia comum como pivô e ordena da qualidade das mascara de nuvem baseado nesta data. Neste caso, o produto composto tende a ter a reflectancia das imagens mais homogêneo na banda. Por exemplo: Cubo mensal de Janeiro com <code class="docutils literal notranslate"><span class="pre">reference_day=15</span></code> e imagens dos dias <code class="docutils literal notranslate"><span class="pre">1</span></code>,  <code class="docutils literal notranslate"><span class="pre">6</span></code>, <code class="docutils literal notranslate"><span class="pre">11</span></code>, <code class="docutils literal notranslate"><span class="pre">16</span></code>, <code class="docutils literal notranslate"><span class="pre">21</span></code>, <code class="docutils literal notranslate"><span class="pre">26</span></code> e <code class="docutils literal notranslate"><span class="pre">31</span></code>. O algoritmo ordenará preferencialmente as imagens mais proximas do dia <code class="docutils literal notranslate"><span class="pre">15</span></code>, no caso <code class="docutils literal notranslate"><span class="pre">16</span></code> e <code class="docutils literal notranslate"><span class="pre">11</span></code> até o fim. <strong>LEMBRE-SE</strong> que o fator de nuvem é considerado, logo nem sempre os valores serão proximos como o exemplo acima.</p></li>
+</ul>
+<p>Na etapa final, o usuário pode visualizar o que será criado e como será gerado, conforme a imagem a seguir.</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-create-preview.png"><img alt="Data Cube Manager - Preview step" src="../_images/dc-manager-create-preview.png" style="width: 100%;" /></a>
+<p>Uma vez que as informações forem confirmadas, você deve clicar na opção <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">agree</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">creation</span> <span class="pre">of</span> <span class="pre">cubes</span></code> e confirme a criação em <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Cube</span></code>. Em seguida, clique em <code class="docutils literal notranslate"><span class="pre">START</span> <span class="pre">PROCESS</span></code> para começar a geração do cubo de dados.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O <code class="docutils literal notranslate"><span class="pre">START</span> <span class="pre">PROCESS</span></code> prepara os parametros e escalona o processamento de dados. Lembre-se de ter a instância <a class="reference internal" href="#worker">Worker</a> rodando para a geração de cubos de dados começar.</p>
+</div>
+<p>No final da geração do produto de dados, você pode checar a página de detalhes (imagem a seguir)
+mostrando que cubo de dados possui um granulo sobre <code class="docutils literal notranslate"><span class="pre">Cuiabá</span></code> e você pode extender a cobertura espacial ou temporal do cubo clicando em <code class="docutils literal notranslate"><span class="pre">PROCESS</span> <span class="pre">CUBE</span></code>.</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-details.png"><img alt="Data Cube Manager - Details" src="../_images/dc-manager-details.png" style="width: 100%;" /></a>
+<p>Você também pode clicar em <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CUBE</span></code> e fazer uma inspeção visual do cubo de dados como a seguir:</p>
+<a class="reference internal image-reference" href="../_images/dc-manager-check-cube.png"><img alt="Data Cube Manager - Check Cube Page" src="../_images/dc-manager-check-cube.png" style="width: 100%;" /></a>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="bdc_stac.html" class="btn btn-neutral float-left" title="SpatioTemporal Asset Catalog - BDC-STAC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../sites.html" class="btn btn-neutral float-right" title="Brazil Data Cube" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, INPE..</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright (C) 2022 INPE.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+
+.. _Modelo BDC-Catalog:
+
+Brazil Data Cube Catalog - BDC-Catalog
+--------------------------------------
+
+
+O ``BDC-Catalog`` é um modulo Python para criar e manipular a abstração do modelo de dados para catalogo de imagens de observação da Terra. O modelo foi adaptado para trabalhar com a especificação do `SpatioTemporal Asset Catalog <https://stacspec.org/en>`_ atraves do pacote `BDC-STAC <https://github.com/brazil-data-cube/bdc-stac>`_.
+O diagrama a seguir apresenta as tabelas usadas para armazenar os metadados das coleções e items e seus relacionamentos:
+
+
+.. image:: https://github.com/brazil-data-cube/bdc-catalog/raw/master/docs/model/db-schema.png
+        :target: https://github.com/brazil-data-cube/bdc-catalog/tree/master/docs/model
+        :width: 90%
+        :alt: Database Schema
+
+
+Além disso, esse pacote é a base dos demais softwares desenvolvidos pelo Brazil Data Cube, como: ``Cube-Builder``e ``BDC-Collection-Builder``.
+
+
+Instalação
+++++++++++
+
+Faça o clone do repositorio ``BDC-Catalog`` com o comando a seguir:
+
+.. code:: shell
+
+    git clone https://github.com/brazil-data-cube/bdc-catalog.git
+
+
+Em seguida, acesse o codigo fonte:
+
+.. code:: shell
+
+    cd bdc-catalog
+
+
+Iremos selecionar a versão `v1.0.0`::
+
+    git checkout v1.0.0
+
+
+Crie um :ref:`ambiente virtual` e instale o pacote::
+
+    pip3 install -e .[all]
+
+
+.. _Preparação do banco:
+
+Preparação do banco de dados
+++++++++++++++++++++++++++++
+
+
+Para configurar uma instância de banco de dados, por favor, siga os passos em :ref:`postgres`.
+
+Em seguida, iremos criar um banco de dados chamado ``bdc``. Para isso, precisamos exportar uma variavel chamada ``SQLALCHEMY_DATABASE_URI`` contendo as credenciais de acesso ao banco de dados::
+
+    export SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@localhost:5432/bdc"
+
+
+Essa variavel é responsável por fazer a comunicação com o banco de dados atraves do framework `SQLAlchemy <https://www.sqlalchemy.org/>`_, uma Object Relational Mapper (ORM) usado pelo ``BDC-Catalog`` para fazer a manipulação dos modelos em Python com o banco de dados PostgreSQL.
+O ``BDC-Catalog`` fornece linhas de comando utilitários para preparação do banco de dados.
+Para criar o banco de dados utilize o seguinte comando::
+
+    bdc-db db init
+
+
+Em seguida, é necessário a criação de todos os ``schemas`` utilizados pelos pacotes. Isso pode ser criado com o comando::
+
+    bdc-db db create-namespaces
+
+
+Para carregar as extensões ``postgis`` para suporte Geo-Espacial e ``hstore`` para internacionalização, rode os comandos a seguir::
+
+    bdc-db db create-extension-postgis
+    lccs-db db create-extension-hstore
+
+
+O ``BDC-Catalog`` utiliza a biblioteca `Alembic <https://alembic.sqlalchemy.org/en/latest/>`_ que permite trabalhar com migrações de banco de dados no `SQLAlchemy <https://www.sqlalchemy.org/>`_. Esse recurso é essencial para garantir a compatibilidade entre as versões de modelos de dados do ``BDC-Catalog``.
+Para carregar o modelo de dados com o suporte de migrações, utilize o comando abaixo::
+
+
+    bdc-db alembic upgrade
+
+
+Todas as tabelas do ``BDC-Catalog`` se encontram dentro do schema ``bdc``. Por fim, é necessario carregar as `Triggers <https://www.postgresql.org/docs/current/sql-createtrigger.html>`_ para funcionamento final do banco de dados::
+
+    bdc-db db create-triggers
+
+
+Extras - Carregar dados iniciais
+++++++++++++++++++++++++++++++++
+
+
+Nas versões recentes do ``BDC-Catalog`` (1.0+), a biblioteca conta com comando auxiliar que
+carrega coleções de dados iniciais. A pasta ``examples/fixtures`` consiste nos formatos e exemplos de arquivos
+para carregar no banco de dados. Para isso, é necessário rodar o comando::
+
+    bdc-catalog load-data --ifile examples/fixtures/sentinel-2.json -v
+    # Ou bdc-db load-data --from-dir examples/fixtures para carregar todos as coleções no diretorio "examples/fixtures".

@@ -1,0 +1,54 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright (C) 2022 INPE.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+
+Tutorial das ferramentas BDC para desenvolvedores
+=================================================
+
+
+**Descrição:** Este tutorial tem por finalidade demonstrar como configurar as ferramentas essenciais do Brazil Data Cube, dos quais são:
+
+- `BDC-Catalog <https://github.com/brazil-data-cube/bdc-catalog>`_: Estrutura do modelo de banco de dados relacional para os metadados.
+- `BDC-STAC <https://github.com/brazil-data-cube/bdc-stac>`_: Servidor STAC para catalogo de dados do Brazil Data Cube.
+- `Cube-Builder <https://github.com/brazil-data-cube/cube-builder>`_: Serviço para geração de cubos de dados de observação da terra.
+
+  - `Data Cube Manager <https://github.com/brazil-data-cube>`_: Interface gráfica para manipulação e geração dos cubos de dados gerados pela ferramenta ``Cube-Builder``.
+
+- `BDC-Collection-Builder <https://github.com/brazil-data-cube>`_: Serviço para coleta, processamento e publicação dos dados de observação da terra. Inclui mecanismos para geração dos produtos `Analysis Ready Data (ARD)`.
+
+Este tutorial é destinado para os usuários que desejam aprender como configurar cada ambiente citado acima e também oferece o foco para usuários que desejam trabalhar em projetos de aplicações relacionadas com as tecnologias do Brazil Data Cube.
+O Tutorial consiste nos passos de instalação e uso das ferramentas acima. Em cada seção de serviço será dispobilizado um passo-a-passo de como configurar em modo desenvolvimento e também uma seção descrevendo o deploy em modo produção.
+
+
+**Apresentador:** Raphael Willian da Costa, Rennan Marujo
+
+
+**Data:** 19 de Outubro de 2022
+
+
+Tópicos da Oficina
+------------------
+
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    ./tutorial-bdc/ambiente_computacional
+    ./tutorial-bdc/bdc_catalog
+    ./tutorial-bdc/bdc_stac
+    ./tutorial-bdc/data_cube_builder

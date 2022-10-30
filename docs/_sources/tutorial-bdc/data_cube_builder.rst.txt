@@ -1,0 +1,583 @@
+..
+    This file is part of Brazil Data Cube Tech Talks.
+    Copyright (C) 2022 INPE.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <https://www.gnu.org/licenses/gpl-3.0.html>.
+
+
+Data Cube Builder
+-----------------
+
+O `Data Cube Builder <https://github.com/brazil-data-cube/cube-builder>`_ é um serviço web para geração de cubos de dados de observação da terra escrito Python. Temos uma variação deste modulo chamado `Data Cube Builder on AWS <https://github.com/brazil-data-cube/cube-builder-aws>`_ para criação dos cubos de dados usando a infraestrutura em nuvem da Amazon Web Services.
+Dentro do ``Cube-Builder``, temos dois tipos definições de cubos de dados: ``identidade`` e ``composto``.
+Os cubos ``identidade``, conhecidos como `irregulares no tempo`, são as imagens dos sensores originais reprojetadas e recortadas dentro de uma região de interesse (tile).
+Já os cubos ``compostos``, também conhecidos como `regulares no espaço e no tempo`, são cubos de dados que são agrupados por um periodo
+pre-estabelecido (16 dias, por exemplo) e em seguida aplicado uma função de composição temporal, como `Least Cloud Cover First (LCF)` que ordena os produtos ``identidade`` pela mascara de nuvem e escolhe os melhores pixels livres de `nuvem`,
+`sombra de nuvem` e `neve`. O produto resultante consiste numa imagem com os melhores pixels no tempo. Também pode ser aplicado outras funções de composição temporal, como por exemplo, `Median (MED)`, que aplica uma median sobre os pixels.
+Opcionalmente, é gerado os indices de vegetação, como por exemplo, ``NDVI`` e ``EVI`` sobre os cubos de dados gerados.
+Por fim, esses cubos são catalogados no `Modelo BDC-Catalog` e podem ser disponibilizados via catalogo ``BDC-STAC``.
+
+A figura apresenta uma visão geral da arquitetura do cube builder e o fluxo de funcionamento. A segunda figura corresponde no funcionamento da composição temporal:
+
+
+.. _data_cube_builder_architecture:
+.. image:: ../img/tutorial-bdc/cube-builder-arch.png
+        :target: https://github.com/brazil-data-cube/cube-builder
+        :width: 100%
+        :alt: Data Cube Builder Architecture
+
+
+.. image:: https://brazil-data-cube.github.io/_images/compositing-function.png
+        :target: https://brazil-data-cube.github.io/products/specifications/processing-flow.html#temporal-compositing
+        :width: 100%
+        :alt: BDC Funções de Composição Temporal
+
+
+Dentro do ``Cube-Builder`` temos o conceito da `API` para consumo e disparo remotos de cubos de dados e `Worker` que são os ambientes responsaveis para geração dos cubos de dados. Em ambientes de produção, normalmente os ``workers`` são nós individuais responsaveis por cada etapa de geração dos dados para melhor aproveitamento dos recursos computacionais.
+
+
+Instalação em modo desenvolvimento
+++++++++++++++++++++++++++++++++++
+
+
+Faça o clone do repositorio ``Cube-Builder`` com o comando a seguir:
+
+.. code:: shell
+
+    git clone https://github.com/brazil-data-cube/cube-builder.git
+
+
+Em seguida, acesse o codigo fonte:
+
+.. code:: shell
+
+    cd cube-builder
+
+
+Iremos selecionar a versão ``v1.0.0a1``::
+
+    git checkout v1.0.0a1
+
+
+Crie um :ref:`ambiente virtual` e instale o pacote::
+
+    pip3 install -e .[all]
+
+
+.. note::
+
+    Durante a instalação do ``Cube-Builder``, o procedimento pode apresentar problemas relacionados com a biblioteca ``librabbitmq``. Se você tiver passando por dificuldades na instalação tendo o seguinte output::
+
+        ...
+        Running setup.py install for SQLAlchemy-Utils ... done
+        Running setup.py install for bdc-db ... done
+        Running setup.py install for librabbitmq ... error
+        ERROR: Command errored out with exit status 1:
+        command: /home/gribeiro/Devel/github/brazil-data-cube/bdc-collection-builder/venv/..
+            cwd: /tmp/pip-install-1i7mp5js/librabbitmq/
+        Complete output (107 lines):
+        /tmp/pip-install-1i7mp5js/librabbitmq/setup.py:167:
+        DeprecationWarning: 'U' mode is deprecated
+        long_description = open(os.path.join(BASE_PATH, 'README.rst'), 'U').read()
+        running build
+        - pull submodule rabbitmq-c...
+        Cloning into 'rabbitmq-c'...
+        Note: checking out 'caad0ef1533783729c7644a226c989c79b4c497b'.
+
+        You are in 'detached HEAD' state. You can look around, make experimental
+        changes and commit them, and you can discard any commits you make in this
+        state without impacting any branches by performing another checkout.
+
+        If you want to create a new branch to retain commits you create, you may
+        do so (now or later) by using -b with the checkout command again. Example:
+
+        git checkout -b <new-branch-name>
+
+        - autoreconf
+        sh: 1: autoreconf: not found
+        - configure rabbitmq-c...
+        /bin/sh: 0: Can't open configure
+
+
+    Você deve instalar a biblioteca ``autoconf`` com o comando abaixo::
+
+        sudo apt install autoconf
+
+
+Execução em modo desenvolvimento
+++++++++++++++++++++++++++++++++
+
+.. note::
+
+    O ``Cube-Builder`` requer a instância do banco de dados :ref:`postgres`, juntamente com modulo :ref:`Modelo BDC-Catalog`.
+    Usaremos como base a variavel de banco de dados definida em :ref:`Preparação do banco`.
+
+O processo de geração dos cubos de dados é feito através de mensagens e filas de processamento em cada etapa da geração. É necessário uma instância `RabbitMQ <https://www.rabbitmq.com/>`_ para atuar como Broker e gerenciar todas as filas de processamento.
+
+Para levantar a instância do ``RabbitMQ``, utilize o ``docker-compose.yml`` que pre-configuramos no repositorio::
+
+    docker-compose up -d mq
+
+
+Você pode checar o status do container do RabbitMQ com o comando abaixo::
+
+    docker container ls
+
+    CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS         PORTS                    NAMES
+    a3bb86d2df56   rabbitmq:3-management  "docker-entrypoint.s…"   3 minutes ago   Up 3 minutes   4369/tcp, 5671/tcp, 0.0.0.0:5672->5672/tcp, 15671/tcp, 25672/tcp, 0.0.0.0:15672->15672/tcp   cube-builder-rabbitmq
+
+
+.. note::
+
+    Por padrão, o serviço de ``RabbitMQ`` roda na porta ``5672`` e ``15672`` para a interface gráfica. Você pode acessar `<http://127.0.0.1:15672>`_. As credenciais padrões são ``guest`` e ``guest``.
+
+
+API
+~~~
+
+O modulo do cube builder oferece uma API de serviço para consumo dos metadados e disparo da geração dos cubos de dados remotamente. Essa etapa é muito importante, principalmente para integração posteriormente com a interface gráfica ``Data Cube Manager``.
+O processo de iniciar o serviço WEB do ``Cube-Builder`` é simples, basta executar os comandos abaixo:
+
+.. code:: shell
+
+    FLASK_ENV="development" \
+    WORK_DIR="$HOME/cube-builder/workdir" \
+    DATA_DIR="$HOME/cube-builder/data" \
+    SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@localhost/bdc" \
+    cube-builder run
+
+
+A saida da execução do comando apresentará que o serviço está rodando na porta `5000` por padrão e pode ser acessado `<http://localhost:5000>`_, conforme a seguir::
+
+    * Environment: development
+    * Debug mode: on
+    * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+    * Restarting with stat
+    * Debugger is active!
+    * Debugger PIN: 289-045-960
+
+
+.. _variaveis do cube builder:
+
+.. note::
+
+    O serviço ``Cube-Builder`` oferece diversas variaveis que podem ser customizadas para o funcionamento, são elas:
+
+    - ``WORK_DIR``: Diretório temporário para geração dos dados
+    - ``DATA_DIR``: Diretório final para publicação dos cubos de dados
+    - ``SQLALCHEMY_DATABASE_URI``: URI de conexão com o banco de dados.
+    - ``ITEM_PREFIX``: Prefixo adicionado no `path` de cada item gerado. Por padrão, valor é ``/cubes``.
+    - ``QUEUE_BLEND_CUBE``: Nome da fila de processamento da etapa de composição temporal. Por padrão, valor é ``blend-cube``.
+    - ``QUEUE_IDENTITY_CUBE``: Nome da fila de processamento da etapa de geração cubo identidade. Por padrão, valor é ``merge-cube``.
+    - ``QUEUE_PREPARE_CUBE``: Nome da fila de processamento da junção dos identidade e disparo da composição temporal. Por padrão, valor é ``prepare-cube``.
+    - ``QUEUE_PUBLISH_CUBE``: Nome da fila de processamento da etapa de publicação final dos dados. Por padrão, valor é ``publish-cube``.
+
+    No momento, ainda não é possivel customizar as filas de processamento em ``runtime``.
+
+
+Worker
+~~~~~~
+
+Os ``workers`` são instâncias do cube builder responsavel pelo processamento e geração dos cubos de dados.
+
+Através de variaveis de ambiente, você pode delimitar quais filas de processamento o worker ficará responsavel para executar. (Ideal para deploy em produção).
+
+Para levantar um worker, é necessário utilizar o utilitário de linha de comando chamado ``cube-builder worker`` como abaixo:
+
+.. code:: shell
+
+    WORK_DIR="$HOME/cube-builder/workdir" \
+    DATA_DIR="$HOME/cube-builder/data" \
+    SQLALCHEMY_DATABASE_URI="postgresql://postgres:postgres@localhost/bdc" \
+    cube-builder worker -l INFO --concurrency 2 -Q default,merge-cube,prepare-cube,blend-cube,publish-cube --max-tasks-per-child=2
+
+
+.. note::
+
+    Os parametros do comando ``worker`` são:
+
+    - ``-l INFO``: Nivel das mensagem de log a serem dispobilizadas
+    - ``--concurrency 2``: Numero de processamentos que será executado em paralelo. Veja a seção `Aviso de execução`_.
+    - ``-Q default,merge-cube,prepare-cube,blend-cube,publish-cube``: Filas de processamento que o worker ficará responsavel. Veja a seção `variaveis do cube builder`_ para mais detalhes.
+    - ``--max-tasks-per-child=2``: Delimita `pool de recycle` por execução. Este parametro é muito util para liberar memoria alocada entre os processos de modo a evitar ``MemoryOverflow``.
+
+    Além disso, o comando ``cube-builder worker`` suporta todos os parametros da biblioteca de processamento distrubido `Celery <https://docs.celeryq.dev/en/stable/getting-started/introduction.html>`_. Veja os demais parametros na seção `Celery Workers Guide <https://docs.celeryq.dev/en/stable/userguide/workers.html>`_.
+
+
+.. _Aviso de execução:
+
+.. warning::
+
+    O numero de processos em paralelo deve ser setado com cautela. Dependendo do produto de dados, pode acarretar em muita memoria computacional alocada nos processos.
+    Para uma execução simples, uma maquina com as seguintes especificações é recomendavel valor máximo de ``--concurrency 2``:
+
+    - ``4 vCPU or more``
+    - ``8 GB RAM``
+    - ``40 GB free space``
+
+
+Para uso geral do ``Cube-Builder``, criamos um mini-tutorial na documentação oficial do modulo em `Cube Builder - Usage <https://cube-builder.readthedocs.io/en/latest/usage.html>`_.
+
+
+Configurar VSCode para debug
+++++++++++++++++++++++++++++
+
+Para configurar o ``VSCode`` em modo debug, você deve seguir os passos em :ref:`configurar vscode` para selecionar o interpretador e ambiente python.
+
+Além disso, para o serviço API, você inclusive seguir os moldes descrito em :ref:`debug bdc-stac`.
+
+Iremos configurar o ``Worker`` em modo debug. Edite o arquivo ``.vscode/launch.json`` e cole o conteudo abaixo. Será criado duas entradas: ``api`` e ``worker``:
+
+.. code-block:: json
+
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "api",
+                "type": "python",
+                "request": "launch",
+                "module": "cube_builder",
+                "justMyCode": false,
+                "console": "internalConsole",
+                "env": {
+                    "SQLALCHEMY_DATABASE_URI": "postgresql://postgres:postgres@localhost:5432/bdc",
+                    "WORK_DIR": "/home/raphael/cube-builder/workdir",
+                    "DATA_DIR": "/home/raphael/cube-builder/data"
+                },
+                "args": [
+                    "run"
+                ]
+            },
+            {
+                "name": "worker",
+                "type": "python",
+                "request": "launch",
+                "module": "cube_builder",
+                "justMyCode": false,
+                "console": "internalConsole",
+                "env": {
+                    "SQLALCHEMY_DATABASE_URI": "postgresql://postgres:postgres@localhost:5432/bdc",
+                    "WORK_DIR": "/home/raphael/cube-builder/workdir",
+                    "DATA_DIR": "/home/raphael/cube-builder/data"
+                },
+                "args": [
+                    "worker",
+                    "-l",
+                    "INFO",
+                    "--concurrency",
+                    "1",
+                    "-Q",
+                    "default,merge-cube,prepare-cube,blend-cube,publish-cube",
+                    "--max-tasks-per-child=2",
+                    "-P",
+                    "solo"
+                ]
+            }
+        ]
+    }
+
+Repare que os parametros são similares ao executados manualmente na seção anterior. Um atenção especial é para o parâmetro ``-P solo``. Esse parâmetro obriga que a pilha de processamento do Celery trabalhe `Inline Single Thread`. Isso facilita no debug de aplicações que fazem uso do paralelismo já que os objetos estão compartilhados na memoria. Se você não informar esse parâmetro, o celery fará uso do ``multiprocessing`` e o VSCode não conseguirá depurar os breakpoints.
+
+
+.. note::
+
+    Evite usar ``--concurrency`` maior que ``1`` para não bagunçar os ponteiros de debug devido o processamento paralelo.
+
+
+.. image:: ../img/tutorial-bdc/vscode-debug-builder.png
+        :width: 100%
+        :alt: Visual Studio Code - Debug Cube Builder
+
+
+Instalação e deploy modo produção
++++++++++++++++++++++++++++++++++
+
+A instalação em modo produção do ``Cube-Builder`` consiste na execução do ambiente via containers Dockers. Para isso, tenha o ``Docker`` instalado na sua maquina. Além disso, ``docker-compose`` também é essencial para facilitar o deploy e a relação entre os containers.
+
+Iremos construir a imagem docker chamada ``registry.dpi.inpe.br/brazil-data-cube/cube-builder:latest`` com o ``docker-compose``. O processo de construção da imagem docker é bem simples, basta rodar o comando::
+
+    docker-compose build
+
+
+O ``docker-compose`` contém todas as definições e variaveis usadas para configuração do cube builder. Por favor, examine o arquivo ``docker-compose.yml`` e altere (se desejar), os caminhos para geração dos dados.
+Por padrão, os dados ``DATA_DIR=/data`` (`./volumes/data` no host) e ``WORK_DIR=/workdir`` (`./volumes/workdir` no host).
+
+.. note::
+
+    Se você ja possui o banco de dados :ref:`postgres` inicializado com o :ref:`Modelo BDC-Catalog`, desconsidere essa etapa do banco de dados.
+
+Para configurar uma instância do PostgreSQL com o ``BDC-Catalog``, você pode utilizar o comando abaixo::
+
+    docker-compose run --name prepare-db --rm cube-builder ./deploy/configure-db.sh
+
+
+A saida do comando acima::
+
+    Starting cube-builder-rabbitmq ... done
+    Creating cube-builder_cube-builder_run ... done
+    Creating database postgresql://postgres:postgres@cube-builder-pg:5432/bdc...
+    Database created!
+    Creating namespace lccs...
+    Creating namespace bdc...
+    Creating namespace cube_builder...
+    Namespaces created!
+    Creating extension postgis...
+    Extension created!
+    Creating database schema...
+      [####################################]  100%
+    Database schema created!
+    Registering triggers from "bdc_catalog.triggers"
+            -> /usr/local/lib/python3.8/site-packages/bdc_catalog/triggers/timeline.sql
+            -> /usr/local/lib/python3.8/site-packages/bdc_catalog/triggers/band_metadata_expression.sql
+            -> /usr/local/lib/python3.8/site-packages/bdc_catalog/triggers/collection_statistics.sql
+    Triggers from "bdc_catalog.triggers" registered
+
+
+Em seguida, utilize o comando abaixo para levantar todos os serviços essenciais do serviço::
+
+    docker-compose up -d
+
+
+Você pode testar a API acessando `<http://localhost:5000>`_.
+
+
+Data Cube Manager
++++++++++++++++++
+
+O ``Data Cube Manager`` é o modulo de interface gráfica para manipulação do ``Cube-Builder``.
+
+
+Instalação em modo desenvolvimento
+++++++++++++++++++++++++++++++++++
+
+A instalação do pacote requer as seguintes dependencias:
+
+- `NodeJS >= 8.x <https://nodejs.org/en/>`_
+- `Angular >= 7 <https://angular.io/>`_
+
+.. note::
+
+    Nós recomendamos que você faça a instalação do ``NodeJS`` através do pacote `nvm <https://github.com/nvm-sh/nvm>`_. Isso permite que você possa instalar varias versões do node de maneira dinamica.
+    Você pode instala-lo com o comando abaixo::
+
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+
+    Em seguida, altera o perfil padrão do linux (``~/.bashrc`` ou ``~/.profile``)::
+
+        export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+    Instale a versão node 12 e marque como padrão::
+
+        nvm install 12
+        nvm use 12
+
+
+Faça o clone do repositorio ``DC-Manager`` com o comando a seguir:
+
+.. code:: shell
+
+    git clone https://github.com/brazil-data-cube/dc-manager.git
+
+
+Em seguida, acesse o codigo fonte:
+
+.. code:: shell
+
+    cd dc-manager/data-cube-manager
+
+
+Iremos selecionar a versão ``v1.0.0a1``::
+
+    git checkout v1.0.0a1
+
+
+Instale as dependencias da interface grafica::
+
+    npm install
+
+
+Rode o servidor local::
+
+    npm start
+
+
+O comando acima executará a interface gráfica do ``Data Cube Manager`` no seguinte endereço: `<http://localhost:4200>`_.
+
+
+Uso do Data Cube Manager
+++++++++++++++++++++++++
+
+
+Ao acessar o endereço `<http://localhost:4200>`_ (para ambientes em desenvolvimento), você notará uma página como a seguir:
+
+
+.. image:: ../img/tutorial-bdc/dc-manager-config.png
+        :width: 100%
+        :alt: Data Cube Manager Config Page
+
+
+Você deve informar nesta página os seguintes campos para funcionamento:
+
+- ``URL Cube Builder``: Endereço do serviço do cube builder. Neste exemplo utilizaremos o valor ``http://localhost:5000``, conforme a seção `API`_.
+- ``Token``: Campo token opcional. Se você restringiu o acesso a `API`_ com a variavel de ambiente ``FLASK_ACCESS_TOKEN``, você deve informar o valor para funcionamento. Do contrário, mantenha-o vazio.
+
+Uma vez acesso, esses valores são salvos na sessão do navegador, não sendo necessário informa-los novamente (somente será necessário informar novamente se clicar em deslogar).
+
+A pagina mostrada disponibiliza todos os cubos de dados criados.
+Neste exemplo, iremos criar um cubo de dados Sentinel-2 (``S2-16D-2``).
+Para isso, prosseguiremos para ``Create Cube``.
+
+Ao acessar a página de criação de cubos, imagem a seguir, é necessário criarmos uma grade que utilizaremos para criação dos cubos de dados. Você pode ver detalhes em `BDC Grid System <https://brazil-data-cube.github.io/products/specifications/bdc-grid.html#bdc-grid-system-v2>`_.
+
+
+.. image:: ../img/tutorial-bdc/dc-manager-create-grid.png
+        :width: 100%
+        :alt: Create Grid Draw BBOX Mato Grosso
+
+
+Iremos fazer a criação de uma grade chamada ``MT_Small`` que representa o estado de Mato Grosso. Clique em ``CREATE NEW GRID`` e preencha os campos a seguir:
+
+- ``Name``: Nome unico para criação da grade. ``MT_Small``
+- ``Description``: Descrição detalhada da grade. ``Grade para o estado de Mato Grosso 10m x 10m``
+- ``Meridian``: Meridiano de referência para geração dos granulos (tiles) da grade. Em outras palavras, usar um valor pivô para centralização dos tiles. ``-54`` (Você pode movimentar o cursor do mouse sobre o mapa para identificar o valor)
+- ``Custom SRID``: Identificador unico para criação de um sistema de referencia espacial customizado. ``100010``.
+- ``Cell Shape``: Tamanho, em Y e X, dos granulos a serem gerados. Esse `shape` será usado de referência para geração das imagens dos cubos de dados. Utilizaremos ``10560,10560`` que define as imagens do cubo de dados com 10560 pixels por 10560 pixels.
+- ``Tile Resolution``: Escala de resolução em metros da grade, delimitado por ``,``. Utilizaremos ``10,10`` que define resolução de ``10`` metros.
+
+Além disso, você deve selecionar no mapa a opção ``Draw Rectangle`` (Icone de desenho no mapa) e desenhar a area de referencia para relação dos granulos. Desenhe um retangulo envolvente simples sobre ``Mato Grosso`` como a seguir:
+
+
+.. image:: ../img/tutorial-bdc/dc-manager-create-grid-fill.png
+        :width: 100%
+        :alt: Create Grid Draw BBOX Mato Grosso
+
+
+Ao final da criação da grade, você pode então, selecioná-la como a seguir e usa-la como referência:
+
+.. image:: ../img/tutorial-bdc/dc-manager-create-select-grid.png
+        :width: 100%
+        :alt: Select Grid MT_Small
+
+
+Clique em ``Next`` e prossiga para a proxima etapa.
+Com a grade selecionada, precisamos escolher a fonte dos dados para geração. Neste exemplo, utilizaremos o ``STAC`` do Brazil Data Cube.
+
+.. note::
+
+    Para utilização do `STAC Brazil Data Cube <https://brazildatacube.dpi.inpe.br/stac/>`_, você deve possuir uma conta no Brazil Data Cube e utilizar o ``Personal Token``. Você pode cria-la em `Brazil Data Cube Auth <https://brazildatacube.dpi.inpe.br/auth-app/auth/login>`_.
+    Também disponibilizamos um material de apoio para geraração e copia do Token em `Create Token <https://brazil-data-cube.github.io/applications/dc_explorer/token-module.html>`_
+
+
+Iremos gerar o cubo de dados usando para a cidade de ``Cuiabá`` no mes de ``Agosto``:
+
+- ``URL STAC``: Endereço do catalogo STAC. ``https://brazildatacube.dpi.inpe.br/stac/``.
+- ``Related Collection``: Selecione a coleção de dados que servirá como fonte para geração dos cubos. ``S2_L2A-1``.
+- ``Authentication``: Marque a autenticação e aparecerá o campo ``Access Token``. Coloque o `User Personal Token` do BDC.
+- ``Satellite``: Selecione ``SENTINEL-2``.
+- ``Start Date``: Data de inicio da fonte. Selecione ``2020-08-01``
+- ``End Date``: Data de fim da fonte. Selecione ``2020-08-31``
+
+Devemos também selecionar no mapa os tiles para geração. Utilize a ferramenta ``Draw rectangle`` e selecione o tile que cobre ``Cuiabá`` como a seguir:
+
+.. image:: ../img/tutorial-bdc/dc-manager-create-select-region.png
+        :width: 100%
+        :alt: Select Region
+
+
+Por fim, clique em ``Search`` para visualizarmos quantas imagens será utilizado para aquele periodo e espaço.
+
+Vamos prosseguir para a etapa de definição dos cubos, clique em ``Next``. Nesta etapa, vocẽ deve preencher a definição do cubo de dados ``S2-16D-1``, bem como as bandas a serem utilizadas, indices de vegetação e composição temporal:
+
+- ``Cube Name``: ``S2-16D``
+- ``Version``: ``1``
+- ``Resolution``: ``10``
+- ``Identity Cube Name``: ``S2``
+- ``Temporal Composition``: Aparecerá um modal informando o periodo que o cubo deve ser composto no tempo. Utilizaremos um ciclo (``cycle``) de reset ano de ``16 days`` de composição:
+
+  - ``Schema``: ``Cyclic``
+  - ``Step``: ``16``
+  - ``Unit``: ``day``
+  - ``Cyclic Step``: ``1``
+  - ``Cyclic Unit``: ``year``
+- ``Composite Function``: ``Least Cloud Cover First (Best Pixel)``
+- ``Bands``: Marque as bandas ``B02`` (blue), ``B03`` (green), ``B04`` (red), ``B8A`` (nir08) e ``SCL`` (cloud).
+- ``Nodata``: ``0``
+- ``Bands Quicklook``: Geração das imagens thumbnail. A ordem corresponde ao canal ``RGB``: ``B04``, ``B03`` e ``B02``  (true color)
+- ``Indexes``: ``NDVI``. (Você pode customizar e gerar outros indices de vegetação, basta informar a expressão e as bandas)
+- ``Quality Band``: Mascara de nuvem do dado de origem (Sentinel-2 - S2_L2A-1) ``SCL``.
+- ``Quality Nodata``: ``0``.
+
+
+Ao final do preenchimento desses campos, conforme a imagem a seguir, clique no botão ``SAVE`` e  prossiga para adicionar parametros e metadados finais no cubo de dados.
+
+.. image:: ../img/tutorial-bdc/dc-manager-create-definition.png
+        :width: 100%
+        :alt: Data Cube Manager - definition step
+
+
+A etapa de metados definimos os valores de apresentação do cubo de dados, como ``titulo``, ``licença``, ``descrição`` e ``sensor``.
+
+
+.. image:: ../img/tutorial-bdc/dc-manager-create-metadata.png
+        :width: 100%
+        :alt: Data Cube Manager - Metadata step
+
+
+Além disso, também informamos os parâmetros (``parameters``) utilizados na geração do cubo de dados e definimos os parametros utilizados pelo algoritmo `Least Cloud Cover First (LCF)`. Os valores deste campo corresponde na seguinte assinatura:
+
+- ``clear_data``: lista de valores ``limpos`` a serem utilizados com prioridade na escolha dos pixels. Os valores costumam ser agua, land, etc.
+- ``not_clear_data``: lista de valores ``sujos`` a serem ignorados pelo ``cube-builder``. Os valores costumam ser valor de nuvem, sombra de nuvem, neve, probabilidade de nuvem, etc.
+- ``saturated_data``: lista de valores ``saturados`` dos sensores de origem. Esses valores são utilizados na etapa de `pos-processamento` para descarte dos pixels.
+- ``nodata``: valor ``nodata`` da mascara de nuvem
+
+
+Outros valores também são suportados e só devem ser usados se você sabe o que esta fazendo.
+
+- ``no_post_process``: descarta o `pós-processamento` (``post_processing``) feito antes da composição temporal a fim de corrigir problemas de  ``swath`` de imagem e saturação de pixels.
+- ``histogram_matching``: aplica uma equalização de histogramas nas imagens do período.
+- ``reference_day``: usa um dia comum como pivô e ordena da qualidade das mascara de nuvem baseado nesta data. Neste caso, o produto composto tende a ter a reflectancia das imagens mais homogêneo na banda. Por exemplo: Cubo mensal de Janeiro com ``reference_day=15`` e imagens dos dias ``1``,  ``6``, ``11``, ``16``, ``21``, ``26`` e ``31``. O algoritmo ordenará preferencialmente as imagens mais proximas do dia ``15``, no caso ``16`` e ``11`` até o fim. **LEMBRE-SE** que o fator de nuvem é considerado, logo nem sempre os valores serão proximos como o exemplo acima.
+
+
+Na etapa final, o usuário pode visualizar o que será criado e como será gerado, conforme a imagem a seguir.
+
+.. image:: ../img/tutorial-bdc/dc-manager-create-preview.png
+        :width: 100%
+        :alt: Data Cube Manager - Preview step
+
+
+Uma vez que as informações forem confirmadas, você deve clicar na opção ``I agree with the creation of cubes`` e confirme a criação em ``Create Cube``. Em seguida, clique em ``START PROCESS`` para começar a geração do cubo de dados.
+
+
+.. note::
+
+    O ``START PROCESS`` prepara os parametros e escalona o processamento de dados. Lembre-se de ter a instância `Worker`_ rodando para a geração de cubos de dados começar.
+
+
+No final da geração do produto de dados, você pode checar a página de detalhes (imagem a seguir)
+mostrando que cubo de dados possui um granulo sobre ``Cuiabá`` e você pode extender a cobertura espacial ou temporal do cubo clicando em ``PROCESS CUBE``.
+
+.. image:: ../img/tutorial-bdc/dc-manager-details.png
+        :width: 100%
+        :alt: Data Cube Manager - Details
+
+
+Você também pode clicar em ``CHECK CUBE`` e fazer uma inspeção visual do cubo de dados como a seguir:
+
+
+.. image:: ../img/tutorial-bdc/dc-manager-check-cube.png
+        :width: 100%
+        :alt: Data Cube Manager - Check Cube Page
+
+

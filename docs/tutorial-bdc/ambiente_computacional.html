@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ambiente Computacional &mdash; Brazil Data Cube</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Brazil Data Cube Catalog - BDC-Catalog" href="bdc_catalog.html" />
+    <link rel="prev" title="Tutorial das ferramentas BDC para desenvolvedores" href="../tutorial-bdc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+            <a href="../index.html">
+            <img src="../_static/logo-bdc-techtalks.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Brazil Data Cube Tech Talks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Apresentações:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../odc.html">Open Data Cube: Introdução e Integração com o projeto BDC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stac.html">SpatioTemporal Asset Catalog - STAC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wlts.html">Web Land Trajectory Service - WLTS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial-bdc.html">Tutorial das ferramentas BDC para desenvolvedores</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../tutorial-bdc.html#topicos-da-oficina">Tópicos da Oficina</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Ambiente Computacional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compatibilidade">Compatibilidade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bdc_catalog.html">Brazil Data Cube Catalog - BDC-Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bdc_stac.html">SpatioTemporal Asset Catalog - BDC-STAC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_cube_builder.html">Data Cube Builder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sites.html">Brazil Data Cube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contato.html">Contato</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">BDC Tech Talks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../tutorial-bdc.html">Tutorial das ferramentas BDC para desenvolvedores</a> &raquo;</li>
+      <li>Ambiente Computacional</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/brazil-data-cube/docs-tech-talks/blob/tutorial-bdc/ambiente_computacional.rst" class="fa fa-github"> Editar no GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="../tutorial-bdc.html" class="btn btn-neutral float-left" title="Tutorial das ferramentas BDC para desenvolvedores" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="bdc_catalog.html" class="btn btn-neutral float-right" title="Brazil Data Cube Catalog - BDC-Catalog" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="ambiente-computacional">
+<h1>Ambiente Computacional<a class="headerlink" href="#ambiente-computacional" title="Link permanente para este título"></a></h1>
+<p>O ambiente computacional dos desenvolvedores do Brazil Data Cube se baseiam essencialmente nas arquiteturas Linux Ubuntu 20.04. Outras distros linux também são suportadas. Além disso, é possivel rodar em ambientes Windows (se atentando nas dependencias de libs compiladas como Rasterio/PyProj - que no Windows é necessário a instalação via <a class="reference external" href="https://pythonwheels.com/">Python Wheels</a>). A seguir, é apresentado uma lista das ferramentas utilizadas para desenvolvimento e deploy:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> ou <a class="reference external" href="https://www.jetbrains.com/pt-br/pycharm/download/">PyCharm Community</a>.</p></li>
+<li><p><a class="reference external" href="https://www.python.org/">Python &gt;=3.7,&lt;3.10</a>: Foi testado com Python 3.7+. Algumas dependencias externas ainda não são suportadas nas versões 3.10+.</p></li>
+<li><p><a class="reference external" href="https://www.docker.com/">Docker</a>: Ambiente Docker para preparação das imagens dos serviços e dependencias das ferramentas.</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.docker.com/compose/">Docker Compose</a>: Utilitário Docker para executar multiplos containers das aplicações. (Nativo nas versões recentes do Docker).</p></li>
+<li><p><a class="reference external" href="https://registry.hub.docker.com/r/postgis/postgis/">PostgreSQL/PostGIS</a>: Banco de dados <a class="reference external" href="https://www.postgresql.org/">PostgreSQL</a> com a extensão espacial <a class="reference external" href="https://postgis.net/">PostGIS</a>. Será utilizado com o Docker.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="instalacao-do-docker">
+<h2>Instalação do Docker<a class="headerlink" href="#instalacao-do-docker" title="Link permanente para este título"></a></h2>
+<p>A instalação do Docker levará em conta o ambiente Ubuntu 20.04. Se você deseja instalar em outra distribuição, siga para <a class="reference external" href="https://docs.docker.com/engine/install">pagina oficial de instalação</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se vocẽ ja possui alguma instância do Docker executando, desconsidere essa etapa de instalação do Docker.</p>
+</div>
+<p>A primeira etapa da instalação do Docker é preparar os repositórios de fonte do Linux com o comando a seguir:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="n">curl</span> <span class="n">gnupg</span> <span class="n">lsb</span><span class="o">-</span><span class="n">release</span>
+</pre></div>
+</div>
+<p>Em seguida, adicione a chave oficial <code class="docutils literal notranslate"><span class="pre">Docker's</span> <span class="pre">GPG</span> <span class="pre">Key</span></code> na lista de autorizados do linux e adicione e entrada do repositorio na lista de fontes do seu linux:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">keyrings</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">fsSL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">linux</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">gpg</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">gpg</span> <span class="o">--</span><span class="n">dearmor</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">keyrings</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">gpg</span>
+<span class="n">echo</span> \
+    <span class="s2">&quot;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu </span><span class="se">\</span>
+<span class="s2">    $(lsb_release -cs) stable&quot;</span> <span class="o">|</span> <span class="n">sudo</span> <span class="n">tee</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">list</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+</pre></div>
+</div>
+<p>Por fim, sincronize os fontes e instale o <code class="docutils literal notranslate"><span class="pre">docker-ce</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">cli</span> <span class="n">containerd</span><span class="o">.</span><span class="n">io</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">-</span><span class="n">plugin</span>
+</pre></div>
+</div>
+<p>No final da instalação o Docker ja está configurado. Para ambientes locais de desenvolvimento, é recomendado executar os comandos da seção <a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/">Post-installation steps for Linux</a>. Isso permitirá que o usuário local do linux consiga executar comandos docker sem a necessidade de invocar o <code class="docutils literal notranslate"><span class="pre">sudo</span></code>. Utilize os campos abaixo para liberar o grupo do docker para o usuário:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sudo groupadd docker
+sudo usermod -aG docker $USER
+</pre></div>
+</div>
+<p>Para essas mudanças serem aplicadas no usuário, é necessário fazer o <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">off</span></code> e <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">in</span></code> novamente.</p>
+<div class="section" id="postgres">
+<span id="id1"></span><h3>PostgreSQL/PostGIS<a class="headerlink" href="#postgres" title="Link permanente para este título"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Se vocẽ já possui uma instância de PostgreSQL com PostGIS rodando, por favor, desconsidere essa etapa.</p>
+</div>
+<p>Primeiramente criaremos uma <a class="reference external" href="https://docs.docker.com/network/">Docker Network</a> chamada <code class="docutils literal notranslate"><span class="pre">bdc_net</span></code> para facilitar na comunicação entre os containers na seção de deploy dos serviços. A network pode ser criada com o comando:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">network</span> <span class="n">create</span> <span class="n">bdc_net</span>
+</pre></div>
+</div>
+<p>Você pode levantar uma instancia do PostgreSQL/PostGIS com o comando Docker abaixo:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker run --detach <span class="se">\</span>
+           --name postgis <span class="se">\</span>
+           --restart unless-stopped <span class="se">\</span>
+           --volume pg_data:/var/lib/postgresql/data <span class="se">\</span>
+           --env <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>postgres <span class="se">\</span>
+           --publish <span class="m">5432</span>:5432 <span class="se">\</span>
+           --net bdc_net <span class="se">\</span>
+           postgis/postgis:12-3.0
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Alternativamente, você pode utilizar o <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> para levantar o container do banco de dados. Para isso, crie um arquivo chamado <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> e cole o conteudo abaixo:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 2 - </span><span class="caption-text">docker-compose.yml</span><a class="headerlink" href="#id3" title="Link Permanente para esse código"></a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.8&quot;</span><span class="w"></span>
+<span class="nt">services</span><span class="p">:</span><span class="w"></span>
+<span class="nt">postgis</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgis/postgis:12-3.0&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgis&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;unless-stopped&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pg_data:/var/lib/postgresql/data</span><span class="w"></span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;POSTGRES_PASSWORD=postgres&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5432:5432&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bdc_net</span><span class="w"></span>
+<span class="nt">volumes</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">pg_data</span><span class="p">:</span><span class="w"></span>
+<span class="nt">networks</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">bdc_net</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>Utilize o comando abaixo para levantar a instância do banco de dados:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>   <span class="c1"># Para as versões recentes do Docker</span>
+<span class="c1"># docker-compose up -d  # Para as versões mais antigas.</span>
+</pre></div>
+</div>
+<p>Ao rodar o comando abaixo para listagem, teremos o seguinte resultado:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker container ls
+
+CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS         PORTS                    NAMES
+a3bb86d2df56   postgis/postgis:12-3.0 &quot;docker-entrypoint.s…&quot;   3 minutes ago   Up 3 minutes   0.0.0.0:5432-&gt;5432/tcp, :::5432-&gt;5432/tcp   postgis
+</pre></div>
+</div>
+</div>
+<p>Neste exemplo, o PostgreSQL está rodando na porta <code class="docutils literal notranslate"><span class="pre">5432</span></code> com as credenciais:</p>
+<ul class="simple">
+<li><p>Username: <code class="docutils literal notranslate"><span class="pre">postgres</span></code></p></li>
+<li><p>Password: <code class="docutils literal notranslate"><span class="pre">postgres</span></code></p></li>
+<li><p>Hostname: <code class="docutils literal notranslate"><span class="pre">localhost</span></code> (host ou via <code class="docutils literal notranslate"><span class="pre">ip</span> <span class="pre">local</span></code>)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="ambiente-virtual-para-desenvolvimento">
+<span id="ambiente-virtual"></span><h2>Ambiente Virtual para Desenvolvimento<a class="headerlink" href="#ambiente-virtual-para-desenvolvimento" title="Link permanente para este título"></a></h2>
+<p>Cada pacote Python instalado na seção de desenvolvimento será utilizado com um <a class="reference external" href="https://docs.python.org/pt-br/3/library/venv.html">ambiente virtual - venv</a>. Isso permite uma facilidade na hora de implementar funcionalidades individuais entre os pacotes, evitando conflito de dependencias. É <strong>RECOMENDAVEL</strong> criar o <code class="docutils literal notranslate"><span class="pre">venv</span></code> dentro de cada repositório ‘’git`` clonado.
+Você pode instala-lo com o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">venv</span>
+</pre></div>
+</div>
+<p>Uma vez instalado na distro de sistema, você pode fazer a criação de ambientes virtuais com o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">venv</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Você também pode opcionalmente utilizar o pacote <a class="reference external" href="https://pypi.org/project/virtualenv/">virtualenv</a> para criação de ambientes virtuais:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">virtualenv</span>
+</pre></div>
+</div>
+<p>E utilizar o comando para criar a <code class="docutils literal notranslate"><span class="pre">venv</span></code> com o comando:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="n">venv</span>
+</pre></div>
+</div>
+</div>
+<p>Uma vez que o ambiente seja criado, você deve atentar-se para sempre ativa-lo com o comando abaixo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+<p>Todo ambiente virtual criado tanto pelo <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">venv</span></code> ou <code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">venv</span></code> devem ser atualizados com o comando abaixo. Isso faz com que os pacotes  <code class="docutils literal notranslate"><span class="pre">pip</span></code>, <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> e <code class="docutils literal notranslate"><span class="pre">wheel</span></code> funcionem melhor com os pacotes do Brazil Data Cube:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">pip</span> <span class="n">setuptools</span> <span class="n">wheel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="compatibilidade">
+<span id="id2"></span><h1>Compatibilidade<a class="headerlink" href="#compatibilidade" title="Link permanente para este título"></a></h1>
+<p>Algumas tecnologias no Brazil Data Cube, como por exemplo, <code class="docutils literal notranslate"><span class="pre">BDC-Catalog</span></code>, são essenciais para o funcionamento dos demais serviços do BDC que utilizam o catalogo de imagens de observação da terra, são eles: <code class="docutils literal notranslate"><span class="pre">BDC-STAC</span></code>, <code class="docutils literal notranslate"><span class="pre">Cube-Builder</span></code> e <code class="docutils literal notranslate"><span class="pre">BDC-Collection-Builder</span></code>. Neste sentido, é importante salientar que deve-se ter conhecimento da compatibilidade entre as versões da tecnologias e seu funcionamento, conforme apresentado na tabela a seguir:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 30%" />
+<col style="width: 21%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>BDC-Catalog</p></th>
+<th class="head"><p>BDC-STAC</p></th>
+<th class="head"><p>Cube-Builder</p></th>
+<th class="head"><p>Data Cube Manager</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.0.0</p></td>
+<td><p>1.0.x (Spec 1.0)</p></td>
+<td><p>1.0.x</p></td>
+<td><p>1.0.x (todo)</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.8.2</p></td>
+<td><p>0.9.x (Spec 0.9.0)</p></td>
+<td><p>0.8.x</p></td>
+<td><p>0.6.x</p></td>
+</tr>
+<tr class="row-even"><td><p>0.8.1</p></td>
+<td></td>
+<td><p>0.4.x, 0.6.x</p></td>
+<td><p>0.4.x</p></td>
+</tr>
+<tr class="row-odd"><td><p>0.4.x</p></td>
+<td><p>0.8.x (Spec 0.8.x)</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>0.2.x</p></td>
+<td></td>
+<td><p>0.2.x</p></td>
+<td><p>0.2.x</p></td>
+</tr>
+</tbody>
+</table>
+<p>Neste tutorial, utilizaremos as seguintes versões de software:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC-Catalog</span> <span class="pre">1.0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BDC-STAC</span> <span class="pre">1.0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cube-Builder</span> <span class="pre">1.0a1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Cube</span> <span class="pre">Manager</span> <span class="pre">1.0a1</span></code></p></li>
+</ul>
+<div class="section" id="instalacao-do-vscode">
+<h2>Instalação do VSCode<a class="headerlink" href="#instalacao-do-vscode" title="Link permanente para este título"></a></h2>
+<p>A instalação do Visual Studio Code é muito simples. Basta fazer o download em <a class="reference external" href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a>.</p>
+<p>Além disso, como iremos trabalhar majoritariamente com o ambiente Python, é recomendavel que você faça a instalação do plugin Python, como apresentado na imagem a seguir:</p>
+<a class="reference internal image-reference" href="../_images/vscode-install-python.png"><img alt="Visual Studio Code - Instalação da extensão Python" src="../_images/vscode-install-python.png" style="width: 100%;" /></a>
+<p>Outro detalhe importante a configurar no VSCode é algumas configurações relacionadas ao editor. As configurações de editor pode ser acessadas e alteradas através do atalho <code class="docutils literal notranslate"><span class="pre">CTRL+,</span></code>, ou na engrenagem no menu inferior esquerdo e em seguida <code class="docutils literal notranslate"><span class="pre">Settings</span></code>, como mostrado a seguir:</p>
+<a class="reference internal image-reference" href="../_images/vscode-settings.png"><img alt="Visual Studio Code - Settings" src="../_images/vscode-settings.png" style="width: 100%;" /></a>
+<p>As configurações minimas recomendadas a serem modificadas são:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Render</span> <span class="pre">Whitespace=all</span></code>: Obrigar o editor de texto a renderizar os caracteres espaço. Alterar para <code class="docutils literal notranslate"><span class="pre">all</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tab</span> <span class="pre">Size</span></code>: Tamanho de caracteres para tabulação automatica. Manter como <code class="docutils literal notranslate"><span class="pre">4</span></code> caracteres.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Trim</span> <span class="pre">Trailing</span> <span class="pre">Whitespace</span></code>: remover espaços em branco ao salvar o documento. Recurso bem util para manter o código limpo.</p></li>
+</ul>
+<div class="section" id="configurar-interpretador-python-no-vscode">
+<span id="configurar-vscode"></span><h3>Configurar Interpretador Python no VSCode<a class="headerlink" href="#configurar-interpretador-python-no-vscode" title="Link permanente para este título"></a></h3>
+<p>Toda vez que você abre uma pasta com o fonte do projeto, seja ele: bdc-catalog, bdc-stac etc e faz a criação do <a class="reference internal" href="#ambiente-virtual">ambiente virtual</a>, algumas vezes é necessário configurar o interpretador python como a seguir:</p>
+<a class="reference internal image-reference" href="../_images/vscode-interpreter.png"><img alt="Visual Studio Code - Select Interpreter" src="../_images/vscode-interpreter.png" style="width: 100%;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Você pode opcionalmente selecionar o interpretador através do atalho <code class="docutils literal notranslate"><span class="pre">CTRL</span> <span class="pre">+</span> <span class="pre">SHIFT</span> <span class="pre">+</span> <span class="pre">P</span></code> e digitar <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">Interpreter</span></code> e em seguida selecionar <code class="docutils literal notranslate"><span class="pre">./venv/bin/python</span></code>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="../tutorial-bdc.html" class="btn btn-neutral float-left" title="Tutorial das ferramentas BDC para desenvolvedores" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="bdc_catalog.html" class="btn btn-neutral float-right" title="Brazil Data Cube Catalog - BDC-Catalog" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, INPE..</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'XXXXXXXXXX', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>
